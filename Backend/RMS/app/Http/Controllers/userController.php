@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-abstract class Controller
+class userController extends Controller
 {
     public function getUser(){
      $users = User::all();
-     return respons($users);
+     return response($users);
     }
 }
