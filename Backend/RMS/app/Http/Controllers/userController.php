@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
+use App\Models;
+
 class userController extends Controller
 {
-    public function getUser(){
-     $users = User::all();
-     return response($users);
+    public function getUser() { 
+    
     }
 }
