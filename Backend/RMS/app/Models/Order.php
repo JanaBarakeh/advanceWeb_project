@@ -16,7 +16,7 @@ class Order extends Model
 
     // One to Many relation function with order_items table.
     public function orderItems(): HasMany {
-    return $this->hasMany(orderItems::class);
+    return $this->hasMany(OrderItem::class);
     }
     // Many to One relation with reservations table.
     public function reservations(): BelongsTo {
