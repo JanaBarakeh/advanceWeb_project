@@ -15,8 +15,18 @@ class OrderItem extends Model
         'quantity'
     ];
 
-    // TO DO: one to many relation with review table.
-    // public function reviews(): HasMany {
-    // return $this->hasMany(Review::class);
-    // }}
+    // One to Many relation with review table.
+    public function reviews(): HasMany {
+    return $this->hasMany(Review::class);
+    }
+    
+    // Many to One relation with orders table.
+    public function orders(): BelongsTo {
+        return $this->belongsTo(Order::class);
+    }
+
+    // Many to One relation with menu_items table.
+     public function menuItems(): BelongsTo {
+        return $this->belongsTo(MenuItem::class);
+    }
 }
