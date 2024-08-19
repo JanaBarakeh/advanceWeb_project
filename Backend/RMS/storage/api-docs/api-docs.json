@@ -1,6 +1,24 @@
 {
     "openapi": "3.0.0",
     "info": {
+<<<<<<< HEAD
+        "title": "Menu API",
+        "description": "API documentation for the Menu Item management system.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/admain/menu-items": {
+            "get": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Get list of menu items",
+                "description": "Returns all menu items",
+                "operationId": "1730e0ae3ca7d4846fa980257a6ecf7d",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+=======
         "title": "My Laravel API",
         "description": "This is the API documentation for My Laravel Project.",
         "version": "1.0.0"
@@ -23,6 +41,7 @@
                 "responses": {
                     "200": {
                         "description": "List of all orders",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -30,6 +49,25 @@
                                     "items": {
                                         "properties": {
                                             "id": {
+<<<<<<< HEAD
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "category": {
+                                                "type": "string"
+                                            },
+                                            "is_available": {
+                                                "type": "boolean"
+=======
                                                 "type": "integer",
                                                 "example": 1
                                             },
@@ -534,6 +572,7 @@
                                             "content": {
                                                 "type": "string",
                                                 "example": "Great service!"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                             }
                                         },
                                         "type": "object"
@@ -546,16 +585,53 @@
             },
             "post": {
                 "tags": [
+<<<<<<< HEAD
+                    "Menu Items"
+                ],
+                "summary": "Create a new menu item",
+                "description": "Creates a new menu item",
+                "operationId": "e5bae7911bbad4ddfff580ad6be0de3f",
+=======
                     "Reviews"
                 ],
                 "summary": "Create a new review",
                 "description": "Allows users to create a new review by providing the reservation ID, user ID, rating, and optional content.",
                 "operationId": "154c71f5f72b459d998f5ea451bd4c96",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
+<<<<<<< HEAD
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "category",
+                                    "is_available"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Spaghetti Carbonara"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 14.5
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "Pasta"
+                                    },
+                                    "is_available": {
+                                        "type": "boolean",
+                                        "example": true
+=======
                                 "properties": {
                                     "reservation_id": {
                                         "description": "ID of the reservation",
@@ -576,6 +652,7 @@
                                         "description": "Optional content of the review",
                                         "type": "string",
                                         "example": "Great service!"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                     }
                                 },
                                 "type": "object"
@@ -585,7 +662,11 @@
                 },
                 "responses": {
                     "201": {
+<<<<<<< HEAD
+                        "description": "Item created successfully",
+=======
                         "description": "Review created successfully",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -594,6 +675,28 @@
                                             "type": "integer",
                                             "example": 1
                                         },
+<<<<<<< HEAD
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Spaghetti Carbonara"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 14.5
+                                        },
+                                        "category": {
+                                            "type": "string",
+                                            "example": "Pasta"
+                                        },
+                                        "is_available": {
+                                            "type": "boolean",
+                                            "example": true
+=======
                                         "reservation_id": {
                                             "type": "integer",
                                             "example": 1
@@ -628,6 +731,7 @@
                                         },
                                         "errors": {
                                             "type": "object"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                         }
                                     },
                                     "type": "object"
@@ -638,6 +742,16 @@
                 }
             }
         },
+<<<<<<< HEAD
+        "api/admain/menu-items/{id}": {
+            "put": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Update a menu item",
+                "description": "Updates an existing menu item",
+                "operationId": "3eac13b905d4ee57674648f3d20453fa",
+=======
         "/api/reviews/{id}": {
             "get": {
                 "tags": [
@@ -646,10 +760,15 @@
                 "summary": "Retrieve a specific review",
                 "description": "Fetches details of a specific review by its ID.",
                 "operationId": "a9949d3a965ed93ae30547c07eef7505",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
+<<<<<<< HEAD
+                        "description": "ID of the menu item to update",
+                        "required": true
+=======
                         "description": "ID of the review to retrieve",
                         "required": true,
                         "schema": {
@@ -724,6 +843,7 @@
                         "schema": {
                             "type": "integer"
                         }
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                     }
                 ],
                 "requestBody": {
@@ -732,6 +852,28 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+<<<<<<< HEAD
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Spaghetti Carbonara"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 14.5
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "Pasta"
+                                    },
+                                    "is_available": {
+                                        "type": "boolean",
+                                        "example": true
+=======
                                     "rating": {
                                         "description": "Updated rating",
                                         "type": "integer",
@@ -741,6 +883,7 @@
                                         "description": "Updated content",
                                         "type": "string",
                                         "example": "Good service!"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                     }
                                 },
                                 "type": "object"
@@ -750,7 +893,11 @@
                 },
                 "responses": {
                     "200": {
+<<<<<<< HEAD
+                        "description": "Item updated successfully",
+=======
                         "description": "Review updated successfully",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -759,6 +906,28 @@
                                             "type": "integer",
                                             "example": 1
                                         },
+<<<<<<< HEAD
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Spaghetti Carbonara"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 14.5
+                                        },
+                                        "category": {
+                                            "type": "string",
+                                            "example": "Pasta"
+                                        },
+                                        "is_available": {
+                                            "type": "boolean",
+                                            "example": true
+=======
                                         "reservation_id": {
                                             "type": "integer",
                                             "example": 1
@@ -774,6 +943,7 @@
                                         "content": {
                                             "type": "string",
                                             "example": "Good service!"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                         }
                                     },
                                     "type": "object"
@@ -781,18 +951,48 @@
                             }
                         }
                     },
+<<<<<<< HEAD
+                    "404": {
+                        "description": "Item not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Delete a menu item",
+                "description": "Deletes a menu item by its ID",
+                "operationId": "0ce8c92e622629b0b22530fff8e53109",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the menu item to delete",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Item deleted successfully",
+=======
                     "400": {
                         "description": "Bad request",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "message": {
                                             "type": "string",
+<<<<<<< HEAD
+                                            "example": "Item deleted successfully"
+=======
                                             "example": "Validation error"
                                         },
                                         "errors": {
                                             "type": "object"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                         }
                                     },
                                     "type": "object"
@@ -801,6 +1001,66 @@
                         }
                     },
                     "404": {
+<<<<<<< HEAD
+                        "description": "Item not found"
+                    }
+                }
+            }
+        },
+        "api/customr/menu-items/{category}": {
+            "get": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Get menu items by category",
+                "description": "Returns a list of menu items based on the category",
+                "operationId": "c30d467c3648c660abbf255ef40ed504",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Category of the menu items",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Spaghetti Carbonara"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 14.5
+                                            },
+                                            "category": {
+                                                "type": "string",
+                                                "example": "Pasta"
+                                            },
+                                            "is_available": {
+                                                "type": "boolean",
+                                                "example": true
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+=======
                         "description": "Review not found",
                         "content": {
                             "application/json": {
@@ -849,11 +1109,15 @@
                                         }
                                     },
                                     "type": "object"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                 }
                             }
                         }
                     },
                     "404": {
+<<<<<<< HEAD
+                        "description": "Category not found"
+=======
                         "description": "Review not found",
                         "content": {
                             "application/json": {
@@ -885,6 +1149,7 @@
                     },
                     "400": {
                         "description": "Invalid request"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                     }
                 }
             }
@@ -892,6 +1157,10 @@
     },
     "tags": [
         {
+<<<<<<< HEAD
+            "name": "Menu Items",
+            "description": "Menu Items"
+=======
             "name": "Orders",
             "description": "Orders"
         },
@@ -902,6 +1171,7 @@
         {
             "name": "Users",
             "description": "Users"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
         }
     ]
 }
