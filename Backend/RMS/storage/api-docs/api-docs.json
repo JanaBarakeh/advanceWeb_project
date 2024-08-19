@@ -1,0 +1,21 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Cool API",
+        "description": "An API of cool stuffs",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/users": {
+            "get": {
+                "summary": "Get all users",
+                "operationId": "9e2672e7928b99780d0461b0a7a84797",
+                "responses": {
+                    "200": {
+                        "description": "List of all users"
+                    }
+                }
+            }
+        }
+    }
+}

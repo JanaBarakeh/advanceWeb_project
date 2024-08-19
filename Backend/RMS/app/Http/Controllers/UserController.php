@@ -12,6 +12,19 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+
+        /**
+     * @OA\Get(
+     *     path="/api/users",
+     *     summary="Get all users",
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of all users"
+     *     )
+     * )
+     */
+
     public function GetAllUsers()
     {
         $users = User::all();
