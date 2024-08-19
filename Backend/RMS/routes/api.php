@@ -7,11 +7,15 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
-
-Route::get('/usertry', "\App\Http\Controllers\usercontroller@getUser");
-Route::get('/menu-items', "\App\Http\Controllers\ItemsController@getItems");
-Route::post('/menu-items', '\App\Http\Controllers\ItemsController@creatitems');
+// for admains
+Route::get('/admain/menu-items', "\App\Http\Controllers\ItemsController@getItems");
+Route::post('/admain/menu-items', '\App\Http\Controllers\ItemsController@creatitems');
+Route::put('/admain/menu-items/{id}', '\App\Http\Controllers\ItemsController@updateitems');
+Route::delete('/admain/menu-items/{id}', '\App\Http\Controllers\ItemsController@deleteitems');
+//for customors
+Route::get('/customr/menu-items', "\App\Http\Controllers\ItemsController@getItems");
+Route::get('/customr/menu-items/{category}', "\App\Http\Controllers\ItemsController@searchitems");
+//for both
 
 
 

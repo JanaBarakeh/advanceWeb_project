@@ -1,0 +1,341 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Menu API",
+        "description": "API documentation for the Menu Item management system.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/admain/menu-items": {
+            "get": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Get list of menu items",
+                "description": "Returns all menu items",
+                "operationId": "1730e0ae3ca7d4846fa980257a6ecf7d",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "category": {
+                                                "type": "string"
+                                            },
+                                            "is_available": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Create a new menu item",
+                "description": "Creates a new menu item",
+                "operationId": "e5bae7911bbad4ddfff580ad6be0de3f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "category",
+                                    "is_available"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Spaghetti Carbonara"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 14.5
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "Pasta"
+                                    },
+                                    "is_available": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Item created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Spaghetti Carbonara"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 14.5
+                                        },
+                                        "category": {
+                                            "type": "string",
+                                            "example": "Pasta"
+                                        },
+                                        "is_available": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/admain/menu-items/{id}": {
+            "put": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Update a menu item",
+                "description": "Updates an existing menu item",
+                "operationId": "3eac13b905d4ee57674648f3d20453fa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the menu item to update",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Spaghetti Carbonara"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 14.5
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "Pasta"
+                                    },
+                                    "is_available": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Item updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Spaghetti Carbonara"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 14.5
+                                        },
+                                        "category": {
+                                            "type": "string",
+                                            "example": "Pasta"
+                                        },
+                                        "is_available": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Item not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Delete a menu item",
+                "description": "Deletes a menu item by its ID",
+                "operationId": "0ce8c92e622629b0b22530fff8e53109",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the menu item to delete",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Item deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Item deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Item not found"
+                    }
+                }
+            }
+        },
+        "api/customr/menu-items/{category}": {
+            "get": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Get menu items by category",
+                "description": "Returns a list of menu items based on the category",
+                "operationId": "c30d467c3648c660abbf255ef40ed504",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "Category of the menu items",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Spaghetti Carbonara"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Classic Italian pasta with eggs, cheese, pancetta, and pepper."
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 14.5
+                                            },
+                                            "category": {
+                                                "type": "string",
+                                                "example": "Pasta"
+                                            },
+                                            "is_available": {
+                                                "type": "boolean",
+                                                "example": true
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Menu Items",
+            "description": "Menu Items"
+        }
+    ]
+}

@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Menu_item extends Model
+class MenuItem extends Model
 {
+
     use HasFactory;
 
      /**
@@ -21,4 +22,11 @@ class Menu_item extends Model
         'is_available',
         'category',
     ];
+    
+    // One to Many relation function with order_items table.
+    public function orderItems() {
+      //  return $this->hasMany(OrderItem::class);
+    }
+    
+
 }
