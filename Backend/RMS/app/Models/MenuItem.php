@@ -1,5 +1,6 @@
 <?php
 
+// @author Jana Barakeh
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +28,11 @@ class MenuItem extends Model
     public function orderItems() {
       //  return $this->hasMany(OrderItem::class);
     }
+
+    public function reviews() {
+      //  return $this->hasMany(Review::class);
+    }
+
     
 
 }

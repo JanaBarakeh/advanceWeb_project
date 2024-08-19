@@ -1,6 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
+<<<<<<< HEAD
         "title": "Menu API",
         "description": "API documentation for the Menu Item management system.",
         "version": "1.0.0"
@@ -17,6 +18,30 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation",
+=======
+        "title": "My Laravel API",
+        "description": "This is the API documentation for My Laravel Project.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Retrieve all orders",
+                "description": "Fetches a list of all orders from the database to staff.",
+                "operationId": "8203e923970f7081460934b89f7b67d6",
+                "responses": {
+                    "200": {
+                        "description": "List of all orders",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -24,6 +49,7 @@
                                     "items": {
                                         "properties": {
                                             "id": {
+<<<<<<< HEAD
                                                 "type": "integer"
                                             },
                                             "name": {
@@ -41,6 +67,512 @@
                                             },
                                             "is_available": {
                                                 "type": "boolean"
+=======
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "reservation_id": {
+                                                "type": "integer",
+                                                "example": 3
+                                            },
+                                            "total_price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 99.99
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "DELIVERED"
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "menu_item_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": 19.99
+                                                        },
+                                                        "quantity": {
+                                                            "type": "integer",
+                                                            "example": 2
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Create a new order",
+                "description": "This API allows customers to create a new order by submitting selected ‘MenuItemsIds’ with ‘NEW’ status.",
+                "operationId": "1ec1e4fc86f29989aa932a94d5422fb4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "reservation_id": {
+                                        "description": "ID of the reservation",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "total_price": {
+                                        "description": "Total price of the order",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 100.5
+                                    },
+                                    "status": {
+                                        "description": "Status of the order",
+                                        "type": "string",
+                                        "example": "NEW"
+                                    },
+                                    "order_items": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "menu_item_id": {
+                                                    "description": "ID of the menu item",
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "price": {
+                                                    "description": "Price of the menu item",
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 25.5
+                                                },
+                                                "quantity": {
+                                                    "description": "Quantity of the menu item",
+                                                    "type": "integer",
+                                                    "example": 2
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Order created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order created successfully"
+                                        },
+                                        "order": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "reservation_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "total_price": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 100.5
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "NEW"
+                                                },
+                                                "order_items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "menu_item_id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "price": {
+                                                                "type": "number",
+                                                                "format": "float",
+                                                                "example": 25.5
+                                                            },
+                                                            "quantity": {
+                                                                "type": "integer",
+                                                                "example": 2
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/orders/{id}": {
+            "delete": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Delete an order",
+                "description": "Deletes an order by its ID, if status is not “PREPARING” or “READY”.",
+                "operationId": "28bc5318082f0f0ba3a7831df23604e9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the order to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Order deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Order not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/orders/{id}/status": {
+            "put": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Update the status of an order",
+                "description": "This API allows kitchen staff to update the order status “PREPARING”, “READY”, and allows waitstaff to update the order status to “DELIVERED”.",
+                "operationId": "62849f96c268e5af865b29e87999a82f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the order to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "status"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "example": "READY"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Order status updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order status updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid input"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Order not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orders/customers/{id}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Retrieve all orders for a specific customer",
+                "description": "Fetches a list of all orders placed by a specific customer using their ID.",
+                "operationId": "6dda8296e75cc59473848eeafb9da5f0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the customer",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of customer's orders",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "reservation_id": {
+                                                "type": "integer",
+                                                "example": 12345
+                                            },
+                                            "total_price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 99.99
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "PREPARING"
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "menu_item_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": 19.99
+                                                        },
+                                                        "quantity": {
+                                                            "type": "integer",
+                                                            "example": 2
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Customer not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reviews": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Retrieve all reviews",
+                "description": "Fetches a list of all reviews.",
+                "operationId": "346169ce6ab0c633530a7cedc1a25fab",
+                "responses": {
+                    "200": {
+                        "description": "List of all reviews",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "reservation_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "rating": {
+                                                "type": "integer",
+                                                "example": 5
+                                            },
+                                            "content": {
+                                                "type": "string",
+                                                "example": "Great service!"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                             }
                                         },
                                         "type": "object"
@@ -53,16 +585,25 @@
             },
             "post": {
                 "tags": [
+<<<<<<< HEAD
                     "Menu Items"
                 ],
                 "summary": "Create a new menu item",
                 "description": "Creates a new menu item",
                 "operationId": "e5bae7911bbad4ddfff580ad6be0de3f",
+=======
+                    "Reviews"
+                ],
+                "summary": "Create a new review",
+                "description": "Allows users to create a new review by providing the reservation ID, user ID, rating, and optional content.",
+                "operationId": "154c71f5f72b459d998f5ea451bd4c96",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
+<<<<<<< HEAD
                                 "required": [
                                     "name",
                                     "price",
@@ -90,6 +631,28 @@
                                     "is_available": {
                                         "type": "boolean",
                                         "example": true
+=======
+                                "properties": {
+                                    "reservation_id": {
+                                        "description": "ID of the reservation",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "user_id": {
+                                        "description": "ID of the user",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "rating": {
+                                        "description": "Rating given by the user",
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "content": {
+                                        "description": "Optional content of the review",
+                                        "type": "string",
+                                        "example": "Great service!"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                     }
                                 },
                                 "type": "object"
@@ -99,7 +662,11 @@
                 },
                 "responses": {
                     "201": {
+<<<<<<< HEAD
                         "description": "Item created successfully",
+=======
+                        "description": "Review created successfully",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -108,6 +675,7 @@
                                             "type": "integer",
                                             "example": 1
                                         },
+<<<<<<< HEAD
                                         "name": {
                                             "type": "string",
                                             "example": "Spaghetti Carbonara"
@@ -128,6 +696,42 @@
                                         "is_available": {
                                             "type": "boolean",
                                             "example": true
+=======
+                                        "reservation_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "rating": {
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "example": "Great service!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                         }
                                     },
                                     "type": "object"
@@ -138,6 +742,7 @@
                 }
             }
         },
+<<<<<<< HEAD
         "api/admain/menu-items/{id}": {
             "put": {
                 "tags": [
@@ -146,12 +751,99 @@
                 "summary": "Update a menu item",
                 "description": "Updates an existing menu item",
                 "operationId": "3eac13b905d4ee57674648f3d20453fa",
+=======
+        "/api/reviews/{id}": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Retrieve a specific review",
+                "description": "Fetches details of a specific review by its ID.",
+                "operationId": "a9949d3a965ed93ae30547c07eef7505",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
+<<<<<<< HEAD
                         "description": "ID of the menu item to update",
                         "required": true
+=======
+                        "description": "ID of the review to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "reservation_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "rating": {
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "example": "Great service!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Review not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Review not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Update a review",
+                "description": "Allows users to update the rating and content of an existing review.",
+                "operationId": "17776becb9faf054b5c49bc83ad6c974",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the review to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                     }
                 ],
                 "requestBody": {
@@ -160,6 +852,7 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+<<<<<<< HEAD
                                     "name": {
                                         "type": "string",
                                         "example": "Spaghetti Carbonara"
@@ -180,6 +873,17 @@
                                     "is_available": {
                                         "type": "boolean",
                                         "example": true
+=======
+                                    "rating": {
+                                        "description": "Updated rating",
+                                        "type": "integer",
+                                        "example": 4
+                                    },
+                                    "content": {
+                                        "description": "Updated content",
+                                        "type": "string",
+                                        "example": "Good service!"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                     }
                                 },
                                 "type": "object"
@@ -189,7 +893,11 @@
                 },
                 "responses": {
                     "200": {
+<<<<<<< HEAD
                         "description": "Item updated successfully",
+=======
+                        "description": "Review updated successfully",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -198,6 +906,7 @@
                                             "type": "integer",
                                             "example": 1
                                         },
+<<<<<<< HEAD
                                         "name": {
                                             "type": "string",
                                             "example": "Spaghetti Carbonara"
@@ -218,6 +927,23 @@
                                         "is_available": {
                                             "type": "boolean",
                                             "example": true
+=======
+                                        "reservation_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "rating": {
+                                            "type": "integer",
+                                            "example": 4
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "example": "Good service!"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                         }
                                     },
                                     "type": "object"
@@ -225,6 +951,7 @@
                             }
                         }
                     },
+<<<<<<< HEAD
                     "404": {
                         "description": "Item not found"
                     }
@@ -248,13 +975,24 @@
                 "responses": {
                     "200": {
                         "description": "Item deleted successfully",
+=======
+                    "400": {
+                        "description": "Bad request",
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "message": {
                                             "type": "string",
+<<<<<<< HEAD
                                             "example": "Item deleted successfully"
+=======
+                                            "example": "Validation error"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                         }
                                     },
                                     "type": "object"
@@ -263,6 +1001,7 @@
                         }
                     },
                     "404": {
+<<<<<<< HEAD
                         "description": "Item not found"
                     }
                 }
@@ -321,12 +1060,96 @@
                                         },
                                         "type": "object"
                                     }
+=======
+                        "description": "Review not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Review not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Delete a review",
+                "description": "Allows users to delete a specific review by its ID.",
+                "operationId": "89986343b5dbd2b909c2764aeb7e4096",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the review to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Review deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Review deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                                 }
                             }
                         }
                     },
                     "404": {
+<<<<<<< HEAD
                         "description": "Category not found"
+=======
+                        "description": "Review not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Review not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/testadfdfgfdgf a adsfgadft aefgerg dfaa": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a list of tests",
+                "operationId": "731280d95bb8903dec26040406615ba0",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
                     }
                 }
             }
@@ -334,8 +1157,21 @@
     },
     "tags": [
         {
+<<<<<<< HEAD
             "name": "Menu Items",
             "description": "Menu Items"
+=======
+            "name": "Orders",
+            "description": "Orders"
+        },
+        {
+            "name": "Reviews",
+            "description": "Reviews"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+>>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
         }
     ]
 }

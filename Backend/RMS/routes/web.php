@@ -6,3 +6,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('/order', '\App\Http\Controllers\userController@getUser');
