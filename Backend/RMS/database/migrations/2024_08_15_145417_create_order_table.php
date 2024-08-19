@@ -1,4 +1,5 @@
 <?php
+// @author Farah Elhasan
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

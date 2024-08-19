@@ -1,4 +1,5 @@
 <?php
+// @author Farah Elhasan
 
 namespace App\Models;
 
@@ -15,11 +16,11 @@ class Order extends Model
     ];
 
     // One to Many relation function with order_items table.
-    public function orderItems(): HasMany {
+    public function orderItems(){
     return $this->hasMany(OrderItem::class);
     }
     // Many to One relation with reservations table.
-    public function reservations(): BelongsTo {
+    public function reservations(){
     return $this->belongsTo(Reservation::class);
     }
 }
