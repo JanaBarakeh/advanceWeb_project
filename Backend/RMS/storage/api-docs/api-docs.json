@@ -1,0 +1,509 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Restaurant Management System API",
+        "description": "API documentation for the Restaurant Management System.",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Retrieve all orders",
+                "description": "Fetches a list of all orders from the database to staff.",
+                "operationId": "8203e923970f7081460934b89f7b67d6",
+                "responses": {
+                    "200": {
+                        "description": "List of all orders",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "reservation_id": {
+                                                "type": "integer",
+                                                "example": 3
+                                            },
+                                            "total_price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 99.99
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "DELIVERED"
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "menu_item_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": 19.99
+                                                        },
+                                                        "quantity": {
+                                                            "type": "integer",
+                                                            "example": 2
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Create a new order",
+                "description": "This API allows customers to create a new order by submitting selected ‘MenuItemsIds’ with ‘NEW’ status.",
+                "operationId": "1ec1e4fc86f29989aa932a94d5422fb4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "reservation_id": {
+                                        "description": "ID of the reservation",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "total_price": {
+                                        "description": "Total price of the order",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 100.5
+                                    },
+                                    "status": {
+                                        "description": "Status of the order",
+                                        "type": "string",
+                                        "example": "NEW"
+                                    },
+                                    "order_items": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "menu_item_id": {
+                                                    "description": "ID of the menu item",
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "price": {
+                                                    "description": "Price of the menu item",
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 25.5
+                                                },
+                                                "quantity": {
+                                                    "description": "Quantity of the menu item",
+                                                    "type": "integer",
+                                                    "example": 2
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Order created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order created successfully"
+                                        },
+                                        "order": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "reservation_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "total_price": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 100.5
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "NEW"
+                                                },
+                                                "order_items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "menu_item_id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "price": {
+                                                                "type": "number",
+                                                                "format": "float",
+                                                                "example": 25.5
+                                                            },
+                                                            "quantity": {
+                                                                "type": "integer",
+                                                                "example": 2
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/orders/{id}": {
+            "delete": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Delete an order",
+                "description": "Deletes an order by its ID, if status is not “PREPARING” or “READY”.",
+                "operationId": "28bc5318082f0f0ba3a7831df23604e9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the order to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Order deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Order not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/orders/{id}/status": {
+            "put": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Update the status of an order",
+                "description": "This API allows kitchen staff to update the order status “PREPARING”, “READY”, and allows waitstaff to update the order status to “DELIVERED”.",
+                "operationId": "62849f96c268e5af865b29e87999a82f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the order to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "status"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "example": "READY"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Order status updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order status updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid input"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Order not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orders/customers/{id}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Retrieve all orders for a specific customer",
+                "description": "Fetches a list of all orders placed by a specific customer using their ID.",
+                "operationId": "6dda8296e75cc59473848eeafb9da5f0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the customer",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of customer's orders",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "reservation_id": {
+                                                "type": "integer",
+                                                "example": 12345
+                                            },
+                                            "total_price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 99.99
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "PREPARING"
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "menu_item_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": 19.99
+                                                        },
+                                                        "quantity": {
+                                                            "type": "integer",
+                                                            "example": 2
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Customer not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Orders",
+            "description": "Orders"
+        }
+    ]
+}
