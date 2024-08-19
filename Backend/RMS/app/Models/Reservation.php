@@ -13,7 +13,11 @@ class Reservation extends Model
     protected $fillable = [
         "date",
         "status",
-        "start_time"
+        "start_time",
+        "end_time",
+        "actual_end_time",
+        "table_id",
+        "user_id"
     ];
 
     public function table() : BelongsTo {
