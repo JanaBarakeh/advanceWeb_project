@@ -74,6 +74,7 @@ class UserController extends Controller
      *             @OA\Property(property="last_name", type="string", maxLength=255, example="Ali"),
      *             @OA\Property(property="email", type="string", format="email", maxLength=255, example="Ratan@example.com"),
      *             @OA\Property(property="password", type="string", minLength=4, example="1234"),
+     *             @OA\Property(property="password_confirmation", type="string", minLength=4, example="1234"),
      *             @OA\Property(property="role_id", type="integer", example=1)
      *         )
      *     ),
@@ -231,23 +232,6 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['message' => 'User deleted successfully'], 200);
-    }
-
-    /**
-     * @OA\Get(
-     *     path="/api/users-with-roles",
-     *     tags={"Users"},
-     *     summary="Get all users with their roles",
-     *     @OA\Response(
-     *         response=200,
-     *         description="List of all users with their roles"
-     *     )
-     * )
-     */
-    public function GetRoleUser()
-    {
-        $users = User::with('role')->get();
-        return response()->json($users);
     }
 
   
