@@ -69,11 +69,11 @@ class UserController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"name", "first_name", "last_name", "email", "password", "role_id"},
-     *             @OA\Property(property="name", type="string", maxLength=255, example="John Doe"),
-     *             @OA\Property(property="first_name", type="string", maxLength=255, example="John"),
-     *             @OA\Property(property="last_name", type="string", maxLength=255, example="Doe"),
-     *             @OA\Property(property="email", type="string", format="email", maxLength=255, example="johndoe@example.com"),
-     *             @OA\Property(property="password", type="string", minLength=4, example="password"),
+     *             @OA\Property(property="name", type="string", maxLength=255, example="Ratan Ali"),
+     *             @OA\Property(property="first_name", type="string", maxLength=255, example="Ratan"),
+     *             @OA\Property(property="last_name", type="string", maxLength=255, example="Ali"),
+     *             @OA\Property(property="email", type="string", format="email", maxLength=255, example="Ratan@example.com"),
+     *             @OA\Property(property="password", type="string", minLength=4, example="1234"),
      *             @OA\Property(property="role_id", type="integer", example=1)
      *         )
      *     ),
@@ -143,11 +143,11 @@ class UserController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             @OA\Property(property="name", type="string", maxLength=255, example="John Doe"),
-     *             @OA\Property(property="first_name", type="string", maxLength=255, example="John"),
-     *             @OA\Property(property="last_name", type="string", maxLength=255, example="Doe"),
-     *             @OA\Property(property="email", type="string", format="email", maxLength=255, example="johndoe@example.com"),
-     *             @OA\Property(property="password", type="string", minLength=4, example="newpassword"),
+     *             @OA\Property(property="name", type="string", maxLength=255, example="Ratan Ali"),
+     *             @OA\Property(property="first_name", type="string", maxLength=255, example="Ratan"),
+     *             @OA\Property(property="last_name", type="string", maxLength=255, example="Ali"),
+     *             @OA\Property(property="email", type="string", format="email", maxLength=255, example="Ratan@example.com"),
+     *             @OA\Property(property="password", type="string", minLength=4, example="1234"),
      *             @OA\Property(property="role_id", type="integer", example=1)
      *         )
      *     ),

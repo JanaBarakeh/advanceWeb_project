@@ -1,7 +1,6 @@
 {
     "openapi": "3.0.0",
     "info": {
-<<<<<<< HEAD
         "title": "Restaurant Management System API",
         "description": "API documentation for the Restaurant Management System.",
         "contact": {
@@ -14,30 +13,6 @@
         "version": "1.0.0"
     },
     "paths": {
-=======
-        "title": "My Laravel API",
-        "description": "This is the API documentation for My Laravel Project.",
-        "version": "1.0.0"
-    },
-    "servers": [
-        {
-            "url": "http://127.0.0.1:8000/api",
-            "description": "API Server"
-        }
-    ],
-    "paths": {
-        "/api/users": {
-            "get": {
-                "summary": "Get all users",
-                "operationId": "9e2672e7928b99780d0461b0a7a84797",
-                "responses": {
-                    "200": {
-                        "description": "List of all users"
-                        }
-                        }
-                        }
-                    },
->>>>>>> c25720aa4c602873a3abf8b980ff41b20f96ffc1
         "api/admain/menu-items": {
             "get": {
                 "tags": [
@@ -130,7 +105,7 @@
                     }
                 },
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "Item created successfully",
                         "content": {
                             "application/json": {
@@ -1223,6 +1198,23 @@
                 }
             }
         },
+        "/testadfdfgfdgf a adsfgadft aefgerg dfaa": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Get a list of tests",
+                "operationId": "731280d95bb8903dec26040406615ba0",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -1296,7 +1288,6 @@
                     "201": {
                         "description": "User created successfully"
                     },
-<<<<<<< HEAD
                     "422": {
                         "description": "Validation errors"
                     }
@@ -1438,10 +1429,6 @@
                 "responses": {
                     "200": {
                         "description": "List of all users with their roles"
-=======
-                    "400": {
-                        "description": "Invalid request"
->>>>>>> c25720aa4c602873a3abf8b980ff41b20f96ffc1
                     }
                 }
             }
@@ -1459,6 +1446,10 @@
         {
             "name": "Reviews",
             "description": "Reviews"
+        },
+        {
+            "name": "Test",
+            "description": "Test"
         },
         {
             "name": "Users",
