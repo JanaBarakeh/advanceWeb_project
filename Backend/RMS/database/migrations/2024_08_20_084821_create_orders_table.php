@@ -1,5 +1,4 @@
 <?php
-// @author Farah Elhasan
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            //$table->foreignId('reservation_id')->constrained()->onDelete('cascade');
-            $table->integer('reservation_id');
-            $table->double('total_price');
-            $table->string('status');
-            $table->timestamps();
-        });
+            Schema::create('orders', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('reservation_id')->constrained()->onDelete('cascade');
+                $table->double('total_price');
+                $table->string('status');
+                $table->timestamps();
+            });
+        
     }
 
     /**
