@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "2bd696576beeb278a25bd741e9633e88",
-=======
-    "content-hash": "fa31fb781d75d9b2cc06d07ee109b87b",
->>>>>>> 8bddaf9c79ba3d3b06522181ae7f59f36ebe0e38
     "packages": [
         {
             "name": "brick/math",
@@ -1667,7 +1663,6 @@
         },
         {
             "name": "league/commonmark",
-<<<<<<< HEAD
             "version": "2.5.3",
             "source": {
                 "type": "git",
@@ -1678,18 +1673,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/b650144166dfa7703e62a22e493b853b58d874b0",
                 "reference": "b650144166dfa7703e62a22e493b853b58d874b0",
-=======
-            "version": "2.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "df09d5b6a4188f8f3c3ab2e43a109076a5eeb767"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/df09d5b6a4188f8f3c3ab2e43a109076a5eeb767",
-                "reference": "df09d5b6a4188f8f3c3ab2e43a109076a5eeb767",
->>>>>>> 8bddaf9c79ba3d3b06522181ae7f59f36ebe0e38
                 "shasum": ""
             },
             "require": {
@@ -1782,11 +1765,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
             "time": "2024-08-16T11:46:16+00:00"
-=======
-            "time": "2024-08-14T10:56:57+00:00"
->>>>>>> 8bddaf9c79ba3d3b06522181ae7f59f36ebe0e38
         },
         {
             "name": "league/config",

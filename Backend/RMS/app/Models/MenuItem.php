@@ -11,7 +11,7 @@ class MenuItem extends Model
 
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -23,17 +23,19 @@ class MenuItem extends Model
         'is_available',
         'category',
     ];
-    
+
     // One to Many relation function with order_items table.
-    public function orderItems() {
+    public function orderItems()
+    {
         return $this->hasMany(OrderItem::class);
     }
 
     // One to Many relation function with review table.
-    public function reviews() {
-      //  return $this->hasMany(Review::class);
+    public function Review()
+    {
+        //  return $this->hasMany(Review::class);
     }
 
-    
+
 
 }
