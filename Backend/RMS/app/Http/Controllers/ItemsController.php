@@ -4,13 +4,7 @@
 namespace App\Http\Controllers;
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
-/**
- * @OA\Info(
- *     title="Menu API",
- *     version="1.0.0",
- *     description="API documentation for the Menu Item management system."
- * )
- */
+
 class ItemsController extends Controller
 {
   

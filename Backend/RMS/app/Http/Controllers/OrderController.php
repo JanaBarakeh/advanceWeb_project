@@ -135,7 +135,6 @@ class OrderController extends Controller
      */
     public function deleteOrder($id){
     }
-
     
     /**
      * @OA\PUT(
