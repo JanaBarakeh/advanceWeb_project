@@ -9,7 +9,7 @@ class ItemsController extends Controller
   
 /**
  * @OA\Get(
- *     path="api/admain/menu-items",
+ *     path="api/menu-items",
  *     tags={"Menu Items"},
  *     summary="Get list of menu items",
  *     description="Returns all menu items",
@@ -37,7 +37,7 @@ class ItemsController extends Controller
     }
  /**
  * @OA\Post(
- *     path="api/admain/menu-items",
+ *     path="api/menu-items",
  *     tags={"Menu Items"},
  *     summary="Create a new menu item",
  *     description="Creates a new menu item",
@@ -91,7 +91,7 @@ class ItemsController extends Controller
     }
 /**
  * @OA\Put(
- *     path="api/admain/menu-items/{id}",
+ *     path="api/menu-items/{id}",
  *     tags={"Menu Items"},
  *     summary="Update a menu item",
  *     description="Updates an existing menu item",
@@ -149,7 +149,7 @@ class ItemsController extends Controller
     }
 /**
  * @OA\Delete(
- *     path="api/admain/menu-items/{id}",
+ *     path="api/menu-items/{id}",
  *     tags={"Menu Items"},
  *     summary="Delete a menu item",
  *     description="Deletes a menu item by its ID",
@@ -188,7 +188,7 @@ class ItemsController extends Controller
     }
 /**
  * @OA\Get(
- *     path="api/customr/menu-items/{category}",
+ *     path="api/menu-items/{category}",
  *     tags={"Menu Items"},
  *     summary="Get menu items by category",
  *     description="Returns a list of menu items based on the category",

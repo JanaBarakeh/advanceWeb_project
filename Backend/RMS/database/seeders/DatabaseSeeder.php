@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
     {
       //   User::factory(1)->create();
        
+
+        
         // User::factory()->create([
         //     'name' => 'Lemara Ali',
         //     'first_name'=> 'lemara',
@@ -28,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
 
         $this->call(UserSeeder::class);
+        $this->call(MenuItemSeeder::class);
     }
 }
