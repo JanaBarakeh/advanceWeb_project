@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/test', [\App\Http\Controllers\TestContoller::class, 'test']);
+require __DIR__.'/UserRoute.php';
 require __DIR__.'/OrderRoute.php';
 require __DIR__.'/AdmainItemRoute.php';
 require __DIR__.'/CustomerItemRoute.php';
