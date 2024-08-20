@@ -824,17 +824,17 @@
                 }
             }
         },
-        "/api/reviews": {
+        "/api/Review": {
             "get": {
                 "tags": [
-                    "Reviews"
+                    "Review"
                 ],
-                "summary": "Retrieve all reviews",
-                "description": "Fetches a list of all reviews.",
-                "operationId": "346169ce6ab0c633530a7cedc1a25fab",
+                "summary": "Retrieve all Review",
+                "description": "Fetches a list of all Review.",
+                "operationId": "5ee244243d952a8add6e20078becdb01",
                 "responses": {
                     "200": {
-                        "description": "List of all reviews",
+                        "description": "List of all Review",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -872,11 +872,11 @@
             },
             "post": {
                 "tags": [
-                    "Reviews"
+                    "Review"
                 ],
                 "summary": "Create a new review",
                 "description": "Allows users to create a new review by providing the reservation ID, user ID, rating, and optional content.",
-                "operationId": "154c71f5f72b459d998f5ea451bd4c96",
+                "operationId": "a5775069dbbb0bf2241dff66ae8f1d2d",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -964,14 +964,14 @@
                 }
             }
         },
-        "/api/reviews/{id}": {
+        "/api/Review/{id}": {
             "get": {
                 "tags": [
-                    "Reviews"
+                    "Review"
                 ],
                 "summary": "Retrieve a specific review",
                 "description": "Fetches details of a specific review by its ID.",
-                "operationId": "a9949d3a965ed93ae30547c07eef7505",
+                "operationId": "11eb00efed712aa6b6f33ee244bebb57",
                 "parameters": [
                     {
                         "name": "id",
@@ -1036,11 +1036,11 @@
             },
             "put": {
                 "tags": [
-                    "Reviews"
+                    "Review"
                 ],
                 "summary": "Update a review",
                 "description": "Allows users to update the rating and content of an existing review.",
-                "operationId": "17776becb9faf054b5c49bc83ad6c974",
+                "operationId": "984fcb7b793efefe5f58836967f3e2a5",
                 "parameters": [
                     {
                         "name": "id",
@@ -1146,11 +1146,11 @@
             },
             "delete": {
                 "tags": [
-                    "Reviews"
+                    "Review"
                 ],
                 "summary": "Delete a review",
                 "description": "Allows users to delete a specific review by its ID.",
-                "operationId": "89986343b5dbd2b909c2764aeb7e4096",
+                "operationId": "1d937485c8025c313392bc6c826315b9",
                 "parameters": [
                     {
                         "name": "id",
@@ -1444,8 +1444,8 @@
             "description": "Orders"
         },
         {
-            "name": "Reviews",
-            "description": "Reviews"
+            "name": "Review",
+            "description": "Review"
         },
         {
             "name": "Test",
