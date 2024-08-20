@@ -4,7 +4,6 @@
 namespace App\Http\Controllers;
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
-
 class ItemsController extends Controller
 {
   
@@ -34,7 +33,7 @@ class ItemsController extends Controller
  */
     public function getItems(){
         $items = MenuItem::all();
-        return response($items);
+        return response($items,200);
     }
  /**
  * @OA\Post(
@@ -55,7 +54,7 @@ class ItemsController extends Controller
  *         )
  *     ),
  *     @OA\Response(
- *         response=201,
+ *         response=200,
  *         description="Item created successfully",
  *         @OA\JsonContent(
  *             type="object",
@@ -71,16 +70,15 @@ class ItemsController extends Controller
  */
     public function creatitems(Request $request)
     {
-         // Validate request data
+
          $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'is_available' => 'boolean',
+            'is_available' => 'required|boolean',
             'category' => 'required|string|max:255',
         ]);
 
-        // Create a new menu item
         $menuItem = MenuItem::create([
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
@@ -89,8 +87,7 @@ class ItemsController extends Controller
             'category' => $validatedData['category'],
         ]);
 
-        // Return a response or redirect
-        return response($menuItem);
+        return response($menuItem,200);
     }
 /**
  * @OA\Put(
@@ -135,14 +132,14 @@ class ItemsController extends Controller
  * )
  */
     public function updateitems(Request $request, $id){
-        // Find the menu item by ID
+
         $menuItem = MenuItem::findOrFail($id);
  
        $validatedData = $request->validate([
       'name' => 'sometimes|required|string|max:255',
       'description' => 'nullable|string',
       'price' => 'sometimes|required|numeric|min:0',
-      'is_available' => 'boolean',
+      'is_available' => 'sometimes|required|boolean',
       'category' => 'sometimes|required|string|max:255',
        ]);
 
@@ -180,9 +177,14 @@ class ItemsController extends Controller
      
         $menuItem = MenuItem::findOrFail($id);
 
+        if(!$menuItem)
+        {
+            return response("invalid Menu_item id",404);
+        }
+
         $menuItem->delete();
        
-        return response("item with id : $id deleted");
+        return response("item with id : $id deleted",200);
     }
 /**
  * @OA\Get(
@@ -225,7 +227,7 @@ class ItemsController extends Controller
             return response('No items found in this category.');
         }
 
-        return response($menuItem);
+        return response($menuItem,200);
     }
 
     
