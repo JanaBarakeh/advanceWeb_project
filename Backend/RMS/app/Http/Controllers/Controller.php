@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 /**
  * @OA\Info(
- *     title="My Laravel API",
+ *     title="Restaurant Management System API",
  *     version="1.0.0",
- *     description="This is the API documentation for My Laravel Project."
- * )
- * @OA\Server(
- *     url="http://127.0.0.1:8000/api",
- *     description="API Server"
+ *     description="API documentation for the Restaurant Management System.",
+ *     @OA\Contact(
+ *         email="support@example.com"
+ *     ),
+ *     @OA\License(
+ *         name="Apache 2.0",
+ *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *     )
  * )
  */
+
 
 abstract class Controller
 

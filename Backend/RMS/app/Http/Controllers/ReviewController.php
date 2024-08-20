@@ -1,20 +1,20 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Reviews;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/reviews",
-     *     tags={"Reviews"},
-     *     summary="Retrieve all reviews",
-     *     description="Fetches a list of all reviews.",
+     *     path="/api/Review",
+     *     tags={"Review"},
+     *     summary="Retrieve all Review",
+     *     description="Fetches a list of all Review.",
      *     @OA\Response(
      *         response=200,
-     *         description="List of all reviews",
+     *         description="List of all Review",
      *         @OA\JsonContent(
      *             type="array",
      *             @OA\Items(
@@ -31,15 +31,15 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return Reviews::all();
+        return Review::all();
     }
 
     /**
      * @OA\Post(
-     *     path="/api/reviews",
+     *     path="/api/Review",
      *     summary="Create a new review",
      *     description="Allows users to create a new review by providing the reservation ID, user ID, rating, and optional content.",
-     *     tags={"Reviews"},
+     *     tags={"Review"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -81,14 +81,14 @@ class ReviewController extends Controller
             'rating' => 'required|integer|min:1|max:5',
             'content' => 'nullable|string',
         ]);
-        $review = Reviews::create($validatedData);
+        $review = Review::create($validatedData);
         return response()->json($review, 201);
     }
 
     /**
      * @OA\Get(
-     *     path="/api/reviews/{id}",
-     *     tags={"Reviews"},
+     *     path="/api/Review/{id}",
+     *     tags={"Review"},
      *     summary="Retrieve a specific review",
      *     description="Fetches details of a specific review by its ID.",
      *     @OA\Parameter(
@@ -122,14 +122,14 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        $review = Reviews::findOrFail($id);
+        $review = Review::findOrFail($id);
         return response()->json($review);
     }
 
     /**
      * @OA\Put(
-     *     path="/api/reviews/{id}",
-     *     tags={"Reviews"},
+     *     path="/api/Review/{id}",
+     *     tags={"Review"},
      *     summary="Update a review",
      *     description="Allows users to update the rating and content of an existing review.",
      *     @OA\Parameter(
@@ -180,7 +180,7 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $review = Reviews::findOrFail($id);
+        $review = Review::findOrFail($id);
 
         $validatedData = $request->validate([
             'rating' => 'sometimes|required|integer|min:1|max:5',
@@ -194,8 +194,8 @@ class ReviewController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/reviews/{id}",
-     *     tags={"Reviews"},
+     *     path="/api/Review/{id}",
+     *     tags={"Review"},
      *     summary="Delete a review",
      *     description="Allows users to delete a specific review by its ID.",
      *     @OA\Parameter(
@@ -225,7 +225,7 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        $review = Reviews::findOrFail($id);
+        $review = Review::findOrFail($id);
         $review->delete();
 
         return response()->json(null, 204);

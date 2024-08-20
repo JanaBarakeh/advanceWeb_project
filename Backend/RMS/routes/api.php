@@ -8,7 +8,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::get('/test', [\App\Http\Controllers\TestContoller::class, 'test']);
+// Route::get('/test', [\App\Http\Controllers\TestContoller::class, 'test']);
 require __DIR__.'/UserRoute.php';
 require __DIR__.'/OrderRoute.php';
 require __DIR__.'/AdmainItemRoute.php';
