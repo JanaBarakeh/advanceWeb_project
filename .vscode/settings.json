@@ -10,8 +10,8 @@
             "port": 3306,
             "driver": "MySQL",
             "name": "restaurant_connection ",
-            "username": "root",
             "database": "restaurant",
+            "username": "root",
             "password": ""
         }
     ]

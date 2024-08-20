@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
-
 /**
  * @OA\Info(
- *    title="My Cool API",
- *    description="An API of cool stuffs",
- *    version="1.0.0",
+ *     title="My Laravel API",
+ *     version="1.0.0",
+ *     description="This is the API documentation for My Laravel Project."
+ * )
+ * @OA\Server(
+ *     url="http://127.0.0.1:8000/api",
+ *     description="API Server"
  * )
  */
 
-class Controller extends BaseController
+abstract class Controller
+
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
 }
