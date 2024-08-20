@@ -15,16 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+      //   User::factory(1)->create();
        
-        User::factory()->create([
-            'name' => 'Lemara Ali',
-            'first_name'=> 'lemara',
-            'last_name'=> 'Ali',
-            'email' => 'Lemaraali@example.com',
-            'password'=> bcrypt('1234'),
-            'role_id'=> '1',
-        ]);
-        
+        // User::factory()->create([
+        //     'name' => 'Lemara Ali',
+        //     'first_name'=> 'lemara',
+        //     'last_name'=> 'Ali',
+        //     'email' => 'Lemaraali@example.com',
+        //     'password'=> bcrypt('1234'),
+        //     'role_id'=> '1',
+        // ]);
+        $this->call(RoleSeeder::class);
+
+        $this->call(UserSeeder::class);
     }
 }
