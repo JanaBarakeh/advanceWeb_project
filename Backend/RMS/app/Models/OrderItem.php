@@ -17,17 +17,20 @@ class OrderItem extends Model
     ];
 
     // One to Many relation with review table.
-    public function reviews(){
-    return $this->hasMany(Review::class);
+    public function Review()
+    {
+        return $this->hasMany(Review::class);
     }
-    
+
     // Many to One relation with orders table.
-    public function orders(){
+    public function orders()
+    {
         return $this->belongsTo(Order::class);
     }
 
     // Many to One relation with menu_items table.
-     public function menuItems(){
+    public function menuItems()
+    {
         return $this->belongsTo(MenuItem::class);
     }
 }
