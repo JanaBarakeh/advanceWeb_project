@@ -15,11 +15,5 @@ Route::get('/users/{id}', "\App\Http\Controllers\UserController@getUserById");
 Route::post('/users',"\App\Http\Controllers\UserController@CreateUser");
 Route::put('/users/{id}', "\App\Http\Controllers\UserController@UpdateUser");
 Route::delete('/users/{id}',"\App\Http\Controllers\UserController@DeleteUser");
-
-// Route::get('/users-with-roles',"\App\Http\Controllers\UserController@GetRoleUser");
-
-// Route::post("/login","\App\Http\Controllers\RoleController@CraeteRole");
-
-// Route::post('/register', [AuthController::class, 'Register']);
-
-// Route::post('/login', [AuthController::class, 'login']); 
+///////////
+Route::post("/add-role","\App\Http\Controllers\RoleController@CraeteRole");
