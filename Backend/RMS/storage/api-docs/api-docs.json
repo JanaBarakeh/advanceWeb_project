@@ -1,28 +1,18 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My Laravel API",
-        "description": "This is the API documentation for My Laravel Project.",
+        "title": "Restaurant Management System API",
+        "description": "API documentation for the Restaurant Management System.",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": "http://127.0.0.1:8000/api",
-            "description": "API Server"
-        }
-    ],
     "paths": {
-        "/api/users": {
-            "get": {
-                "summary": "Get all users",
-                "operationId": "9e2672e7928b99780d0461b0a7a84797",
-                "responses": {
-                    "200": {
-                        "description": "List of all users"
-                        }
-                        }
-                        }
-                    },
         "api/admain/menu-items": {
             "get": {
                 "tags": [
@@ -115,7 +105,7 @@
                     }
                 },
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "Item created successfully",
                         "content": {
                             "application/json": {
@@ -1211,7 +1201,7 @@
         "/testadfdfgfdgf a adsfgadft aefgerg dfaa": {
             "get": {
                 "tags": [
-                    "Users"
+                    "Test"
                 ],
                 "summary": "Get a list of tests",
                 "operationId": "731280d95bb8903dec26040406615ba0",
@@ -1221,6 +1211,224 @@
                     },
                     "400": {
                         "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users",
+                "operationId": "9e2672e7928b99780d0461b0a7a84797",
+                "responses": {
+                    "200": {
+                        "description": "List of all users"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create a new user",
+                "operationId": "3f7cc8ed95f81f8000386a984645d0a6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "password",
+                                    "role_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "John Doe"
+                                    },
+                                    "first_name": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "John"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "maxLength": 255,
+                                        "example": "johndoe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "example": "password"
+                                    },
+                                    "role_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user by ID",
+                "operationId": "86b9c3199964dc73f353df69af022bcc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User data"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update an existing user",
+                "operationId": "616e5adf8ea8a2ce465f72250494a905",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "John Doe"
+                                    },
+                                    "first_name": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "John"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "maxLength": 255,
+                                        "example": "johndoe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "example": "newpassword"
+                                    },
+                                    "role_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete a user",
+                "operationId": "830e12c45f8464dbcbf01381c035e429",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/api/users-with-roles": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users with their roles",
+                "operationId": "4e3b44e385192d7fd2722326d48c9cce",
+                "responses": {
+                    "200": {
+                        "description": "List of all users with their roles"
                     }
                 }
             }
@@ -1238,6 +1446,10 @@
         {
             "name": "Reviews",
             "description": "Reviews"
+        },
+        {
+            "name": "Test",
+            "description": "Test"
         },
         {
             "name": "Users",

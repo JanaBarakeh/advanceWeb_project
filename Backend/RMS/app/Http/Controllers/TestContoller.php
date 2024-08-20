@@ -13,7 +13,7 @@ class TestContoller extends Controller
      * @OA\Get(
      *     path="/testadfdfgfdgf a adsfgadft aefgerg dfaa",
      *     summary="Get a list of tests",
-     *     tags={"Users"},
+     *     tags={"Test"},
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation"
