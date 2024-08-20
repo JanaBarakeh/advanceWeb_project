@@ -13,13 +13,7 @@ class MenuItemSeeder extends Seeder
      */
     public function run(): void
     {
-        MenuItem::factory()->create([
-            'name'=> 'Pizza Margherita',
-            'description'=> 'Traditional Italian pizza with fresh mozzarella, basil, and tomatoes.',
-            'price'=> 12.50,
-            'is_available'=> true,
-            'category'=>'Pizza'
-        ]);
+        MenuItem::Factory()->create();
 
     }
 }
