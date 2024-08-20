@@ -27,4 +27,4 @@ Route::delete('/users/{id}',"\App\Http\Controllers\UserController@DeleteUser");
 
 
 // Route::post('/register', [AuthController::class, 'Register']);
-// Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/login', [AuthController::class, 'login']); 
