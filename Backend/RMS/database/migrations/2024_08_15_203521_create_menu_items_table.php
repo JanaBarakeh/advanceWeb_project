@@ -1,6 +1,6 @@
 <?php
-// @author Farah Elhasan
 
+// @author Jana Barakeh
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
-           // $table->foreignId('menu_item_id')->constrained()->onDelete('cascade'); 
-            $table->integer('menu_item_id');
-            $table->double('price');
-            $table->integer('quantity');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price',8,2);
+            $table->boolean('is_available')->default(true);
+            $table->string('category');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('menu_items');
     }
 };

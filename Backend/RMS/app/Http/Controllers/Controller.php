@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 /**
  * @OA\Info(
  *     title="Restaurant Management System API",
@@ -15,7 +16,10 @@ namespace App\Http\Controllers;
  *     )
  * )
  */
+
+
 abstract class Controller
+
 {
-    //
+    
 }

@@ -24,7 +24,8 @@ class TestContoller extends Controller
      *     )
      * )
      */
-    public function test(){
+    public function test()
+    {
         return "hihihihi";
     }
 }
