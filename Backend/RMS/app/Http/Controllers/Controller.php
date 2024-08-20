@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 /**
  * @OA\Info(
  *     title="My Laravel API",
@@ -12,7 +13,9 @@ namespace App\Http\Controllers;
  *     description="API Server"
  * )
  */
+
 abstract class Controller
+
 {
-    //
+    
 }

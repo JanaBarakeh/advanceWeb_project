@@ -9,9 +9,9 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "database",
-            "username": "root",
+            "name": "restaurant_connection ",
             "database": "restaurant",
+            "username": "root",
             "password": ""
         }
     ]

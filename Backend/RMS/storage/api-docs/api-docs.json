@@ -2,6 +2,20 @@
     "openapi": "3.0.0",
     "info": {
 <<<<<<< HEAD
+        "title": "My Cool API",
+        "description": "An API of cool stuffs",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/users": {
+            "get": {
+                "summary": "Get all users",
+                "operationId": "9e2672e7928b99780d0461b0a7a84797",
+                "responses": {
+                    "200": {
+                        "description": "List of all users"
+=======
+<<<<<<< HEAD
         "title": "Menu API",
         "description": "API documentation for the Menu Item management system.",
         "version": "1.0.0"
@@ -1150,10 +1164,14 @@
                     "400": {
                         "description": "Invalid request"
 >>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
+>>>>>>> 8bddaf9c79ba3d3b06522181ae7f59f36ebe0e38
                     }
                 }
             }
         }
+<<<<<<< HEAD
+    }
+=======
     },
     "tags": [
         {
@@ -1174,4 +1192,5 @@
 >>>>>>> 39d59cfad7a4fed3ec2933bb8825a279cd5ec311
         }
     ]
+>>>>>>> 8bddaf9c79ba3d3b06522181ae7f59f36ebe0e38
 }
