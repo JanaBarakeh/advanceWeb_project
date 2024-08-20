@@ -230,5 +230,4 @@ class ItemsController extends Controller
         return response($menuItem,200);
     }
 
-    
 }
