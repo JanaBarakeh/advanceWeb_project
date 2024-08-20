@@ -13,14 +13,14 @@
         "version": "1.0.0"
     },
     "paths": {
-        "api/admain/menu-items": {
+        "api/menu-items": {
             "get": {
                 "tags": [
                     "Menu Items"
                 ],
                 "summary": "Get list of menu items",
                 "description": "Returns all menu items",
-                "operationId": "1730e0ae3ca7d4846fa980257a6ecf7d",
+                "operationId": "8a4a2c0a474fe69d195228f1c6216ec1",
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -64,7 +64,7 @@
                 ],
                 "summary": "Create a new menu item",
                 "description": "Creates a new menu item",
-                "operationId": "e5bae7911bbad4ddfff580ad6be0de3f",
+                "operationId": "daab10e9130db4e947d35cb34ccb6a22",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -145,14 +145,14 @@
                 }
             }
         },
-        "api/admain/menu-items/{id}": {
+        "api/menu-items/{id}": {
             "put": {
                 "tags": [
                     "Menu Items"
                 ],
                 "summary": "Update a menu item",
                 "description": "Updates an existing menu item",
-                "operationId": "3eac13b905d4ee57674648f3d20453fa",
+                "operationId": "4e57ed5d1d48317c9c48499c7c4fa0ff",
                 "parameters": [
                     {
                         "name": "id",
@@ -243,7 +243,7 @@
                 ],
                 "summary": "Delete a menu item",
                 "description": "Deletes a menu item by its ID",
-                "operationId": "0ce8c92e622629b0b22530fff8e53109",
+                "operationId": "7b6f098d085b3a6a72155974f56b9b31",
                 "parameters": [
                     {
                         "name": "id",
@@ -275,14 +275,14 @@
                 }
             }
         },
-        "api/customr/menu-items/{category}": {
+        "api/menu-items/{category}": {
             "get": {
                 "tags": [
                     "Menu Items"
                 ],
                 "summary": "Get menu items by category",
                 "description": "Returns a list of menu items based on the category",
-                "operationId": "c30d467c3648c660abbf255ef40ed504",
+                "operationId": "3c37196632b458016c17b15e356bf0f9",
                 "parameters": [
                     {
                         "name": "category",

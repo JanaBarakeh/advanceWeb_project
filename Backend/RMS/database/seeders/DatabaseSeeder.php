@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'password'=> bcrypt('1234'),
             'role_id'=> '1',
         ]);
+        $this->call(MenuItemSeeder::class);
         
     }
 }
