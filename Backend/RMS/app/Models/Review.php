@@ -15,7 +15,7 @@ class Review extends Model
         'rating',
         'content',
     ];
-
+    
     public function reservation()
     {
         return $this->belongsTo(Reservation::class);

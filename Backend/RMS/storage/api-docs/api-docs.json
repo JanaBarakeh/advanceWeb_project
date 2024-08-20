@@ -1251,28 +1251,28 @@
                                     "name": {
                                         "type": "string",
                                         "maxLength": 255,
-                                        "example": "John Doe"
+                                        "example": "Ratan Ali"
                                     },
                                     "first_name": {
                                         "type": "string",
                                         "maxLength": 255,
-                                        "example": "John"
+                                        "example": "Ratan"
                                     },
                                     "last_name": {
                                         "type": "string",
                                         "maxLength": 255,
-                                        "example": "Doe"
+                                        "example": "Ali"
                                     },
                                     "email": {
                                         "type": "string",
                                         "format": "email",
                                         "maxLength": 255,
-                                        "example": "johndoe@example.com"
+                                        "example": "Ratan@example.com"
                                     },
                                     "password": {
                                         "type": "string",
                                         "minLength": 4,
-                                        "example": "password"
+                                        "example": "1234"
                                     },
                                     "role_id": {
                                         "type": "integer",
@@ -1347,28 +1347,28 @@
                                     "name": {
                                         "type": "string",
                                         "maxLength": 255,
-                                        "example": "John Doe"
+                                        "example": "Ratan Ali"
                                     },
                                     "first_name": {
                                         "type": "string",
                                         "maxLength": 255,
-                                        "example": "John"
+                                        "example": "Ratan"
                                     },
                                     "last_name": {
                                         "type": "string",
                                         "maxLength": 255,
-                                        "example": "Doe"
+                                        "example": "Ali"
                                     },
                                     "email": {
                                         "type": "string",
                                         "format": "email",
                                         "maxLength": 255,
-                                        "example": "johndoe@example.com"
+                                        "example": "Ratan@example.com"
                                     },
                                     "password": {
                                         "type": "string",
                                         "minLength": 4,
-                                        "example": "newpassword"
+                                        "example": "1234"
                                     },
                                     "role_id": {
                                         "type": "integer",
