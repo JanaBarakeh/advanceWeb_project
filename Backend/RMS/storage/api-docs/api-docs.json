@@ -498,12 +498,33 @@
                     }
                 }
             }
+        },
+        "/testadfdfgfdgf a adsfgadft aefgerg dfaa": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a list of tests",
+                "operationId": "731280d95bb8903dec26040406615ba0",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
         }
     },
     "tags": [
         {
             "name": "Orders",
             "description": "Orders"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
         }
     ]
 }
