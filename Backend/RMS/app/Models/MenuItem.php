@@ -26,9 +26,10 @@ class MenuItem extends Model
     
     // One to Many relation function with order_items table.
     public function orderItems() {
-      //  return $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderItem::class);
     }
 
+    // One to Many relation function with review table.
     public function reviews() {
       //  return $this->hasMany(Review::class);
     }
