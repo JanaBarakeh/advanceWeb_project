@@ -72,22 +72,27 @@ class OrderController extends Controller
      * )
      */
     public function createOrder(Request $request) { 
+        $totalPrice = 0;
         // Check data coming from request.
         $validatedData = $request->validate([
             'reservation_id' => 'required|integer',
-            'total_price' => 'required|numeric',
-            'status' => 'required|string',
             'order_items' => 'required|array',
             'order_items.*.menu_item_id' => 'required|integer',
             'order_items.*.price' => 'required|numeric',
             'order_items.*.quantity' => 'required|integer',
         ]);
+       
+        // Calculate total price.
+        foreach($validatedData['order_items'] as $item){
+           $totalPrice += ($item['price'] * $item['quantity']); 
+        }
 
+        // Create new order.
         $order = Order::create([
             'reservation_id' => $validatedData['reservation_id'],
-            'total_price' => $validatedData['total_price'],
-            'status' => $validatedData['status'],
-        ]);
+            'total_price' => $totalPrice,
+            'status' => 'NEW',
+        ]); 
 
         foreach ($validatedData['order_items'] as $item){
             $order->orderItems()->create($item);
@@ -134,6 +139,7 @@ class OrderController extends Controller
      * )
      */
     public function deleteOrder($id){
+        
     }
     
     /**
