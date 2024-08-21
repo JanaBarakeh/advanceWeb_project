@@ -208,11 +208,11 @@ class OrderController extends Controller
      *     ),
      *     @OA\Response(
      *         response=400,
-     *         description="Invalid input",
+     *         description="Invalid ststus",
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(property="message", type="string", example="Invalid input")
+     *             @OA\Property(property="message", type="string", example="Invalid status in the request body")
      *         )
      *     ),
      *     @OA\Response(
@@ -221,15 +221,35 @@ class OrderController extends Controller
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(property="message", type="string", example="Order not found")
+     *             @OA\Property(property="message", type="string", example="Order with id=1 not found")
      *         )
      *     )
      * )
      */
     public function updateOrderStatus(Request $request, $id){
+        $order = Order::find($id);
+        if(!$order){
+            return response()->json([
+                'success'=> false,
+                'message' => "Order with id= $id not found",
+            ], 404);
+        }
+
+        if($request->status == 'PREPARING' || $request->status == 'READY' || $request->status == 'DELIVERED'){
+            $order->status = $request->status;
+            $order->save();
+            return response()->json([
+                'success'=> true,
+                'message' => "Order with id= $id status updated successfully",
+            ], 200);
+        }else {
+            return response()->json([
+                'success'=> false,
+                'message' => "Invalid status in the request body",
+            ], 400);
+        }
     }
 
-    
     /**
      * @OA\Get(
      *     path="/api/orders",
