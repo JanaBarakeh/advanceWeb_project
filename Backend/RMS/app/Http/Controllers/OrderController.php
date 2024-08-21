@@ -39,6 +39,7 @@ class OrderController extends Controller
      *         description="Order created successfully",
      *         @OA\JsonContent(
      *             type="object",
+     *  *          @OA\Property(property="success", type="boolean", example=true),
      *             @OA\Property(property="message", type="string", example="Order created successfully"),
      *             @OA\Property(
      *                 property="order",
@@ -99,6 +100,7 @@ class OrderController extends Controller
         }
 
         return response()->json([
+            'success'=> true,
             'message' => 'Order created successfully',
             'order' => $order,
         ], 201);
@@ -125,7 +127,8 @@ class OrderController extends Controller
      *         description="Order deleted successfully",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="message", type="string", example="Order deleted successfully")
+     *  *          @OA\Property(property="success", type="boolean", example=true),
+     *             @OA\Property(property="message", type="string", example="Order with id= 1 deleted successfully")
      *         )
      *     ),
      *     @OA\Response(
@@ -133,13 +136,42 @@ class OrderController extends Controller
      *         description="Order not found",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="message", type="string", example="Order not found")
+     *  *          @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Order  with id=1 not found")
+     *         )
+     *     ),
+     *    @OA\Response(
+     *         response=403,
+     *         description="Cann't delete order",
+     *         @OA\JsonContent(
+     *             type="object",
+     *  *          @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Order with id= 1 cannot be deleted because it is currently PREPIRING or READY")
      *         )
      *     )
      * )
      */
     public function deleteOrder($id){
-        
+        $order = Order::find($id);
+        if(!$order){
+            return response()->json([
+                'success'=> false,
+                'message' => "Order with id= $id not found",
+            ], 404);
+        }
+
+        if($order->status == 'NEW'){
+            $order->delete();
+            return response()->json([
+                'success'=> true,
+                'message' => "Order with id= $id deleted successfully",
+            ], 200);
+        }else {
+            return response()->json([
+                'success'=> false,
+                'message' => "Order with id= $id cannot be deleted because it is currently PREPIRING or READY."
+            ], 403);
+        }
     }
     
     /**
