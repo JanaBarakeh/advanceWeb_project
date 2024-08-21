@@ -233,7 +233,7 @@
                         }
                     },
                     "404": {
-                        "description": "Item not found"
+                        "description": "invalid Menu_item id"
                     }
                 }
             },
@@ -261,7 +261,7 @@
                                     "properties": {
                                         "message": {
                                             "type": "string",
-                                            "example": "Item deleted successfully"
+                                            "example": "item with id : 1 deleted"
                                         }
                                     },
                                     "type": "object"
@@ -270,7 +270,7 @@
                         }
                     },
                     "404": {
-                        "description": "Item not found"
+                        "description": "invalid Menu_item id"
                     }
                 }
             }
@@ -334,6 +334,58 @@
                     },
                     "404": {
                         "description": "Category not found"
+                    }
+                }
+            }
+        },
+        "/menu-items/{id}/deactivate": {
+            "patch": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Deactivate a Menu Item",
+                "description": "Allows admin users to deactivate a specific menu item by setting its is_available field to false.",
+                "operationId": "8a3fe4c677b462acb5c71b561a2c90d4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the menu item to deactivate",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Menu item deactivated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "item with id : 1 deactive"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Menu item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "invalid Menu_item id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
