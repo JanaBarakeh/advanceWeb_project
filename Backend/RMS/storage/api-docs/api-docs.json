@@ -706,7 +706,7 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid input",
+                        "description": "Invalid ststus",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -717,7 +717,7 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "Invalid input"
+                                            "example": "Invalid status in the request body"
                                         }
                                     },
                                     "type": "object"
@@ -737,7 +737,7 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "Order not found"
+                                            "example": "Order with id=1 not found"
                                         }
                                     },
                                     "type": "object"

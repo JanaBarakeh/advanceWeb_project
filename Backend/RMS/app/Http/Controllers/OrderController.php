@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-
+use App\Models\Reservation;
 
 
 class OrderController extends Controller
@@ -291,27 +291,29 @@ class OrderController extends Controller
      * )
      */
     public function getAllOrders(){
-
+        // The new orders appear in top.
+        $orders = Order::all()->sortDesc();
+        return response($orders,200);
     }
 
     /**
      * @OA\Get(
-     *     path="/orders/customers/{id}",
+     *     path="/api/orders/reservation/{id}",
      *     tags={"Orders"},
-     *     summary="Retrieve all orders for a specific customer",
-     *     description="Fetches a list of all orders placed by a specific customer using their ID.",
+     *     summary="Retrieve all orders for a specific reservation",
+     *     description="Fetches a list of all orders placed by a specific reservation using reservation_id.",
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="ID of the customer",
+     *         description="ID of the reservation",
      *         @OA\Schema(
      *             type="integer"
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="List of customer's orders",
+     *         description="List of reservation's orders",
      *         @OA\JsonContent(
      *             type="array",
      *             @OA\Items(
@@ -335,10 +337,11 @@ class OrderController extends Controller
      *     ),
      *     @OA\Response(
      *         response=404,
-     *         description="Customer not found",
+     *         description="Reservation not found",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="message", type="string", example="Customer not found")
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Reservation with id=1 not found")
      *         )
      *     ),
      *     @OA\Response(
@@ -346,16 +349,75 @@ class OrderController extends Controller
      *         description="Server error",
      *         @OA\JsonContent(
      *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
      *             @OA\Property(property="message", type="string", example="Internal server error")
      *         )
      *     )
      * )
      */
-    public function getCustomerOrders($id){
+    public function getReservationOrders($id){
+       $reservation = Reservation::find($id);
+       if(!$reservation){
+            return response()->json([
+                'success'=> false,
+                'message' => "Reservation with id= $id not found",
+            ], 404);
+       }
 
+       $orders = $reservation->orders()->get();
+       return response($orders,200);
     }
 
 
-
-
+    /**
+     * @OA\Get(   
+     *     path="/api/orders/{id}/items",  
+     *     summary="Retrieve order items",  
+     *     description="Returns all items for a specific order",  
+     *     tags={"Orders"},   
+     *     @OA\Parameter(   
+     *         name="id",   
+     *         in="path",   
+     *         required=true,   
+     *         @OA\Schema(   
+     *             type="integer"
+     *         ),
+     *         description="The ID of the order to retrieve items for"
+     *     ),
+     *     @OA\Response(   
+     *         response=200,   
+     *         description="Successful operation",   
+     *         @OA\JsonContent(   
+     *             type="array",   
+     *              @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="menu_item_id", type="integer", example=1),
+     *                 @OA\Property(property="price", type="number", format="float", example=19.99),
+     *                 @OA\Property(property="quantity", type="integer", example=2)
+     *               )          
+     *         )
+     *     ),
+     *      @OA\Response(
+     *         response=404,
+     *         description="Reservation not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Order with id=1 not found")
+     *         )
+     *     )
+     * )
+     */
+    public function getOrderItems($id){
+        $order = Order::find($id);
+        if(!$order){
+             return response()->json([
+                 'success'=> false,
+                 'message' => "order with id= $id not found",
+             ], 404);
+        }
+        
+        $orderItems = $order->orderItems()->get();
+        return response($orderItems,200);
+     }
 }
