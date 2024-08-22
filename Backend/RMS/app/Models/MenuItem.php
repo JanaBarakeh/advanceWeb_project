@@ -33,7 +33,7 @@ class MenuItem extends Model
     // One to Many relation function with review table.
     public function Review()
     {
-        //  return $this->hasMany(Review::class);
+         return $this->hasMany(Review::class);
     }
 
 

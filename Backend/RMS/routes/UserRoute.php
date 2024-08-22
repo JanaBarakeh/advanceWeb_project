@@ -16,4 +16,4 @@ Route::post('/users',"\App\Http\Controllers\UserController@CreateUser");
 Route::put('/users/{id}', "\App\Http\Controllers\UserController@UpdateUser");
 Route::delete('/users/{id}',"\App\Http\Controllers\UserController@DeleteUser");
 ///////////
-Route::post("/add-role","\App\Http\Controllers\RoleController@CraeteRole");
+Route::post("/roles","\App\Http\Controllers\RoleController@CraeteRole");

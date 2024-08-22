@@ -13,14 +13,14 @@
         "version": "1.0.0"
     },
     "paths": {
-        "api/admain/menu-items": {
+        "/api/menu-items": {
             "get": {
                 "tags": [
                     "Menu Items"
                 ],
                 "summary": "Get list of menu items",
                 "description": "Returns all menu items",
-                "operationId": "1730e0ae3ca7d4846fa980257a6ecf7d",
+                "operationId": "4b665efba9d8c72922b169ae01abc816",
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -64,7 +64,7 @@
                 ],
                 "summary": "Create a new menu item",
                 "description": "Creates a new menu item",
-                "operationId": "e5bae7911bbad4ddfff580ad6be0de3f",
+                "operationId": "bff72ea3e5271b401b70cdd989ae0c5e",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -145,14 +145,14 @@
                 }
             }
         },
-        "api/admain/menu-items/{id}": {
+        "/api/menu-items/{id}": {
             "put": {
                 "tags": [
                     "Menu Items"
                 ],
                 "summary": "Update a menu item",
                 "description": "Updates an existing menu item",
-                "operationId": "3eac13b905d4ee57674648f3d20453fa",
+                "operationId": "66de8b21f77a4c55bf8b99577b8f92e0",
                 "parameters": [
                     {
                         "name": "id",
@@ -233,7 +233,7 @@
                         }
                     },
                     "404": {
-                        "description": "Item not found"
+                        "description": "invalid Menu_item id"
                     }
                 }
             },
@@ -243,7 +243,7 @@
                 ],
                 "summary": "Delete a menu item",
                 "description": "Deletes a menu item by its ID",
-                "operationId": "0ce8c92e622629b0b22530fff8e53109",
+                "operationId": "5bb7a18071dbc86bac787c89be0ee4a4",
                 "parameters": [
                     {
                         "name": "id",
@@ -261,7 +261,7 @@
                                     "properties": {
                                         "message": {
                                             "type": "string",
-                                            "example": "Item deleted successfully"
+                                            "example": "item with id : 1 deleted"
                                         }
                                     },
                                     "type": "object"
@@ -270,19 +270,19 @@
                         }
                     },
                     "404": {
-                        "description": "Item not found"
+                        "description": "invalid Menu_item id"
                     }
                 }
             }
         },
-        "api/customr/menu-items/{category}": {
+        "/api/menu-items/{category}": {
             "get": {
                 "tags": [
                     "Menu Items"
                 ],
                 "summary": "Get menu items by category",
                 "description": "Returns a list of menu items based on the category",
-                "operationId": "c30d467c3648c660abbf255ef40ed504",
+                "operationId": "d7aac06cc225ff328e668dd2a71d95f8",
                 "parameters": [
                     {
                         "name": "category",
@@ -334,6 +334,58 @@
                     },
                     "404": {
                         "description": "Category not found"
+                    }
+                }
+            }
+        },
+        "/menu-items/{id}/deactivate": {
+            "patch": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Deactivate a Menu Item",
+                "description": "Allows admin users to deactivate a specific menu item by setting its is_available field to false.",
+                "operationId": "8a3fe4c677b462acb5c71b561a2c90d4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the menu item to deactivate",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Menu item deactivated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "item with id : 1 deactive"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Menu item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "invalid Menu_item id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1309,6 +1361,109 @@
                 }
             }
         },
+        "/api/roles": {
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Create a new role",
+                "description": "Creates a new role with the specified name.",
+                "operationId": "959357fe8eb1b8c17266d0a567aa6a6e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "The name of the role",
+                                        "type": "string",
+                                        "example": "Admin"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Role created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Role created successfully"
+                                        },
+                                        "role": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Admin"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-08-20T12:34:56.789Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-08-20T12:34:56.789Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Role already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Role already exists."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The name field is required."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/testadfdfgfdgf a adsfgadft aefgerg dfaa": {
             "get": {
                 "tags": [
@@ -1381,6 +1536,11 @@
                                         "example": "Ratan@example.com"
                                     },
                                     "password": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "example": "1234"
+                                    },
+                                    "password_confirmation": {
                                         "type": "string",
                                         "minLength": 4,
                                         "example": "1234"
@@ -1529,20 +1689,6 @@
                     }
                 }
             }
-        },
-        "/api/users-with-roles": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "summary": "Get all users with their roles",
-                "operationId": "4e3b44e385192d7fd2722326d48c9cce",
-                "responses": {
-                    "200": {
-                        "description": "List of all users with their roles"
-                    }
-                }
-            }
         }
     },
     "tags": [
@@ -1557,6 +1703,10 @@
         {
             "name": "Review",
             "description": "Review"
+        },
+        {
+            "name": "Roles",
+            "description": "Roles"
         },
         {
             "name": "Test",
