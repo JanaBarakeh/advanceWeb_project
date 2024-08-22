@@ -75,7 +75,8 @@ class OrderController extends Controller
     public function createOrder(Request $request) { 
         $totalPrice = 0;
         // Check data coming from request.
-        $validatedData = $request->validate([
+       
+        $validatedData = $this->validate($request,[
             'reservation_id' => 'required|integer',
             'order_items' => 'required|array',
             'order_items.*.menu_item_id' => 'required|integer',
