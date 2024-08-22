@@ -35,4 +35,8 @@ class Reservation extends Model
     {
         return $this->belongsTo(Review::class);
     }
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }
