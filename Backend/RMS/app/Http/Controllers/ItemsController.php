@@ -127,25 +127,31 @@ class ItemsController extends Controller
  *     ),
  *     @OA\Response(
  *         response=404,
- *         description="Item not found"
+ *         description="invalid Menu_item id"
  *     )
  * )
  */
     public function updateitems(Request $request, $id){
 
         $menuItem = MenuItem::findOrFail($id);
+
+        if(!$menuItem)
+        {
+            return response("invalid Menu_item id",404);
+        }
+
  
-       $validatedData = $request->validate([
-      'name' => 'sometimes|required|string|max:255',
-      'description' => 'nullable|string',
-      'price' => 'sometimes|required|numeric|min:0',
-      'is_available' => 'sometimes|required|boolean',
-      'category' => 'sometimes|required|string|max:255',
-       ]);
+         $validatedData = $request->validate([
+        'name' => 'sometimes|required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'sometimes|required|numeric|min:0',
+        'is_available' => 'sometimes|required|boolean',
+        'category' => 'sometimes|required|string|max:255',
+         ]);
 
-     $menuItem->update($validatedData);
+       $menuItem->update($validatedData);
 
-       return response($menuItem);
+       return response($menuItem,200);
     }
 /**
  * @OA\Delete(
@@ -164,12 +170,12 @@ class ItemsController extends Controller
  *         description="Item deleted successfully",
  *         @OA\JsonContent(
  *             type="object",
- *             @OA\Property(property="message", type="string", example="Item deleted successfully")
+ *             @OA\Property(property="message", type="string", example="item with id : 1 deleted")
  *         )
  *     ),
  *     @OA\Response(
  *         response=404,
- *         description="Item not found"
+ *         description="invalid Menu_item id"
  *     )
  * )
  */
@@ -228,6 +234,46 @@ class ItemsController extends Controller
         }
 
         return response($menuItem,200);
+    }
+    /**
+ * @OA\Patch(
+ *     path="/menu-items/{id}/deactivate",
+ *     tags={"Menu Items"},
+ *     summary="Deactivate a Menu Item",
+ *     description="Allows admin users to deactivate a specific menu item by setting its is_available field to false.",
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID of the menu item to deactivate",
+ *         required=true,
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Menu item deactivated successfully",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="message", type="string", example="item with id : 1 deactive")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Menu item not found",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="message", type="string", example="invalid Menu_item id")
+ *         )
+ *     ),
+ * )
+ */
+    public function deactivateitems($id){
+       $menuItem=MenuItem::findOrFail($id);
+       if(!$menuItem)
+       {
+           return response("invalid Menu_item id",404);
+       }
+       $menuItem->is_available=false;
+       $menuItem->save();
+       return response("item with id : $id deactive",200);
     }
 
 }
