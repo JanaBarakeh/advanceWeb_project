@@ -15,7 +15,7 @@ class Table extends Model
     protected $fillable = [
         "capacity",
         "details",
-        "isPrivate"
+        "is_private"
     ];
 
     public function reservations() : HasMany {
