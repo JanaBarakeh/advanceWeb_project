@@ -79,32 +79,6 @@ class TableController extends Controller
      */
     public function getAvailableTables(Request $request){
 
-//        $validatedData = $request->validate([
-//            'date' => 'required|date_format:Y-m-d',
-//            'time' => 'required|date_format:H:i',
-//            'numberOfPeople' => 'required|integer|min:1|max:200',
-//        ]);
-//
-//        $date = Carbon::createFromFormat('Y-m-d', $validatedData['date']);
-//        $time = Carbon::createFromFormat('H:i', $validatedData['time']);
-//        $numberOfPeople = $validatedData['numberOfPeople'];
-
-        $date = $request->date('date', 'Y-m-d') ?? now()->format('Y-m-d');
-        $time = $request->date('time', 'H:i') ?? now()->format('H:i');
-        $numberOfPeople = $request->integer('numberOfPeople') ?? 3;
-
-        $time->setMinutes($time->minute < 30 ? 0 : 30)->setSeconds(0);
-        $endTime = $time->addHours(2)->format('H:i');
-
-        return Table::where('capacity', '>=', $numberOfPeople)
-            ->whereDoesntHave('reservations', function ($query) use ($date, $time, $endTime) {
-                $query->whereDate('date', $date)
-                    ->where(function ($query) use ($endTime, $time) {
-                        $query->whereTime('start_time', '<', $endTime);
-                        $query->whereTime('end_time', '>', $time);
-                    });
-            })
-            ->get();
 
     }
 }
