@@ -233,7 +233,7 @@
                         }
                     },
                     "404": {
-                        "description": "Item not found"
+                        "description": "invalid Menu_item id"
                     }
                 }
             },
@@ -261,7 +261,7 @@
                                     "properties": {
                                         "message": {
                                             "type": "string",
-                                            "example": "Item deleted successfully"
+                                            "example": "item with id : 1 deleted"
                                         }
                                     },
                                     "type": "object"
@@ -270,7 +270,7 @@
                         }
                     },
                     "404": {
-                        "description": "Item not found"
+                        "description": "invalid Menu_item id"
                     }
                 }
             }
@@ -334,6 +334,58 @@
                     },
                     "404": {
                         "description": "Category not found"
+                    }
+                }
+            }
+        },
+        "/menu-items/{id}/deactivate": {
+            "patch": {
+                "tags": [
+                    "Menu Items"
+                ],
+                "summary": "Deactivate a Menu Item",
+                "description": "Allows admin users to deactivate a specific menu item by setting its is_available field to false.",
+                "operationId": "8a3fe4c677b462acb5c71b561a2c90d4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the menu item to deactivate",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Menu item deactivated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "item with id : 1 deactive"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Menu item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "invalid Menu_item id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -484,6 +536,10 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
                                         "message": {
                                             "type": "string",
                                             "example": "Order created successfully"
@@ -585,9 +641,13 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
                                         "message": {
                                             "type": "string",
-                                            "example": "Order deleted successfully"
+                                            "example": "Order with id= 1 deleted successfully"
                                         }
                                     },
                                     "type": "object"
@@ -601,9 +661,33 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
                                         "message": {
                                             "type": "string",
-                                            "example": "Order not found"
+                                            "example": "Order  with id=1 not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Cann't delete order",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order with id= 1 cannot be deleted because it is currently PREPIRING or READY"
                                         }
                                     },
                                     "type": "object"
@@ -674,7 +758,7 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid input",
+                        "description": "Invalid ststus",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -685,7 +769,7 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "Invalid input"
+                                            "example": "Invalid status in the request body"
                                         }
                                     },
                                     "type": "object"
@@ -705,7 +789,7 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "Order not found"
+                                            "example": "Order with id=1 not found"
                                         }
                                     },
                                     "type": "object"
@@ -716,19 +800,19 @@
                 }
             }
         },
-        "/orders/customers/{id}": {
+        "/api/orders/reservation/{id}": {
             "get": {
                 "tags": [
                     "Orders"
                 ],
-                "summary": "Retrieve all orders for a specific customer",
-                "description": "Fetches a list of all orders placed by a specific customer using their ID.",
-                "operationId": "6dda8296e75cc59473848eeafb9da5f0",
+                "summary": "Retrieve all orders for a specific reservation",
+                "description": "Fetches a list of all orders placed by a specific reservation using reservation_id.",
+                "operationId": "dde7d3e3ec6ddabafb3d173937a90fab",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID of the customer",
+                        "description": "ID of the reservation",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -737,7 +821,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "List of customer's orders",
+                        "description": "List of reservation's orders",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -790,14 +874,18 @@
                         }
                     },
                     "404": {
-                        "description": "Customer not found",
+                        "description": "Reservation not found",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
                                         "message": {
                                             "type": "string",
-                                            "example": "Customer not found"
+                                            "example": "Reservation with id=1 not found"
                                         }
                                     },
                                     "type": "object"
@@ -811,9 +899,84 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
                                         "message": {
                                             "type": "string",
                                             "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/orders/{id}/items": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Retrieve order items",
+                "description": "Returns all items for a specific order",
+                "operationId": "f57566e0b6a997a9b74d9c17cadfef3e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the order to retrieve items for",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "menu_item_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 19.99
+                                            },
+                                            "quantity": {
+                                                "type": "integer",
+                                                "example": 2
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Reservation not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order with id=1 not found"
                                         }
                                     },
                                     "type": "object"
