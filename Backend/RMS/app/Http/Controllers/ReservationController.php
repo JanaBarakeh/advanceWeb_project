@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Models\Table;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -115,7 +116,19 @@ class ReservationController extends Controller
      */
     public function getReservations(Request $request)
     {
+        $validatedData = $request->validate([
+            'date' => "sometimes|date_format:Y-m-d"
+        ]);
 
+        $date = isset($validatedData['date']) ? Carbon::createFromFormat('Y-m-d', $validatedData['date']) : null;
+
+        $reservations = Reservation::when($date, function($query, $date) {
+            return $query->where('date', '=', $date);
+        })->get();
+
+        return json_encode([
+            'reservations' => $reservations,
+        ]);
     }
 
     /**
