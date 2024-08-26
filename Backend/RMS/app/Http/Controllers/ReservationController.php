@@ -206,7 +206,7 @@ class ReservationController extends Controller
         $time->setMinutes($time->minute < 30 ? 0 : 30)->setSeconds(0);
         $endTime = $time->addHours(2)->format('H:i');
 
-        return Table::where('capacity', '>=', $numberOfPeople)
+        $isOneTableAvailable = Table::where('capacity', '>=', $numberOfPeople)
             ->whereDoesntHave('reservations', function ($query) use ($date, $time, $endTime) {
                 $query->whereDate('date', $date)
                     ->where(function ($query) use ($endTime, $time) {
@@ -214,8 +214,10 @@ class ReservationController extends Controller
                         $query->whereTime('end_time', '>', $time);
                     });
             })
-            ->get();
-
+            ->exists();
+        return json_encode([
+            'isAvailable' => $isOneTableAvailable
+        ]);
     }
 
     /**
