@@ -17,3 +17,8 @@ Route::put('/users/{id}', "\App\Http\Controllers\UserController@UpdateUser");
 Route::delete('/users/{id}',"\App\Http\Controllers\UserController@DeleteUser");
 ///////////
 Route::post("/roles","\App\Http\Controllers\RoleController@CraeteRole");
+///////////
+Route::post("/register","\App\Http\Controllers\AuthController@register");
+Route::post("/login","\App\Http\Controllers\AuthController@login");
+// Route::post("/logout","\App\Http\Controllers\AuthController@logout");
+Route::middleware('auth:sanctum')->post("/logout", "\App\Http\Controllers\AuthController@logout");
