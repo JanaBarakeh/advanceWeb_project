@@ -987,6 +987,499 @@
                 }
             }
         },
+        "/api/reservations/": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Create a new reservation",
+                "description": "This endpoint creates a new reservation for a table based on the provided date, time, and capacity.",
+                "operationId": "47583af93a83930938f280924b5f99d2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-08-23"
+                                    },
+                                    "time": {
+                                        "type": "string",
+                                        "format": "time",
+                                        "example": "19:00"
+                                    },
+                                    "capacity": {
+                                        "type": "integer",
+                                        "example": 4
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Reservation successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tableId": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2024-08-23"
+                                        },
+                                        "time": {
+                                            "type": "string",
+                                            "format": "time",
+                                            "example": "19:00"
+                                        },
+                                        "resId": {
+                                            "type": "integer",
+                                            "example": 123
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "confirmed"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid input data"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reservations": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Retrieve reservations for a specific date",
+                "description": "This endpoint returns a list of reservations for the specified date.",
+                "operationId": "c18fe40736a295c69322918d3c915ad9",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Date to filter reservations",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2024-08-23"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of reservations for the specified date",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "reservations": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "resId": {
+                                                        "type": "integer",
+                                                        "example": 123
+                                                    },
+                                                    "tableId": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-08-23"
+                                                    },
+                                                    "time": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "example": "19:00"
+                                                    },
+                                                    "endTime": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "example": "19:00"
+                                                    },
+                                                    "actualEndTime": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "example": "21:00"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "Confirmed"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid date parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid date parameter"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reservations/availability": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Check table availability for a specific date, time, and capacity",
+                "description": "This endpoint checks if there are tables available for a given date, time, and capacity. It also provides alternative times if no tables are available.",
+                "operationId": "4b01a6fca58d7d2ccb8d2442a0ccca0f",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Date for which to check availability",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2024-08-23"
+                        }
+                    },
+                    {
+                        "name": "capacity",
+                        "in": "query",
+                        "description": "Required capacity for the reservation",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 4
+                        }
+                    },
+                    {
+                        "name": "time",
+                        "in": "query",
+                        "description": "Time for which to check availability",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "time",
+                            "example": "19:00"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Availability status and alternative times",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "isAvailable": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "otherTimes": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "format": "time",
+                                                "example": "20:00"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid input parameters",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid input parameters"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/reservations/": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Get a list of reservations for the logged-in user",
+                "description": "This endpoint returns a list of reservations made by the logged-in user.",
+                "operationId": "3b3ae3e10b65f8bff536b7ddf37aa7bd",
+                "responses": {
+                    "200": {
+                        "description": "List of reservations for the logged-in user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "reservations": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "resId": {
+                                                        "type": "integer",
+                                                        "example": 123
+                                                    },
+                                                    "tableId": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-08-23"
+                                                    },
+                                                    "time": {
+                                                        "type": "string",
+                                                        "format": "time",
+                                                        "example": "19:00"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "Confirmed"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized, user not logged in",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized access"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reservations/{resId}/": {
+            "delete": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Cancel an existing reservation",
+                "description": "This endpoint cancels an existing reservation identified by the provided reservation ID.",
+                "operationId": "2b5e41553e51745e673b5d62b3ecc767",
+                "parameters": [
+                    {
+                        "name": "resId",
+                        "in": "path",
+                        "description": "ID of the reservation to be canceled",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 123
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reservation successfully canceled",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resId": {
+                                            "type": "integer",
+                                            "example": 123
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Cancelled"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "No permissions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No permissions to cancel this reservation"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Reservation not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservation not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/Review": {
             "get": {
                 "tags": [
@@ -1464,6 +1957,126 @@
                 }
             }
         },
+        "/api/tables/reserved": {
+            "get": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "Returns reserved tables",
+                "description": "This endpoint returns all tables that are currently reserved.",
+                "operationId": "6423a26eca649195aeec9771b247abc0",
+                "responses": {
+                    "200": {
+                        "description": "List of all reserved tables",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tables": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "details": {
+                                                        "type": "string",
+                                                        "example": "near window"
+                                                    },
+                                                    "capacity": {
+                                                        "type": "integer",
+                                                        "example": 4
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tables/available": {
+            "get": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "Returns available tables (not currently reserved)",
+                "description": "This endpoint returns all tables that are not currently reserved.",
+                "operationId": "d2a3455a9618f2bf84c440350606a77f",
+                "responses": {
+                    "200": {
+                        "description": "List of all available tables",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tables": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "details": {
+                                                        "type": "string",
+                                                        "example": "near window"
+                                                    },
+                                                    "capacity": {
+                                                        "type": "integer",
+                                                        "example": 4
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal server error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/testadfdfgfdgf a adsfgadft aefgerg dfaa": {
             "get": {
                 "tags": [
@@ -1701,12 +2314,20 @@
             "description": "Orders"
         },
         {
+            "name": "Reservations",
+            "description": "Reservations"
+        },
+        {
             "name": "Review",
             "description": "Review"
         },
         {
             "name": "Roles",
             "description": "Roles"
+        },
+        {
+            "name": "Tables",
+            "description": "Tables"
         },
         {
             "name": "Test",
