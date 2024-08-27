@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ReservationStatus;
 use App\Models\Reservation;
 use App\Services\ReservationService;
 use Carbon\Carbon;
@@ -83,9 +84,9 @@ class ReservationController extends Controller
                 'date' => $parameters['date'],
                 'start_time' => $parameters['time'],
                 'end_time' => $parameters['endTime'],
-                'table_id' => $parameters['tableId'],
-                'user_id' => $parameters['userId'],
-                'status' => 'PENDING',
+                'table_id' => $table->id,
+                'user_id' => Auth::id(),
+                'status' => ReservationStatus::PENDING,
             ]);
         });
 
@@ -93,7 +94,13 @@ class ReservationController extends Controller
             return response()->json(['message' => 'Timeslot is already reserved'], 409);
         }
 
-        return response()->json($reservation, 201);
+        return response()->json([
+            'id' => $reservation->id,
+            'date' => $reservation->date,
+            'start_time' => $reservation->start_time,
+            'capacity' => $reservation->table->capacity,
+            'table' => $reservation->table_id,
+        ], 201);
     }
 
     /**
@@ -256,7 +263,7 @@ class ReservationController extends Controller
 
     private function validateTimeslotParameters(Request $request): array{
         return $request->validate([
-            'date' => ['required|date_format:Y-m-d|after_or_equal:today'],
+            'date' => 'required|date_format:Y-m-d|after_or_equal:today',
             'time' => [
                 'required',
                 'date_format:H:i',
@@ -282,7 +289,7 @@ class ReservationController extends Controller
         $numberOfPeople = $validatedData['numberOfPeople'];
 
         $time->setMinutes($time->minute < 30 ? 0 : 30)->setSeconds(0);
-        $endTime = $time->addHours(2)->format('H:i');
+        $endTime = (clone $time)->addHours(2)->format('H:i');
 
         return [
             'date' => $date,
@@ -403,26 +410,14 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function cancelReservation($id, Request $request)
+    public function cancelReservation(Reservation $reservation)
     {
-        $reservationToCancel = Reservation::where('id', $id)->first();
-
-        if ($reservationToCancel == null){
-            return response()->json(['message' => 'Reservation not found'], 404);
-        }
-
-        if ($reservationToCancel->status != 'PENDING'){
+        if ($reservation->status !== ReservationStatus::PENDING->value){
             return response()->json(['message' => 'Reservation cannot be cancelled'], 409);
         }
 
-        $userId = Auth::id();
-        if ($reservationToCancel->user_id != $userId){
-            return response()->json(['message' => 'No permissions to cancel this reservation'], 403);
-        }
-        // should make authorization policy
-
-        $reservationToCancel->status = 'CANCELLED';
-        $reservationToCancel->save();
+        $reservation->status = ReservationStatus::CANCELLED;
+        $reservation->save();
 
         return response()->noContent();
     }
