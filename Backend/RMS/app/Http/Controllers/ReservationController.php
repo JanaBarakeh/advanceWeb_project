@@ -419,6 +419,9 @@ class ReservationController extends Controller
         $reservation->status = ReservationStatus::CANCELLED;
         $reservation->save();
 
-        return response()->noContent();
+        return response()->json([
+            'id' => $reservation->id,
+            'status' => ReservationStatus::CANCELLED->name
+        ]);
     }
 }

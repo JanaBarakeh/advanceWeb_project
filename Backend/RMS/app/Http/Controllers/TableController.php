@@ -40,8 +40,15 @@ class TableController extends Controller
      *     )
      * )
      */
-    public function getReservedTables(Request $request){
-        // TODO: implement (staff)
+    public function getReservedTables(){
+        $tables = Table::whereIn('id', function($query) {
+            $query->select('table_id')
+                ->from('reservations')
+                ->whereDate('date', now()->toDateString())
+                ->distinct();
+        })->get();
+
+        return response()->json($this->mapTableEntitiesToDtos($tables));
     }
 
     /**
@@ -77,8 +84,25 @@ class TableController extends Controller
      *     )
      * )
      */
-    public function getAvailableTables(Request $request){
+    public function getAvailableTables(){
+        $tables = Table::whereNotIn('id', function($query) {
+            $query->select('table_id')
+                ->from('reservations')
+                ->whereDate('date', now()->toDateString())
+                ->distinct();
+        })->get();
 
+        return response()->json($this->mapTableEntitiesToDtos($tables));
+    }
 
+    private function mapTableEntitiesToDtos($tables)  {
+        return $tables->map(function($table){
+            return [
+                'id' => $table->id,
+                'details' => $table->details,
+                'isPrivate' => $table->is_private,
+                'capacity' => $table->capacity,
+            ];
+        });
     }
 }
