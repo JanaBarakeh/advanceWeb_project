@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use App\Models\Table;
+use App\Services\ReservationService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
+    protected ReservationService $reservationService;
+
+    public function __construct(ReservationService $reservationService)
+    {
+        $this->reservationService = $reservationService;
+    }
+
     /**
      * @OA\Post(
      *     path="/api/reservations/",
@@ -55,7 +64,36 @@ class ReservationController extends Controller
      * )
      */
     public function reserveTable(Request $request){
+        $validatedData = $this->validateTimeslotParameters($request);
+        $parameters = $this->extractTimeslotParameters($validatedData);
 
+        $reservation = DB::transaction(function () use ($parameters) {
+            DB::statement('SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;');
+            $table = $this->reservationService->getOneAvailableTable(
+                $parameters['date'],
+                $parameters['time'],
+                $parameters['endTime'],
+                $parameters['numberOfPeople']);
+
+            if ($table == null){
+                return null;
+            }
+
+            return Reservation::create([
+                'date' => $parameters['date'],
+                'start_time' => $parameters['time'],
+                'end_time' => $parameters['endTime'],
+                'table_id' => $parameters['tableId'],
+                'user_id' => $parameters['userId'],
+                'status' => 'PENDING',
+            ]);
+        });
+
+        if ($reservation == null){
+            return response()->json(['message' => 'Timeslot is already reserved'], 409);
+        }
+
+        return response()->json($reservation, 201);
     }
 
     /**
@@ -126,9 +164,7 @@ class ReservationController extends Controller
             return $query->where('date', '=', $date);
         })->get();
 
-        return json_encode([
-            'reservations' => $reservations,
-        ]);
+        return response()->json($reservations);
     }
 
     /**
@@ -206,12 +242,41 @@ class ReservationController extends Controller
      */
     public function getAvailability(Request $request)
     {
-        $validatedData = $request->validate([
-            'date' => 'required|date_format:Y-m-d',
-            'time' => 'required|date_format:H:i',
-            'numberOfPeople' => 'required|integer|min:1|max:200',
-        ]);
+        $validatedData = $this->validateTimeslotParameters($request);
+        $parameters = $this->extractTimeslotParameters($validatedData);
 
+        $table = $this->reservationService->getOneAvailableTable(
+            $parameters['date'],
+            $parameters['time'],
+            $parameters['endTime'],
+            $parameters['numberOfPeople']);
+
+        return response()->json(['isAvailable' => $table != null ]);
+    }
+
+    private function validateTimeslotParameters(Request $request): array{
+        return $request->validate([
+            'date' => ['required|date_format:Y-m-d|after_or_equal:today'],
+            'time' => [
+                'required',
+                'date_format:H:i',
+                function ($attribute, $value, $fail) use ($request) {
+                    $date = $request->input('date');
+                    $dateTime = Carbon::createFromFormat('Y-m-d H:i', "{$date} {$value}");
+
+                    if ($dateTime->isPast()) {
+                        $fail("The {$attribute} must be a time in the future.");
+                    }
+                },
+            ],
+            'numberOfPeople' => 'required|integer|min:1|max:200',
+        ], [
+            'date.after_or_equal' => 'The reservation date cannot be in the past.',
+        ]);
+    }
+
+    private function extractTimeslotParameters(Array $validatedData): array
+    {
         $date = Carbon::createFromFormat('Y-m-d', $validatedData['date']);
         $time = Carbon::createFromFormat('H:i', $validatedData['time']);
         $numberOfPeople = $validatedData['numberOfPeople'];
@@ -219,18 +284,12 @@ class ReservationController extends Controller
         $time->setMinutes($time->minute < 30 ? 0 : 30)->setSeconds(0);
         $endTime = $time->addHours(2)->format('H:i');
 
-        $isOneTableAvailable = Table::where('capacity', '>=', $numberOfPeople)
-            ->whereDoesntHave('reservations', function ($query) use ($date, $time, $endTime) {
-                $query->whereDate('date', $date)
-                    ->where(function ($query) use ($endTime, $time) {
-                        $query->whereTime('start_time', '<', $endTime);
-                        $query->whereTime('end_time', '>', $time);
-                    });
-            })
-            ->exists();
-        return json_encode([
-            'isAvailable' => $isOneTableAvailable
-        ]);
+        return [
+            'date' => $date,
+            'time' => $time,
+            'numberOfPeople' => $numberOfPeople,
+            'endTime' => $endTime
+        ];
     }
 
     /**
@@ -278,7 +337,11 @@ class ReservationController extends Controller
      */
     public function getUserReservations(Request $request)
     {
+        $userId = Auth::id();
 
+        $userReservations = Reservation::where('user_id', '=', $userId)->get();
+
+        return response()->json($userReservations);
     }
 
     /**
@@ -315,6 +378,14 @@ class ReservationController extends Controller
      *          )
      *      ),
      *     @OA\Response(
+     *          response=409,
+     *          description="Reservation cannot be cancelled",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="Reservation cannot be cancelled")
+     *          )
+     *      ),
+     *     @OA\Response(
      *         response=404,
      *         description="Reservation not found",
      *         @OA\JsonContent(
@@ -332,8 +403,27 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function cancelReservation(Request $request)
+    public function cancelReservation($id, Request $request)
     {
+        $reservationToCancel = Reservation::where('id', $id)->first();
 
+        if ($reservationToCancel == null){
+            return response()->json(['message' => 'Reservation not found'], 404);
+        }
+
+        if ($reservationToCancel->status != 'PENDING'){
+            return response()->json(['message' => 'Reservation cannot be cancelled'], 409);
+        }
+
+        $userId = Auth::id();
+        if ($reservationToCancel->user_id != $userId){
+            return response()->json(['message' => 'No permissions to cancel this reservation'], 403);
+        }
+        // should make authorization policy
+
+        $reservationToCancel->status = 'CANCELLED';
+        $reservationToCancel->save();
+
+        return response()->noContent();
     }
 }
