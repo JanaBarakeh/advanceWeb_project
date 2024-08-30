@@ -22,19 +22,16 @@
   }
   
   button {
+    background-color: #28a745;
     color: white;
     padding: 10px;
     border: none;
     width: 100%;
     margin-bottom: 20px;
-    background-color: #D5EDB9;
-    border: #D5EDB9;
-    border-radius: 4px;
-
   }
   
   button:hover {
-    background-color: rgb(85, 201, 110);
+    background-color: #218838;
   }
   
   .btn-primary {
@@ -48,6 +45,13 @@
   
   .btn-primary:hover {
     background-color: #0056b3;
+  }
+  
+  .status{
+    width: 100%;
+    background-color: #FCE8A5;
+    color: azure;
+    border: azure;
   }
   h3 {
     margin-bottom: 20px;
