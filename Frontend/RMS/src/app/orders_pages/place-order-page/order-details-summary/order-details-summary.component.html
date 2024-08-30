@@ -1,0 +1,20 @@
+<h3>💰Summary</h3>
+<hr>
+<div class="summary-details">
+  <div class="summary-item">
+    <span>Items:</span><span>\${{ itemsTotal }}</span>
+  </div>
+  <!-- <div class="summary-item">
+    <span>Shipping:</span><span>\${{ shippingCost }}</span>
+  </div> -->
+  <div class="summary-item">
+    <span>Discount:</span><span>\${{ discount }}</span>
+  </div>
+  <div class="summary-item total">
+    <span>Total:</span><span>\${{ total }}</span>
+  </div>
+</div>
+<input type="text" placeholder="Discount code" #discountCode>
+<button (click)="applyDiscount(discountCode.value)">Apply</button>
+<button class="btn btn-outline-success">Place Order</button>
+

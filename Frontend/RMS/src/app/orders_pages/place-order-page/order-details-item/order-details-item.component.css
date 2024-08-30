@@ -1,0 +1,41 @@
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .item-image {
+    width: 80px;
+    margin-right: 20px;
+  }
+  
+  .item-details {
+    flex-grow: 1;
+  }
+  
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity-controls button {
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+  }
+  
+  .quantity-controls input {
+    width: 40px;
+    text-align: center;
+    margin: 0 10px;
+  }
+  
+  .remove-btn {
+    background-color:transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    cursor: pointer;
+    
+  }
+  
