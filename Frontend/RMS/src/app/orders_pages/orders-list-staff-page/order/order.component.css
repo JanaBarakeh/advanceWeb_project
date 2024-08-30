@@ -14,4 +14,5 @@
 .dropdown-button{
     background-color: #AFE1E9;
     border: solid 1px rgb(245, 235, 237);
+    width: 120px;
 }
