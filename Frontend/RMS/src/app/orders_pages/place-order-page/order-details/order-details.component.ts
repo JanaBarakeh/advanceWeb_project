@@ -7,5 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class OrderDetailsComponent {
   @Input() userId :any
+  @Input() reservationId: any
 
 }

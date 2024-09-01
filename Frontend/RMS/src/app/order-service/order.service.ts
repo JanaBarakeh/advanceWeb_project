@@ -37,5 +37,15 @@ export class OrderService {
     );
   }
 
+  // Add new order.
+  placeOrder(reservationId: number, userId:number){
+    return this.http.post<any>('http://localhost:8000/api/orders',
+      {
+        reservation_id: reservationId,
+        user_id: userId 
+      } 
+    );
+  }
+
 }
 

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\User;
+use App\Models\MenuItem;
+
+
 use App\Models\Reservation;
 
 
@@ -75,17 +79,20 @@ class OrderController extends Controller
     public function createOrder(Request $request) { 
         $totalPrice = 0;
         // Check data coming from request.
-       
         $validatedData = $this->validate($request,[
             'reservation_id' => 'required|integer',
-            'order_items' => 'required|array',
-            'order_items.*.menu_item_id' => 'required|integer',
-            'order_items.*.price' => 'required|numeric',
-            'order_items.*.quantity' => 'required|integer',
         ]);
-       
+        $user = User::find($request->user_id);
+        if(!$user){
+             return response()->json([
+                 'success'=> false,
+                 'message' => "user with id= $id not found",
+             ], 404);
+        }
+        
+        $orderItems = $user->cartItems()->get()->toArray();
         // Calculate total price.
-        foreach($validatedData['order_items'] as $item){
+        foreach( $orderItems as $item){
            $totalPrice += ($item['price'] * $item['quantity']); 
         }
 
@@ -96,7 +103,7 @@ class OrderController extends Controller
             'status' => 'NEW',
         ]); 
 
-        foreach ($validatedData['order_items'] as $item){
+        foreach ($orderItems as $item){
             $order->orderItems()->create($item);
         }
 
@@ -375,7 +382,7 @@ class OrderController extends Controller
 
        $orders = $reservation->orders()->get();
 
-       $orders = $orders->map(function($order) {
+        $orders = $orders->map(function($order) {
         $reservation = Reservation ::find($order->reservation_id);
         // Add table_id to response.
         $order->table_id = $reservation->table_id;
@@ -438,6 +445,14 @@ class OrderController extends Controller
         }
         
         $orderItems = $order->orderItems()->get();
+        
+        $orderItems = $orderItems->map(function($item) {
+            $menuItem = MenuItem::find($item->menu_item_id);
+            // Add item name to response.
+            $item->name = $menuItem->name;
+            return $item;
+        });
+
         return response($orderItems,200);
      }
 }

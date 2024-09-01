@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { OrderService } from 'src/app/order-service/order.service';
 
 @Component({
   selector: 'app-order-details-summary',
@@ -7,10 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class OrderDetailsSummaryComponent{
   @Input() items: any; 
+  @Input() reservationId: any
+  @Input() userId: any
+
+
   itemsTotal = 0;
   total=0;
   discount = 0;
   
+  orderService = inject(OrderService);
+
+
   ngOnChanges(): void {
     this.calculteTotal()
   }
@@ -20,14 +28,11 @@ export class OrderDetailsSummaryComponent{
       this.itemsTotal =  this.itemsTotal + (item.price * item.quantity);
     });
     this.total = this.itemsTotal - this.discount;
-
   }
   
-  applyDiscount(code: string) {
-    // Implement discount logic
-  //   if (code === 'DISCOUNT10') {
-  //     this.discount = 10;
-  //     this.total = this.itemsTotal + this.shippingCost - this.discount;
-  //   }
-   }
+  placeOrder(){
+    this.orderService.placeOrder(this.reservationId, this.userId).subscribe(response =>
+      console.log(response)
+    )
+  }
 }
