@@ -13,3 +13,5 @@ require __DIR__.'/UserRoute.php';
 require __DIR__.'/OrderRoute.php';
 require __DIR__.'/AdmainItemRoute.php';
 require __DIR__.'/CustomerItemRoute.php';
+require __DIR__.'/CartRoute.php';
+

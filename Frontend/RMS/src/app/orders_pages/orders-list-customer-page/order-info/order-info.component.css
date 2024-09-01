@@ -1,0 +1,19 @@
+.order-block{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center; 
+    background-color:hsl(0, 0%, 99%);
+    width: 100%;
+    padding: 10px;
+    margin: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.status{
+    background-color: #D5EDB9;
+    color: azure;
+    border: #D5EDB9;
+    width: 100px;
+}
+

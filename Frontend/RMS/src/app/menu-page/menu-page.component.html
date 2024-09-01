@@ -20,138 +20,138 @@
         </div>
       </div>
     </div>
+    
   </div>
   
-</div>
-
-<!--------------------------------------------------------------->
-<div class="container text-center">
-  <div class="row">
-
-<!-- add -->
-<div class="add-item-form">
-  <div class="col">
-  <h2>Add New Menu Item</h2>
-  <form (ngSubmit)="createNewItem()" #menuItemForm="ngForm">
-    <div>
-      <label for="name">Name:</label>
-      <input 
-        type="text" 
-        id="name" 
-        name="name" 
-        [(ngModel)]="newItem.name" 
-        required 
-        #nameInput="ngModel">
-      <div *ngIf="nameInput.invalid && nameInput.touched">
-        Name is required.
+  <!--------------------------------------------------------------->
+  <div class="container text-center">
+    <div class="row">
+  
+  <!-- add -->
+  <div class="add-item-form">
+    <div class="col">
+    <h2>Add New Menu Item</h2>
+    <form (ngSubmit)="createNewItem()" #menuItemForm="ngForm">
+      <div>
+        <label for="name">Name:</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          [(ngModel)]="newItem.name" 
+          required 
+          #nameInput="ngModel">
+        <div *ngIf="nameInput.invalid && nameInput.touched">
+          Name is required.
+        </div>
       </div>
-    </div>
-
-    <div>
-      <label for="description">Description:</label>
-      <textarea 
-        id="description" 
-        name="description" 
-        [(ngModel)]="newItem.description" 
-        required 
-        #descInput="ngModel"></textarea>
-      <div *ngIf="descInput.invalid && descInput.touched">
-        Description is required.
+  
+      <div>
+        <label for="description">Description:</label>
+        <textarea 
+          id="description" 
+          name="description" 
+          [(ngModel)]="newItem.description" 
+          required 
+          #descInput="ngModel"></textarea>
+        <div *ngIf="descInput.invalid && descInput.touched">
+          Description is required.
+        </div>
       </div>
-    </div>
-
-    <div>
-      <label for="price">Price:</label>
-      <input 
-        type="number" 
-        id="price" 
-        name="price" 
-        [(ngModel)]="newItem.price" 
-        required 
-        #priceInput="ngModel" 
-        min="0">
-      <div *ngIf="priceInput.invalid && priceInput.touched">
-        Price is required and must be a valid number.
+  
+      <div>
+        <label for="price">Price:</label>
+        <input 
+          type="number" 
+          id="price" 
+          name="price" 
+          [(ngModel)]="newItem.price" 
+          required 
+          #priceInput="ngModel" 
+          min="0">
+        <div *ngIf="priceInput.invalid && priceInput.touched">
+          Price is required and must be a valid number.
+        </div>
       </div>
-    </div>
-
-    <div>
-      <label for="category">Category:</label>
-      <input 
-        type="text" 
-        id="category" 
-        name="category" 
-        [(ngModel)]="newItem.category" 
-        required 
-        #categoryInput="ngModel">
-      <div *ngIf="categoryInput.invalid && categoryInput.touched">
-        Category is required.
+  
+      <div>
+        <label for="category">Category:</label>
+        <input 
+          type="text" 
+          id="category" 
+          name="category" 
+          [(ngModel)]="newItem.category" 
+          required 
+          #categoryInput="ngModel">
+        <div *ngIf="categoryInput.invalid && categoryInput.touched">
+          Category is required.
+        </div>
       </div>
-    </div>
-
-    <div>
-      <label for="is_available">Available:</label>
-      <input 
-        type="checkbox" 
-        id="is_available" 
-        name="is_available" 
-        [(ngModel)]="newItem.is_available" 
-        #isAvailableInput="ngModel">
-    </div>
-
-    <button type="submit" [disabled]="menuItemForm.invalid">Add Item</button>
-  </form>
-</div>
-</div>
-
-<!-- update -->
-<div class="col">
-<div class="update-item-form">
-  <h2>Update Menu Item</h2>
-
-  <form (ngSubmit)="UpdateItem(itemId)" #updateItemForm="ngForm">
-    
-    <!-- Hidden input for the item's ID (optional if selecting from UI) -->
-    <input type="hidden" [(ngModel)]="itemId" name="id">
-    
-    <div>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="updateItem.name" required>
-    </div>
-
-    <div>
-      <label for="description">Description:</label>
-      <textarea id="description" name="description" [(ngModel)]="updateItem.description" required></textarea>
-    </div>
-
-    <div>
-      <label for="price">Price:</label>
-      <input type="number" id="price" name="price" [(ngModel)]="updateItem.price" required>
-    </div>
-
-    <div>
-      <label for="category">Category:</label>
-      <input type="text" id="category" name="category" [(ngModel)]="updateItem.category" required>
-    </div>
-
-    <div>
-      <label for="is_available">Available:</label>
-      <input 
-        type="checkbox" 
-        id="is_available" 
-        name="is_available" 
-        [(ngModel)]="updateItem.is_available" 
-        #isAvailableInput="ngModel">
-    </div>
-
-    <button type="submit" [disabled]="!updateItemForm.form.valid">Update Item</button>
-  </form>
-</div>
-</div>
-
-
-
+  
+      <div>
+        <label for="is_available">Available:</label>
+        <input 
+          type="checkbox" 
+          id="is_available" 
+          name="is_available" 
+          [(ngModel)]="newItem.is_available" 
+          #isAvailableInput="ngModel">
+      </div>
+  
+      <button type="submit" [disabled]="menuItemForm.invalid">Add Item</button>
+    </form>
   </div>
-</div>
-
-
+  </div>
+  
+  <!-- update -->
+  <div class="col">
+  <div class="update-item-form">
+    <h2>Update Menu Item</h2>
+  
+    <form (ngSubmit)="UpdateItem(itemId)" #updateItemForm="ngForm">
+      
+      <!-- Hidden input for the item's ID (optional if selecting from UI) -->
+      <input type="hidden" [(ngModel)]="itemId" name="id">
+      
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="updateItem.name" required>
+      </div>
+  
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="updateItem.description" required></textarea>
+      </div>
+  
+      <div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" [(ngModel)]="updateItem.price" required>
+      </div>
+  
+      <div>
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" [(ngModel)]="updateItem.category" required>
+      </div>
+  
+      <div>
+        <label for="is_available">Available:</label>
+        <input 
+          type="checkbox" 
+          id="is_available" 
+          name="is_available" 
+          [(ngModel)]="updateItem.is_available" 
+          #isAvailableInput="ngModel">
+      </div>
+  
+      <button type="submit" [disabled]="!updateItemForm.form.valid">Update Item</button>
+    </form>
+  </div>
+  </div>
+  
+  
+  
+    </div>
+  </div>
+  
+  
+  
