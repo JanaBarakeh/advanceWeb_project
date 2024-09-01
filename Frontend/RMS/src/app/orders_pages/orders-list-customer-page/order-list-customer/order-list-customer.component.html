@@ -12,9 +12,10 @@
           <!-- <app-order-details-item [item]="item"></app-order-details-item> -->
            <app-list-head></app-list-head>
            <hr>
-           <app-order-info></app-order-info>
-           <app-order-info></app-order-info>
-           <app-order-info></app-order-info>
+           <div *ngFor="let order of orders">
+                <app-order-info [order]="order"></app-order-info>
+            
+           </div>
         </div>
         
 

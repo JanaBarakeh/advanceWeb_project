@@ -293,8 +293,8 @@ class OrderController extends Controller
      */
     public function getAllOrders(){
         // The new orders appear in top.
-        $orders = Order::all()->sortDesc();
-        return response($orders,200);
+        $orders = Order::all()->sortDesc()->values()->toArray();
+        return response($orders, 200);
     }
 
     /**

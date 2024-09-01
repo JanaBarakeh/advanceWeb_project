@@ -5,15 +5,15 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './order-details-summary.component.html',
   styleUrls: ['./order-details-summary.component.css']
 })
-export class OrderDetailsSummaryComponent implements OnInit{
+export class OrderDetailsSummaryComponent{
   @Input() items: any; 
   itemsTotal = 0;
   total=0;
   discount = 0;
-  ngOnInit(): void {
+  
+  ngOnChanges(): void {
     this.calculteTotal()
   }
-
   
    calculteTotal(){
     this.items.forEach((item: { price: number; quantity: number; }) => {
