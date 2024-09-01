@@ -27,4 +27,15 @@ export class OrderService {
   getCartItems(userId: number): Observable <any> {
     return this.http.get<any>('http://localhost:8000/api/cart/user/'+userId);
   }
+
+  // Update order status.
+  updateOrderStatus(orderId: number, newStatus: string): Observable <any> {
+    return this.http.put<any>('http://localhost:8000/api/orders/'+orderId+'/status',
+      {
+      status: newStatus
+      } 
+    );
+  }
+
 }
+

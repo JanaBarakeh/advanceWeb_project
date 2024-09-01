@@ -293,7 +293,15 @@ class OrderController extends Controller
      */
     public function getAllOrders(){
         // The new orders appear in top.
-        $orders = Order::all()->sortDesc()->values()->toArray();
+        $orders = Order::all()->sortDesc()->values();
+        // To add table id in respone, because i need it in the page.
+        $orders = $orders->map(function($order) {
+
+            $reservation = Reservation ::find($order->reservation_id);
+            // Get the table_id from the related reservation
+            $order->table_id = $reservation->table_id;
+            return $order;
+        });
         return response($orders, 200);
     }
 
@@ -366,6 +374,17 @@ class OrderController extends Controller
        }
 
        $orders = $reservation->orders()->get();
+
+       $orders = $orders->map(function($order) {
+        $reservation = Reservation ::find($order->reservation_id);
+        // Add table_id to response.
+        $order->table_id = $reservation->table_id;
+        return $order;
+    });
+    return response($orders, 200);
+
+
+
        return response($orders,200);
     }
 
