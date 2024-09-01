@@ -36,7 +36,10 @@ class MenuItem extends Model
          return $this->hasMany(Review::class);
     }
 
-  
-
+     // One to Many relation function with cart_items table.
+     public function cartItems()
+     {
+         return $this->hasMany(CartItem::class);
+     }
 
 }
