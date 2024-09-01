@@ -21,6 +21,8 @@ import { OrderItemsComponent } from './orders_pages/order-details-page/order-ite
 import { OrderSummaryComponent } from './orders_pages/order-details-page/order-summary/order-summary.component';
 import { OrderInfoComponent } from './orders_pages/orders-list-customer-page/order-info/order-info.component';
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
+import { SearchTablesComponent } from './table_reservation/components/search-tables/search-tables.component';
+import { ReserveTablePageComponent } from './table_reservation/pages/reserve_table_page/reserve-table-page/reserve-table-page.component';
 
 @NgModule({
   declarations: [
@@ -42,15 +44,11 @@ import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-
     OrderSummaryComponent,
     OrderInfoComponent,
     OrderListCustomerComponent,
-    
+    SearchTablesComponent,
+    ReserveTablePageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

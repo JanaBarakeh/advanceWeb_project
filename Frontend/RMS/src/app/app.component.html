@@ -7,7 +7,6 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
@@ -17,20 +16,52 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/catalog']" routerLinkActive="active" aria-current="page">Catalog<span class="sr-only">(current)</span></a>
+        <a
+          class="nav-link"
+          [routerLink]="['/catalog']"
+          routerLinkActive="active"
+          aria-current="page"
+          >Catalog<span class="sr-only">(current)</span></a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/component2']" routerLinkActive="active">Component2</a>
+        <a
+          class="nav-link"
+          [routerLink]="['/component2']"
+          routerLinkActive="active"
+          >Component2</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/menu-page']" routerLinkActive="active">Menu_Page</a>
+        <a
+          class="nav-link"
+          [routerLink]="['/menu-page']"
+          routerLinkActive="active"
+          >Menu_Page</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/table-reservation']"
+          routerLinkActive="active"
+          >table reservation</a
+        >
       </li>
     </ul>
   </div>
@@ -41,4 +72,4 @@
 <!-- <app-orders-list></app-orders-list> -->
 <app-order-details [userId]="1"></app-order-details>
 <!-- <app-order-details-page [orderId]="9"></app-order-details-page> -->
- <!-- <app-order-list-customer [reservationId]="1"></app-order-list-customer> -->
+<!-- <app-order-list-customer [reservationId]="1"></app-order-list-customer> -->
