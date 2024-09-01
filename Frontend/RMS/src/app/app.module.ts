@@ -28,7 +28,7 @@ import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-
     AppComponent,
     MenuPageComponent,
     LoginComponent,
-    MenuPageCustomerComponent
+    MenuPageCustomerComponent,
     OrderDetailsComponent,
     OrderDetailsCardComponent,
     OrderDetailsItemsComponent,

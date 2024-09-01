@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { MenuPageService } from './../menu-page.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPageComponent implements OnInit {
   menuItems: any[] = [];
+  cartItems: any[] = [];
   newItem = {
     name: '',
     description: '',
@@ -17,7 +17,6 @@ export class MenuPageComponent implements OnInit {
     category: '',
     is_available: true
   };
-
   updateItem: any = {
     name: '',
     description: '',
@@ -36,6 +35,10 @@ export class MenuPageComponent implements OnInit {
     this.getAllMenuItems();
   }
 
+  addToCart(item: any) {
+    this.cartItems.push(item);
+    console.log('Item added to cart:', item);
+  }
   // Get all menu items
   getAllMenuItems() {
     this.menuService.getMenuItems().subscribe(

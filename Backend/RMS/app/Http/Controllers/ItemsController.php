@@ -276,4 +276,35 @@ class ItemsController extends Controller
        return response("item with id : $id deactive",200);
     }
 
+    public function addtocartitem($id){
+
+    $menuItem=MenuItem::find($id);
+    
+
+    if (!$menuItem) {
+        return response()->json(['message' => 'Item not found'], 404);
+    }
+
+    // Retrieve the current cart from the session or create a new one
+    $cart = session()->get('cart', []);
+
+    // Check if the item is already in the cart
+    if (isset($cart[$id])) {
+        // If it exists, increment the quantity
+        $cart[$id]['quantity']++;
+    } else {
+        // If it doesn't exist, add it to the cart
+        $cart[$id] = [
+            'name' => $menuItem->name,
+            'quantity' => 1,
+            'price' => $menuItem->price,
+        ];
+    }
+
+    // Update the session with the cart
+    session()->put('cart', $cart);
+
+    return response()->json(['message' => 'Item added to cart', 'cart' => $cart], 200);
+    }
+
 }

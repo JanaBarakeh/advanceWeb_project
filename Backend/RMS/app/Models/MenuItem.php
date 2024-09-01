@@ -36,6 +36,7 @@ class MenuItem extends Model
          return $this->hasMany(Review::class);
     }
 
+  
 
 
 }
