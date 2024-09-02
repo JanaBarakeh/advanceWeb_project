@@ -5,12 +5,18 @@ import { MenuPageCustomerComponent } from './menu-page-customer/menu-page-custom
 import { UpdatePageComponent } from './update-page/update-page.component';
 import { OrderDetailsComponent } from './orders_pages/place-order-page/order-details/order-details.component';
 import { OrderDetailsPageComponent } from './orders_pages/order-details-page/order-details-page/order-details-page.component';
+import { OrdersListComponent } from './orders_pages/orders-list-staff-page/orders-list/orders-list.component';
+import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
 
 const routes: Routes = [
   { path: 'menu-page', component: MenuPageComponent },
   { path: 'order-details', component: OrderDetailsPageComponent},
   {path : 'menu-page-customer',component:MenuPageCustomerComponent },
-  { path: 'update-item/:id', component: UpdatePageComponent }
+  { path: 'update-item/:id', component: UpdatePageComponent },
+  { path: 'order-list-stff', component: OrdersListComponent },
+  { path: 'order-list-customer', component: OrderListCustomerComponent },
+  { path: 'cart', component: OrderDetailsComponent},
+  { path: 'order-details/:orderId', component: OrderDetailsPageComponent }, 
 ];
 
 

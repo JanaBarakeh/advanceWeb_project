@@ -7,7 +7,8 @@ import { OrderService } from 'src/app/order-service/order.service';
   styleUrls: ['./order-list-customer.component.css']
 })
 export class OrderListCustomerComponent implements OnInit{
-  @Input() reservationId: any
+  //@Input() reservationId: any
+  reservationId =1; // i need to replace it to be dynamic (pass or input)
   orders = [];
   orderService = inject(OrderService);
 
