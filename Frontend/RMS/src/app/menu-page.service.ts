@@ -13,6 +13,7 @@ export class MenuPageService {
   constructor(private http: HttpClient) { }
 
 
+  
   // Get all menu items
   getMenuItems(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
@@ -37,4 +38,10 @@ export class MenuPageService {
   deactiveMenuItem(id: number):Observable<any>{
     return this.http.patch<any>(`${this.apiUrl}/${id}/deactivate`,{});
   }
+
+  getMenuItemById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+  
+  
 }
