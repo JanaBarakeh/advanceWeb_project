@@ -1,5 +1,6 @@
 import { MenuPageService } from './../menu-page.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // @author Jana Barakeh
 @Component({
@@ -25,20 +26,25 @@ export class MenuPageComponent implements OnInit {
     is_available: true
   };
 
-  itemId!: number; // This will hold the ID of the item to be updated
+  itemId!: number; 
 
 
-  constructor(private menuService:MenuPageService) { }
+  constructor(private menuService:MenuPageService , private router: Router) { }
 
 
   ngOnInit(): void {
     this.getAllMenuItems();
   }
-
-  addToCart(item: any) {
+  
+  navigateToUpdatePage(itemId: number): void {
+    this.router.navigate(['/update-item', itemId]);
+  }
+  
+  /*addToCart(item: any) {
     this.cartItems.push(item);
     console.log('Item added to cart:', item);
-  }
+  }*/
+ 
   // Get all menu items
   getAllMenuItems() {
     this.menuService.getMenuItems().subscribe(
@@ -52,7 +58,7 @@ export class MenuPageComponent implements OnInit {
     this.menuService.creatMenuItem(this.newItem).subscribe(
       response => {
         console.log('Item created', response);
-        this.getAllMenuItems();  // Assuming this function reloads the menu items list
+        this.getAllMenuItems(); 
       },
       error => console.error('Error creating item', error)
     );
@@ -74,7 +80,7 @@ export class MenuPageComponent implements OnInit {
     this.menuService.deleteMenuItems(id).subscribe(
       response => {
         console.log('Item deleted', response);
-        this.getAllMenuItems(); // Refresh the list
+        this.getAllMenuItems(); 
       },
       error => console.error('Error deleting item', error)
     );
@@ -85,7 +91,7 @@ export class MenuPageComponent implements OnInit {
     this.menuService.deactiveMenuItem(id).subscribe(
       response => {
         console.log('Item deactivated', response);
-        this.getAllMenuItems(); // Refresh the list
+        this.getAllMenuItems(); 
       },
       error => console.error('Error deactivating item', error)
     );

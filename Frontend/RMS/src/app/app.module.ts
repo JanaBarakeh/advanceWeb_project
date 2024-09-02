@@ -22,6 +22,7 @@ import { OrderItemsComponent } from './orders_pages/order-details-page/order-ite
 import { OrderSummaryComponent } from './orders_pages/order-details-page/order-summary/order-summary.component';
 import { OrderInfoComponent } from './orders_pages/orders-list-customer-page/order-info/order-info.component';
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
+import { UpdatePageComponent } from './update-page/update-page.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-
     OrderSummaryComponent,
     OrderInfoComponent,
     OrderListCustomerComponent,
+    UpdatePageComponent,
     
   ],
   imports: [
