@@ -1,4 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { OrderService } from 'src/app/order-service/order.service';
 
 @Component({
@@ -9,8 +10,12 @@ import { OrderService } from 'src/app/order-service/order.service';
 export class OrderComponent {
  @Input() order: any;
 
+ constructor(private router: Router) {}
  orderService = inject(OrderService);
-
+ goToOrderDetailsPage() {
+   const orderId = this.order.id;
+   this.router.navigate(['/order-details', orderId]);
+ }
 
  updateStatus(newStatus: string) {
   this.order.status = newStatus;
@@ -22,6 +27,9 @@ export class OrderComponent {
     console.log(response)
   )
  }
+
+
+
  
 }
 

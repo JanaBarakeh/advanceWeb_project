@@ -34,5 +34,6 @@ export class OrderDetailsSummaryComponent{
     this.orderService.placeOrder(this.reservationId, this.userId).subscribe(response =>
       console.log(response)
     )
+    //to do:  delete item from cart.
   }
 }
