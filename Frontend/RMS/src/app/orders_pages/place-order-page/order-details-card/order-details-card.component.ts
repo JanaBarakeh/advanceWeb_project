@@ -30,4 +30,9 @@ export class OrderDetailsCardComponent {
     })
   }
 
+  onQuantityChange() {
+    // This will trigger when the quantity of any item changes
+ 
+    
+  }
 }

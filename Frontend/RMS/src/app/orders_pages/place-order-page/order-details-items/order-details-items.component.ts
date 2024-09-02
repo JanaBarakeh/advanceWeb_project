@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-order-details-items',
@@ -7,4 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class OrderDetailsItemsComponent {
   @Input() items: any;
+  @Output() quantityChange = new EventEmitter<void>(); // Emit event to CardComponent
+
+  onItemQuantityChange() {
+    this.quantityChange.emit(); // Re-emit the event
+  }
 }

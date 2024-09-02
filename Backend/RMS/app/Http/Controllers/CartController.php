@@ -1,12 +1,11 @@
 <?php
-
+// @author Farah Elhasan
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\MenuItem;
 
 
 class CartController extends Controller
