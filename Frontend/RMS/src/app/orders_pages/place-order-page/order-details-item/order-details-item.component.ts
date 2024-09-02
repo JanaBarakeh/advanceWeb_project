@@ -10,16 +10,19 @@ export class OrderDetailsItemComponent {
 
   incrementQuantity() {
     this.item.quantity++;
+    //save to database
   }
 
   decrementQuantity() {
     if (this.item.quantity > 1) {
       this.item.quantity--;
+      //save to database
     }
 
   }
 
   removeItem() {
     // Implement item removal logic
+    // remove from cart table
   }
 }

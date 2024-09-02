@@ -32,13 +32,22 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/menu-page']" routerLinkActive="active">Menu_Page</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/order-list-stff']" routerLinkActive="active">Orders List [Staff]</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/order-list-customer']" routerLinkActive="active">My Orders [Customer]</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/cart']" routerLinkActive="active">Cart</a>
+      </li>
     </ul>
   </div>
 </nav>
 <router-outlet></router-outlet>
 
 <!-- order page test -->
-<app-orders-list></app-orders-list>
-<!-- <app-order-details [userId]="1"></app-order-details> -->
-<!-- <app-order-details-page [orderId]="9"></app-order-details-page> -->
+<!-- <app-orders-list></app-orders-list> -->
+<!-- <app-order-details [userId]="1" [reservationId]="1"></app-order-details> -->
+<!-- <app-order-details-page [orderId]="6"></app-order-details-page> -->
  <!-- <app-order-list-customer [reservationId]="1"></app-order-list-customer> -->
