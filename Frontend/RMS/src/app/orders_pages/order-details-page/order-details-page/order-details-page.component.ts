@@ -1,3 +1,5 @@
+// @author Farah Elhasan
+
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

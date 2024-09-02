@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-order-details-item',
@@ -7,18 +7,19 @@ import { Component, Input } from '@angular/core';
 })
 export class OrderDetailsItemComponent {
   @Input() item: any;
+  @Output() quantityChange = new EventEmitter<void>(); // Emit event on quantity change
 
   incrementQuantity() {
     this.item.quantity++;
-    //save to database
+    this.quantityChange.emit(); // Emit event
+    console.log("emit");
   }
 
   decrementQuantity() {
     if (this.item.quantity > 1) {
       this.item.quantity--;
-      //save to database
+      this.quantityChange.emit(); // Emit event
     }
-
   }
 
   removeItem() {

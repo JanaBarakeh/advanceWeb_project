@@ -11,6 +11,7 @@ export class OrderDetailsCardComponent {
   @Input() reservationId: any
 
   items = [];
+  emptyArray =[];
   // [
   //   { id: 1, name: 'Product 1', price: 29.99, quantity: 1, imageUrl: 'item2.jpg' },
   //   { id: 2, name: 'Product 2', price: 59.99, quantity: 2, imageUrl: 'assets/product2.jpg' },
@@ -30,4 +31,11 @@ export class OrderDetailsCardComponent {
     })
   }
 
+  onQuantityChange() {
+    // This will trigger when the quantity of any item changes
+    this.emptyArray = this.items;
+    this.items = this.emptyArray;
+    console.log(this.emptyArray)
+    
+  }
 }
