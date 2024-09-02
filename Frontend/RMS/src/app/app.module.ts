@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { MenuPageCustomerComponent } from './menu-page-customer/menu-page-customer.component';
 import { OrderDetailsComponent } from './orders_pages/place-order-page/order-details/order-details.component';
 import { OrderDetailsCardComponent } from './orders_pages/place-order-page/order-details-card/order-details-card.component';
 import { OrderDetailsItemsComponent } from './orders_pages/place-order-page/order-details-items/order-details-items.component';
@@ -21,12 +22,14 @@ import { OrderItemsComponent } from './orders_pages/order-details-page/order-ite
 import { OrderSummaryComponent } from './orders_pages/order-details-page/order-summary/order-summary.component';
 import { OrderInfoComponent } from './orders_pages/orders-list-customer-page/order-info/order-info.component';
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
+import { UpdatePageComponent } from './update-page/update-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuPageComponent,
     LoginComponent,
+    MenuPageCustomerComponent,
     OrderDetailsComponent,
     OrderDetailsCardComponent,
     OrderDetailsItemsComponent,
@@ -42,6 +45,7 @@ import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-
     OrderSummaryComponent,
     OrderInfoComponent,
     OrderListCustomerComponent,
+    UpdatePageComponent,
     
   ],
   imports: [

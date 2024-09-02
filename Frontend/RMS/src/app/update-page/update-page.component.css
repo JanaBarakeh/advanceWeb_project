@@ -1,0 +1,89 @@
+/* @author Jana Barakeh*/
+/*update item form  */
+
+.update-item-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f7f7;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .update-item-form h2 {
+    text-align: center;
+    color: #a36361;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .update-item-form label {
+    font-weight: bold;
+    color: #a36361;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .update-item-form input[type="text"],
+  .update-item-form textarea,
+  .update-item-form input[type="number"],
+  .update-item-form input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.3s ease;
+  }
+  
+  .update-item-form input[type="text"]:focus,
+  .update-item-form textarea:focus,
+  .update-item-form input[type="number"]:focus {
+    border: 2px solid #e99a97;
+    outline: none;
+    background-color: #ffffff;
+  }
+  
+  .update-item-form textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .update-item-form button {
+    width: 100%;
+    padding: 10px;
+    background-color:#a36361;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .update-item-form button:hover {
+    background-color: #e99a97;
+  }
+  
+  .update-item-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .update-item-form div {
+    margin-bottom: 10px;
+  }
+  
+  .update-item-form div * {
+    margin-top: 5px;
+  }
+  
+  .update-item-form .error-message {
+    color: #d9534f;
+    font-size: 12px;
+    margin-top: -10px;
+  }
+  
