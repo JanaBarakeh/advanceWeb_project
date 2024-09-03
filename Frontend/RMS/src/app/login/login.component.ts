@@ -43,9 +43,7 @@ export class LoginComponent {
         });
       }
       else if(roleId==2){
-        this.router.navigate(['/customer-page'], { 
-          queryParams: { userId: userId, roleId: roleId } 
-        });
+        this.router.navigate(['/customer-page', userId]);
       }
       else if(roleId==3){
         this.router.navigate(['/staff-page'], { 

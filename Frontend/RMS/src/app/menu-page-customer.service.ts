@@ -21,8 +21,13 @@ export class MenuPageCustomerService {
     return this.http.get<any>(`${this.apiUrl}/category/${category}`);
   }
   
-  addToCart(menuItemId: number, quantity: number): Observable<any> {
-    return this.http.post<any>((`${this.apiUrl}/cart`), { menu_item_id: menuItemId, quantity });
+  addToCart(menuItemId: number, quantity: number, userId:number, price:number): Observable<any> {
+    return this.http.post<any>((`${this.apiUrl}/cart`), {
+       menu_item_id: menuItemId,
+       quantity: quantity,
+       user_id : userId,
+       price: price
+      });
   }
 
 }
