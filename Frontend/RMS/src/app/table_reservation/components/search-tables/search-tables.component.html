@@ -1,0 +1,90 @@
+<!-- <div class="row container">
+  <div class="dropdown col-4 col-md-3">
+    <button
+      class="btn dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+  <div class="dropdown col-4 col-md-3">
+    <button
+      class="btn dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+  <div class="dropdown col-4 col-md-3">
+    <button
+      class="btn dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+  <button type="button" class="btn btn-primary col-md-3">Check!</button>
+</div> -->
+<div class="search-container container">
+  <div class="row my-3">
+    <div class="col">
+      <input type="date" class="form-control" [(ngModel)]="reservationDate" />
+    </div>
+    <div class="col">
+      <select class="form-select" [(ngModel)]="reservationTime">
+        <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
+      </select>
+    </div>
+    <div class="col">
+      <select class="form-select" [(ngModel)]="numberOfPersons">
+        <!-- Populate with number of persons, e.g., 1-10 -->
+        <option *ngFor="let num of personsArray" [value]="num">
+          {{ num }} Persons
+        </option>
+      </select>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="checkAvailability()">
+        Check Availability
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="availability-container text-center">
+  <i *ngIf="isAvailable; else noTableIcon" class="available-icon"></i>
+  <ng-template #noTableIcon>
+    <i class="no-table-icon"></i>
+  </ng-template>
+  <button
+    *ngIf="isAvailable"
+    class="btn btn-success mt-3"
+    (click)="proceedToReservation()"
+  >
+    Proceed
+  </button>
+</div>

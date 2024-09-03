@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +22,10 @@ import { OrderItemsComponent } from './orders_pages/order-details-page/order-ite
 import { OrderSummaryComponent } from './orders_pages/order-details-page/order-summary/order-summary.component';
 import { OrderInfoComponent } from './orders_pages/orders-list-customer-page/order-info/order-info.component';
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
+import { SearchTablesComponent } from './table_reservation/components/search-tables/search-tables.component';
+import { ReserveTablePageComponent } from './table_reservation/pages/reserve_table_page/reserve-table-page/reserve-table-page.component';
 import { UpdatePageComponent } from './update-page/update-page.component';
+import { ReservationDetailsComponent } from './table_reservation/pages/reservation_details_page/reservation-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -51,7 +54,10 @@ import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.co
     OrderSummaryComponent,
     OrderInfoComponent,
     OrderListCustomerComponent,
+    SearchTablesComponent,
+    ReserveTablePageComponent,
     UpdatePageComponent,
+    ReservationDetailsComponent,
     HomePageComponent,
     LoginComponent,
     SignupComponent,
@@ -59,16 +65,15 @@ import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.co
     AdminPageComponent,
     CustomerPageComponent,
     AddmenuitemPageComponent,
-    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
