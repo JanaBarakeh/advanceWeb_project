@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-4" *ngFor="let item of menuItems">
         <div class="card h-100 mb-4">
-        <!--  <img src="..." class="card-img-top" alt="...">-->
+          <img *ngIf="item.image_url" [src]="item.image_url" alt="Menu Item Image" class="card-img-top" />
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
             <p class="card-text">{{ item.description }}</p>
@@ -18,8 +18,8 @@
         </div>
       </div>
     </div>
-    
   </div>
+  
   
   <!--------------------------------------------------------------->
   <div class="container text-center">
@@ -85,7 +85,7 @@
           Category is required.
         </div>
       </div>
-  
+
       <div>
         <label for="is_available">Available:</label>
         <input 
@@ -102,6 +102,7 @@
   </div>
     </div>
   </div>
+
   
   
   
