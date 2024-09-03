@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ReservationService } from '../../Services/ReservationService';
+import { ReservationService } from '../../Services/ReservationService.service';
 
 @Component({
   selector: 'app-search-tables',

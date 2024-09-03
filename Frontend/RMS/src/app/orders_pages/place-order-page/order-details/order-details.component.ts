@@ -20,6 +20,6 @@ export class OrderDetailsComponent {
 
   ngOnInit() {
     this.userId = Number(this.route.snapshot.paramMap.get('userId'));
-    this.reservationId = Number(this.route.snapshot.paramMap.get('reservationId'));
+     this.reservationId = Number(this.route.snapshot.paramMap.get('reservationId'));
   }
 }

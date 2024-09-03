@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -33,6 +33,13 @@ import { ReviewComponent } from './review/review.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
+import { UserReservationsComponent } from './table_reservation/pages/user_reservations/user-reservations.component';
+import { ReservationCardComponent } from './table_reservation/components/reservation-card/reservation-card.component';
+import { StatusToStringPipe } from './table_reservation/pipes/reservation-status.pipe';
+import { ReservationTableComponent } from './table_reservation/pages/reservation-table/reservation-table.component';
+import { TablesTableComponent } from './table_reservation/components/tables-table/tables-table.component';
+import { TablesPageComponent } from './table_reservation/pages/tables-page/tables-page.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 import { StaffPageComponent } from './staff-page/staff-page.component';
 
 @NgModule({
@@ -66,6 +73,12 @@ import { StaffPageComponent } from './staff-page/staff-page.component';
     AdminPageComponent,
     CustomerPageComponent,
     AddmenuitemPageComponent,
+    ReservationCardComponent,
+    UserReservationsComponent,
+    StatusToStringPipe,
+    ReservationTableComponent,
+    TablesTableComponent,
+    TablesPageComponent,
     StaffPageComponent,
   ],
   imports: [
@@ -75,7 +88,14 @@ import { StaffPageComponent } from './staff-page/staff-page.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  exports: [StatusToStringPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
