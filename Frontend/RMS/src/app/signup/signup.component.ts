@@ -35,8 +35,8 @@ export class SignupComponent {
 
     this.http.post(this.apiUrl, this.formData).subscribe({
       next: (response) => {
-        alert('Registration successful!');
-        // this.router.navigate(['/menu-page']);
+        // alert('Registration successful!');
+        this.router.navigate(['/customer-page']);
       },
       error: (error) => {
         console.error('Registration failed:', error);

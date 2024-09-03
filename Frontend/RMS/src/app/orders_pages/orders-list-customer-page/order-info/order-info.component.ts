@@ -12,6 +12,7 @@ export class OrderInfoComponent {
 
   constructor(private router: Router) {}
   orderService = inject(OrderService);
+  
   goToOrderDetailsPage() {
     const orderId = this.order.id;
     const orderStatus = this.order.status;
