@@ -33,6 +33,7 @@ import { ReviewComponent } from './review/review.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
+import { StaffPageComponent } from './staff-page/staff-page.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.co
     AdminPageComponent,
     CustomerPageComponent,
     AddmenuitemPageComponent,
+    StaffPageComponent,
   ],
   imports: [
     BrowserModule,
