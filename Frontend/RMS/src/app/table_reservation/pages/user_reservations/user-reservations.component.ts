@@ -28,7 +28,8 @@ export class UserReservationsComponent implements OnInit {
   }
 
   handleOrder(reservationId: number) {
-    const userId = 1;
+    const userId = localStorage.getItem('auth_token')?.split('|')[0];
+
     this.router.navigate(['/cart', userId, reservationId]);
   }
 

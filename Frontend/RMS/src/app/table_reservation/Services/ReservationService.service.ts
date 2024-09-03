@@ -1,6 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RangeValueAccessor } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,12 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ReservationService {
   getUserReservations(): Observable<any> {
-    return this.http.get('http://localhost:8000/api/user/reservations', {
-      headers: new HttpHeaders({
-        Authorization: `Bearer 2|t95PAPV2NTUbwQX2EbbGNwhb7YG6Qsvj15jcMgon20071eb6`,
-        Accept: 'application/json',
-      }),
-    });
+    return this.http.get('http://localhost:8000/api/user/reservations');
   }
 
   private reservation: any;
@@ -29,14 +23,7 @@ export class ReservationService {
 
   cancelReservation(reservationId: Number): Observable<any> {
     return this.http.delete(
-      `http://localhost:8000/api/reservations/${reservationId}`,
-      {
-        headers: new HttpHeaders({
-          Authorization:
-            'Bearer 2|t95PAPV2NTUbwQX2EbbGNwhb7YG6Qsvj15jcMgon20071eb6',
-          Accept: 'application/json',
-        }),
-      }
+      `http://localhost:8000/api/reservations/${reservationId}`
     );
   }
 
@@ -46,12 +33,6 @@ export class ReservationService {
       url += `?date=${dateFilter}`;
     }
 
-    const headers = new HttpHeaders({
-      Authorization:
-        'Bearer 2|t95PAPV2NTUbwQX2EbbGNwhb7YG6Qsvj15jcMgon20071eb6',
-      Accept: 'application/json',
-    });
-
-    return this.http.get<any[]>(url, { headers });
+    return this.http.get<any[]>(url);
   }
 }

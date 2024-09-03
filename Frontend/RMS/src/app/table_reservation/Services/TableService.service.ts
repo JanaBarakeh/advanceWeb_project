@@ -8,23 +8,13 @@ export class TableService {
 
   getReservedTables(): Observable<any> {
     const url = 'http://localhost:8000/api/tables/reserved';
-    const headers = new HttpHeaders({
-      Authorization:
-        'Bearer 2|t95PAPV2NTUbwQX2EbbGNwhb7YG6Qsvj15jcMgon20071eb6',
-      Accept: 'application/json',
-    });
 
-    return this.http.get<any[]>(url, { headers });
+    return this.http.get<any[]>(url);
   }
 
   getAvailableTables(): Observable<any> {
     const url = 'http://localhost:8000/api/tables/available';
-    const headers = new HttpHeaders({
-      Authorization:
-        'Bearer 2|t95PAPV2NTUbwQX2EbbGNwhb7YG6Qsvj15jcMgon20071eb6',
-      Accept: 'application/json',
-    });
 
-    return this.http.get<any[]>(url, { headers });
+    return this.http.get<any[]>(url);
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -39,6 +39,7 @@ import { StatusToStringPipe } from './table_reservation/pipes/reservation-status
 import { ReservationTableComponent } from './table_reservation/pages/reservation-table/reservation-table.component';
 import { TablesTableComponent } from './table_reservation/components/tables-table/tables-table.component';
 import { TablesPageComponent } from './table_reservation/pages/tables-page/tables-page.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,13 @@ import { TablesPageComponent } from './table_reservation/pages/tables-page/table
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   exports: [StatusToStringPipe],
   bootstrap: [AppComponent],
 })

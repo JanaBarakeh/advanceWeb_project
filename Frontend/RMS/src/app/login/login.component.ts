@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   showLoginForm = false;
@@ -27,21 +27,19 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   login_inject = inject(AuthService);
-  
+
   onSubmit() {
-    this.login_inject.Login(this.email, this.password).subscribe(response => {
+    this.login_inject.Login(this.email, this.password).subscribe((response) => {
       console.log(response);
-      
+
       localStorage.setItem('auth_token', response.access_token);
-      
+
       const userId = response.user_id;
       const roleId = response.role_id;
 
-      this.router.navigate(['/costemerpage'], { 
-        queryParams: { userId: userId, roleId: roleId } 
+      this.router.navigate(['/costemerpage'], {
+        queryParams: { userId: userId, roleId: roleId },
       });
-    }, error => {
-      console.error('Login failed', error);
     });
   }
 }
