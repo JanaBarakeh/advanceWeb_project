@@ -14,9 +14,6 @@ import {CustomerPageComponent} from'./customer-page/customer-page.component';
 
 const routes: Routes = [
   { path: 'menu-page', component: MenuPageComponent },
-  { path: 'order-details', component: OrderDetailsPageComponent},
-  {path : 'menu-page-customer',component:MenuPageCustomerComponent },
-  { path: 'update-item/:id', component: UpdatePageComponent },
   { path: 'order-list-stff', component: OrdersListComponent },
   { path: 'order-list-customer', component: OrderListCustomerComponent },
   { path: 'cart', component: OrderDetailsComponent},
@@ -24,8 +21,12 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  {path : 'costemerpage',component:CustomerPageComponent},
-  {path:'home-page',component:HomePageComponent}
+  { path : 'costemerpage',component:CustomerPageComponent},
+  { path:'home-page',component:HomePageComponent},
+  { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
+  { path : 'menu-page-customer',component:MenuPageCustomerComponent },
+  { path: 'update-item/:id', component: UpdatePageComponent },
+  
 ];
 
 

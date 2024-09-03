@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, inject, Input, OnChanges, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/order-service/order.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { OrderService } from 'src/app/order-service/order.service';
   templateUrl: './order-details-summary.component.html',
   styleUrls: ['./order-details-summary.component.css']
 })
-export class OrderDetailsSummaryComponent{
+export class OrderDetailsSummaryComponent implements DoCheck{
   @Input() items: any; 
   @Input() reservationId: any
   @Input() userId: any
@@ -19,11 +19,13 @@ export class OrderDetailsSummaryComponent{
   orderService = inject(OrderService);
 
 
-  ngOnChanges(): void {
-    this.calculteTotal()
+  ngDoCheck(): void {
+    this.calculteTotal();
+    console.log(this.items);
   }
   
    calculteTotal(){
+    this.itemsTotal = 0; 
     this.items.forEach((item: { price: number; quantity: number; }) => {
       this.itemsTotal =  this.itemsTotal + (item.price * item.quantity);
     });
@@ -31,9 +33,11 @@ export class OrderDetailsSummaryComponent{
   }
   
   placeOrder(){
+    console.log(this.items);
     this.orderService.placeOrder(this.reservationId, this.userId).subscribe(response =>
       console.log(response)
     )
     //to do:  delete item from cart.
+    // dialoge
   }
 }
