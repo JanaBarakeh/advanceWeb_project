@@ -1,0 +1,26 @@
+<!--@author Lemara Ali-->
+<div class="form-box login">
+    <div class="form-details">
+        <h2>Welcome Back</h2>
+        <p>Please log in using your personal information to stay connected with us.</p>
+    </div>
+    <div class="form-content">
+        <h2>LOGIN</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div class="input-field">
+                <input type="email" name="email" [(ngModel)]="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" [(ngModel)]="password" required>
+                <label>Password</label>
+            </div>
+            <a href="#" class="forgot-pass-link">Forgot password?</a>
+            <button type="submit">Log In</button>
+        </form>
+        <div class="bottom-link">
+            Don't have an account?
+            <a href="#" id="signup-link" (click)="showSignup()">Signup</a>
+        </div>
+    </div>
+</div>

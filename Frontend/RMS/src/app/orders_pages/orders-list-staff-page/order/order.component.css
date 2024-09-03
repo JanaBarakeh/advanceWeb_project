@@ -1,0 +1,18 @@
+
+.order-block{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center; 
+    background-color:hsl(0, 0%, 99%);
+    width: 100%;
+    padding: 10px;
+    margin: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-button{
+    background-color: #AFE1E9;
+    border: solid 1px rgb(245, 235, 237);
+    width: 120px;
+}

@@ -1,0 +1,14 @@
+<div class="cart-item">
+    <img [src]="item.imageUrl" alt="{{ item.name }}" class="item-image">
+    <div class="item-details">
+      <h5>{{ item.name }}</h5>
+      <p>\${{ item.price }}</p>
+      <div class="quantity-controls">
+        <button (click)="decrementQuantity()">-</button>
+        <input type="text" [value]="item.quantity" readonly>
+        <button (click)="incrementQuantity()">+</button>
+      </div>
+    </div>
+    <button class="remove-btn" (click)="removeItem()">x</button>
+  </div>
+  

@@ -35,6 +35,7 @@ class ItemsController extends Controller
         $items = MenuItem::all();
         return response($items,200);
     }
+
  /**
  * @OA\Post(
  *     path="/api/menu-items",
@@ -68,27 +69,38 @@ class ItemsController extends Controller
  *     )
  * )
  */
-    public function creatitems(Request $request)
-    {
+public function createItem(Request $request)
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric|min:0',
+        'is_available' => 'required|boolean',
+        'category' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'is_available' => 'required|boolean',
-            'category' => 'required|string|max:255',
-        ]);
-
-        $menuItem = MenuItem::create([
-            'name' => $validatedData['name'],
-            'description' => $validatedData['description'],
-            'price' => $validatedData['price'],
-            'is_available' => $validatedData['is_available'] ?? true,
-            'category' => $validatedData['category'],
-        ]);
-
-        return response($menuItem,200);
+    $imagePath = null;
+    if ($request->hasFile('image')) {
+        $imageName = time().'.'.$request->image->extension();  
+        $request->image->move(public_path('menu_images'), $imageName);
+        $imagePath = 'menu_images/' . $imageName;
     }
+
+    $menuItem = MenuItem::create([
+        'name' => $validatedData['name'],
+        'description' => $validatedData['description'],
+        'price' => $validatedData['price'],
+        'is_available' => $validatedData['is_available'] ?? true,
+        'category' => $validatedData['category'],
+        'image_path' => $imagePath,  // Store the relative path
+    ]);
+
+    return response($menuItem, 201);
+}
+
+
+
 /**
  * @OA\Put(
  *     path="/api/menu-items/{id}",
@@ -131,28 +143,29 @@ class ItemsController extends Controller
  *     )
  * )
  */
-    public function updateitems(Request $request, $id){
+public function updateitems(Request $request, $id)
+{
+    $menuItem = MenuItem::findOrFail($id);
 
-        $menuItem = MenuItem::findOrFail($id);
-
-        if(!$menuItem)
-        {
-            return response("invalid Menu_item id",404);
-        }
-
- 
-         $validatedData = $request->validate([
-        'name' => 'sometimes|required|string|max:255',
-        'description' => 'nullable|string',
-        'price' => 'sometimes|required|numeric|min:0',
-        'is_available' => 'sometimes|required|boolean',
-        'category' => 'sometimes|required|string|max:255',
-         ]);
-
-       $menuItem->update($validatedData);
-
-       return response($menuItem,200);
+    if (!$menuItem) {
+        return response("Invalid Menu_item id", 404);
     }
+
+    // Initialize an array for updates
+    $updateData = $request->only(['name', 'description', 'price', 'is_available', 'category']);
+
+    // Handle image file if present
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('menu_images', 'public');
+        $updateData['image_path'] = $imagePath;
+    }
+
+    // Update the menu item
+    $menuItem->update($updateData);
+
+    return response($menuItem, 200);
+}
+
 /**
  * @OA\Delete(
  *     path="/api/menu-items/{id}",
@@ -275,5 +288,14 @@ class ItemsController extends Controller
        $menuItem->save();
        return response("item with id : $id deactive",200);
     }
+
+    public function getItembyid($id){
+        $menuItem = MenuItem::findOrFail($id);
+        return response( $menuItem,200);
+    }
+
+
+
+
 
 }

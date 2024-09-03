@@ -1,0 +1,6 @@
+<h3>🛒Order's items:({{ items.length }} items)</h3>
+<hr>
+<div *ngFor="let item of items" class="item">
+  <app-order-details-item [item]="item" (quantityChange)="onItemQuantityChange()" (deleteItem)="onDeleteItem()"></app-order-details-item>
+</div>
+

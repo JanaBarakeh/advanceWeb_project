@@ -30,7 +30,6 @@ class Reservation extends Model
         return $this->belongsTo(User::class);
     }
 
-
     public function Review(): BelongsTo
     {
         return $this->belongsTo(Review::class);
