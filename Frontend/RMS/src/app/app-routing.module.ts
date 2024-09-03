@@ -8,6 +8,7 @@ import { OrderDetailsPageComponent } from './orders_pages/order-details-page/ord
 import { OrdersListComponent } from './orders_pages/orders-list-staff-page/orders-list/orders-list.component';
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
 import { ReserveTablePageComponent } from './table_reservation/pages/reserve_table_page/reserve-table-page/reserve-table-page.component';
+import { ReservationDetailsComponent } from './table_reservation/pages/reservation_details_page/reservation-details.component';
 
 const routes: Routes = [
   { path: 'menu-page', component: MenuPageComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'menu-page-customer', component: MenuPageCustomerComponent },
   { path: 'update-item/:id', component: UpdatePageComponent },
   { path: 'table-reservation', component: ReserveTablePageComponent },
+  { path: 'reservation-details/:id', component: ReservationDetailsComponent },
 ];
 
 @NgModule({

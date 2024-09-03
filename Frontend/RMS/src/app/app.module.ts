@@ -25,6 +25,7 @@ import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-
 import { SearchTablesComponent } from './table_reservation/components/search-tables/search-tables.component';
 import { ReserveTablePageComponent } from './table_reservation/pages/reserve_table_page/reserve-table-page/reserve-table-page.component';
 import { UpdatePageComponent } from './update-page/update-page.component';
+import { ReservationDetailsComponent } from './table_reservation/pages/reservation_details_page/reservation-details.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { UpdatePageComponent } from './update-page/update-page.component';
     SearchTablesComponent,
     ReserveTablePageComponent,
     UpdatePageComponent,
+    ReservationDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
