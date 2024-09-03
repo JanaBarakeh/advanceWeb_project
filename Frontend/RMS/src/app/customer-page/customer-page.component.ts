@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/user-service/auth.service';
 import { inject} from '@angular/core';
@@ -10,9 +10,14 @@ import { inject} from '@angular/core';
   styleUrls: ['./customer-page.component.css']
 })
 export class CustomerPageComponent {
+
+  userId: number | undefined;
   
+  ngOnInit() {
+    this.userId = Number(this.route.snapshot.paramMap.get('userId'));
+  }
   logout_inject = inject(AuthService);
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router,private route: ActivatedRoute) {}
 
   onSubmit() {
     this.logout_inject.logout().subscribe(response => {
@@ -22,5 +27,12 @@ export class CustomerPageComponent {
     },error => {
       console.error('Logout failed', error);
     });
+  }
+
+
+  gotocartpage(){
+      const userId = this.userId;
+      this.router.navigate(['/cart', userId]);
+    
   }
 }
