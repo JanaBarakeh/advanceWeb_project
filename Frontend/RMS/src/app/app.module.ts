@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms'; 
 import { AppComponent } from './app.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +24,7 @@ import { OrderSummaryComponent } from './orders_pages/order-details-page/order-s
 import { OrderInfoComponent } from './orders_pages/orders-list-customer-page/order-info/order-info.component';
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
 import { UpdatePageComponent } from './update-page/update-page.component';
+import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
 
 @NgModule({
   declarations: [
@@ -46,13 +48,15 @@ import { UpdatePageComponent } from './update-page/update-page.component';
     OrderInfoComponent,
     OrderListCustomerComponent,
     UpdatePageComponent,
+    AddmenuitemPageComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

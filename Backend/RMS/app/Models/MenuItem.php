@@ -22,6 +22,7 @@ class MenuItem extends Model
         'price',
         'is_available',
         'category',
+        'image_path',
     ];
 
     // One to Many relation function with order_items table.
@@ -41,5 +42,9 @@ class MenuItem extends Model
      {
          return $this->hasMany(CartItem::class);
      }
+     public function getImageUrlAttribute()
+{
+    return asset('storage/' . $this->image_path);
+}
 
 }

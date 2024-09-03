@@ -27,6 +27,7 @@ export class MenuPageComponent implements OnInit {
   };
 
   itemId!: number; 
+  imageUrl: string = '';
 
 
   constructor(private menuService:MenuPageService , private router: Router) { }
@@ -35,10 +36,12 @@ export class MenuPageComponent implements OnInit {
   ngOnInit(): void {
     this.getAllMenuItems();
   }
-  
+
   navigateToUpdatePage(itemId: number): void {
     this.router.navigate(['/update-item', itemId]);
   }
+  
+
   
   /*addToCart(item: any) {
     this.cartItems.push(item);
