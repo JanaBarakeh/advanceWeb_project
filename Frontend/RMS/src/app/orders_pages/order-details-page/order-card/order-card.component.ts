@@ -1,3 +1,5 @@
+// @author Farah Elhasan
+
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/order-service/order.service';
 
@@ -28,5 +30,7 @@ export class OrderCardComponent implements OnInit{
       //console.log(this.orderItems);
     })
   }
+
+ 
 
 }

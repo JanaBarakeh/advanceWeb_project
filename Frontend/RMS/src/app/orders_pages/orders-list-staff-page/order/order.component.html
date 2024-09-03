@@ -12,9 +12,9 @@
               {{order.status}}
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" (click)="updateStatus('PREPARING')">PREPARING</a></li>
-                <li><a class="dropdown-item" href="#" (click)="updateStatus('READY')">READY</a></li>
-                <li><a class="dropdown-item" href="#" (click)="updateStatus('DELIVERED')">DELIVERED</a></li>
+                <li><a class="dropdown-item" (click)="updateStatus('PREPARING')">PREPARING</a></li>
+                <li><a class="dropdown-item" (click)="updateStatus('READY')">READY</a></li>
+                <li><a class="dropdown-item" (click)="updateStatus('DELIVERED')">DELIVERED</a></li>
             </ul>
           </div>
     </div>

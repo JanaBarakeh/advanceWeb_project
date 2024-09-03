@@ -11,14 +11,15 @@ import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.co
 
 const routes: Routes = [
   { path: 'menu-page', component: MenuPageComponent },
-  { path: 'order-details', component: OrderDetailsPageComponent},
-  {path : 'menu-page-customer',component:MenuPageCustomerComponent },
-  { path: 'update-item/:id', component: UpdatePageComponent },
   { path: 'order-list-stff', component: OrdersListComponent },
   { path: 'order-list-customer', component: OrderListCustomerComponent },
   { path: 'cart', component: OrderDetailsComponent},
   { path: 'order-details/:orderId', component: OrderDetailsPageComponent }, 
-  {path:'addmenuitem-page', component:AddmenuitemPageComponent}
+  {path:'addmenuitem-page', component:AddmenuitemPageComponent},
+  { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
+  { path : 'menu-page-customer',component:MenuPageCustomerComponent },
+  { path: 'update-item/:id', component: UpdatePageComponent },
+  
 ];
 
 
