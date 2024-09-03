@@ -9,11 +9,16 @@ import { OrderService } from 'src/app/order-service/order.service';
 })
 export class OrderListCustomerComponent implements OnInit{
   //@Input() reservationId: any
-  reservationId =1; // i need to replace it to be dynamic (pass or input)
+  reservationId =1; 
+  // i need to replace it to be dynamic (pass or input) from salah: 
+  // reservationId: number | undefined;
+  // constructor(private route: ActivatedRoute) {}
+
   orders = [];
   orderService = inject(OrderService);
 
   ngOnInit(): void {
+   // this.reservationId = Number(this.route.snapshot.paramMap.get('reservationId'));
       this.getData(this.reservationId);
   }
 
