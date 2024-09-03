@@ -6,7 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
 import { MenuPageCustomerComponent } from './menu-page-customer/menu-page-customer.component';
 import { OrderDetailsComponent } from './orders_pages/place-order-page/order-details/order-details.component';
 import { OrderDetailsCardComponent } from './orders_pages/place-order-page/order-details-card/order-details-card.component';
@@ -24,13 +23,18 @@ import { OrderSummaryComponent } from './orders_pages/order-details-page/order-s
 import { OrderInfoComponent } from './orders_pages/orders-list-customer-page/order-info/order-info.component';
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
 import { UpdatePageComponent } from './update-page/update-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { ReviewComponent } from './review/review.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuPageComponent,
-    LoginComponent,
     MenuPageCustomerComponent,
     OrderDetailsComponent,
     OrderDetailsCardComponent,
@@ -48,6 +52,12 @@ import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.co
     OrderInfoComponent,
     OrderListCustomerComponent,
     UpdatePageComponent,
+    HomePageComponent,
+    LoginComponent,
+    SignupComponent,
+    ReviewComponent,
+    AdminPageComponent,
+    CustomerPageComponent,
     AddmenuitemPageComponent,
     
   ],

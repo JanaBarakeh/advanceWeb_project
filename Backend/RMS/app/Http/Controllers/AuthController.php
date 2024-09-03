@@ -28,20 +28,27 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+{
+    $credentials = $request->validate([
+        'email' => 'required|string|email',
+        'password' => 'required|string',
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+        $token = $user->createToken("auth_token")->plainTextToken;
+
+        // Assuming the user has a role relationship and `role_id` is accessible
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'user_id' => $user->id,
+            'role_id' => $user->role_id // Make sure the role_id is accessible
         ]);
-
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken("auth_token")->plainTextToken;
-            return response()->json(['access_token' => $token, 'token_type' => 'Bearer']);
-        }
-
-        return response()->json(['message' => 'Unauthorized'], 401);
     }
+
+    return response()->json(['message' => 'Unauthorized'], 401);
+}
 
     public function logout()
     {
