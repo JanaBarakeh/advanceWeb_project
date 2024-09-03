@@ -13,6 +13,7 @@ export class CustomerPageComponent {
 
   userId: number | undefined;
   userName: string | undefined;
+
   ngOnInit() {
     this.userId = Number(this.route.snapshot.paramMap.get('userId'));
     if (this.userId) {
@@ -45,11 +46,14 @@ export class CustomerPageComponent {
 
   gotocartpage(){
       const userId = this.userId;
-      this.router.navigate(['/cart', userId]);
+      this.router.navigate(['/cart',userId]);
     
-  }
+  } 
   navigateToMenuPage(): void {
-    this.router.navigate(['/menu-page-customer']);
+    const userId = this.userId;
+    this.router.navigate(['/menu-page-customer', userId]);
   }
+
+
 
 }
