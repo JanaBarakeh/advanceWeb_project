@@ -1,5 +1,5 @@
 <?php
-
+// Author: Amjad Kayed
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
