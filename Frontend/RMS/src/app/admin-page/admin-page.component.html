@@ -1,77 +1,106 @@
 <!--@author Lemara Ali-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><img src="/assets/Images/rms_icon.png" alt="Bootstrap" width="80"></a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/menu-page']" routerLinkActive="active">Menu [Customer]</a>
-            </li>
-            <!-- ازا لحقتي ليمارا اعملي ادد يوزر-->
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/order-list-customer']" routerLinkActive="active">Order List [Customer]</a>
-            </li>
-            <!-- ازا لحقتي ليمارا اعملي ادد يوزر-->
-        </ul>
-        <div class="user-name">
-            <!-- {{ userName }} -->
-        </div>
+  <a class="navbar-brand" href="#"
+    ><img src="/assets/Images/rms_icon.png" alt="Bootstrap" width="80"
+  /></a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/menu-page']"
+          routerLinkActive="active"
+          >Menu [Customer]</a
+        >
+      </li>
+      <!-- ازا لحقتي ليمارا اعملي ادد يوزر-->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/order-list-customer']"
+          routerLinkActive="active"
+          >Order List [Customer]</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/reservations']"
+          routerLinkActive="active"
+          >Reservation log</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/tables']" routerLinkActive="active"
+          >Tables</a
+        >
+      </li>
+      <!-- ازا لحقتي ليمارا اعملي ادد يوزر-->
+    </ul>
+    <div class="user-name">
+      <!-- {{ userName }} -->
     </div>
+  </div>
 </nav>
-    
-<div class="main"> 
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="/assets/Images/1.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="/assets/Images/1.png" class="d-block w-100" alt="...">
-          </div>
-        </div>
+
+<div class="main">
+  <div
+    id="carouselExampleSlidesOnly"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/assets/Images/1.png" class="d-block w-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="/assets/Images/1.png" class="d-block w-100" alt="..." />
+      </div>
     </div>
+  </div>
 </div>
 
 <footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-3 footer-col">
-                <h4>company</h4>
-                <ul>
-                    <li><a href="#">about us</a></li>
-                    <li><a href="#">our services</a></li>
-                    <li><a href="#">privacy policy</a></li>
-                    <li><a href="#">affiliate program</a></li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-3 footer-col">
-                <h4>get help</h4>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">shipping</a></li>
-                    <li><a href="#">returns</a></li>
-                    <li><a href="#">order status</a></li>
-                    <li><a href="#">payment options</a></li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-3 footer-col">
-                <h4>online shop</h4>
-                <ul>
-                    <li><a href="#">watch</a></li>
-                    <li><a href="#">bag</a></li>
-                    <li><a href="#">shoes</a></li>
-                    <li><a href="#">dress</a></li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-3 footer-col">
-                <h4>follow us</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-3 footer-col">
+        <h4>company</h4>
+        <ul>
+          <li><a href="#">about us</a></li>
+          <li><a href="#">our services</a></li>
+          <li><a href="#">privacy policy</a></li>
+          <li><a href="#">affiliate program</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-3 footer-col">
+        <h4>get help</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">shipping</a></li>
+          <li><a href="#">returns</a></li>
+          <li><a href="#">order status</a></li>
+          <li><a href="#">payment options</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-3 footer-col">
+        <h4>online shop</h4>
+        <ul>
+          <li><a href="#">watch</a></li>
+          <li><a href="#">bag</a></li>
+          <li><a href="#">shoes</a></li>
+          <li><a href="#">dress</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-3 footer-col">
+        <h4>follow us</h4>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
         </div>
+      </div>
     </div>
+  </div>
 </footer>

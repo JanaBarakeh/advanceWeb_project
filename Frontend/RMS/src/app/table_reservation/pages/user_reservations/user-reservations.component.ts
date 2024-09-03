@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ReservationService } from '../../Services/ReservationService.service';
 import { Router } from '@angular/router';
 import { ReservationStatus } from 'src/app/table_reservation/enums/ReservationStatus';
+import { AuthService } from 'src/app/user-service/auth.service';
 
 @Component({
   selector: 'app-user-reservations',
@@ -10,6 +11,7 @@ import { ReservationStatus } from 'src/app/table_reservation/enums/ReservationSt
 export class UserReservationsComponent implements OnInit {
   reservations: any[] = [];
   reservationService = inject(ReservationService);
+  authService = inject(AuthService);
 
   constructor(private router: Router) {}
 
@@ -28,9 +30,11 @@ export class UserReservationsComponent implements OnInit {
   }
 
   handleOrder(reservationId: number) {
-    const userId = localStorage.getItem('auth_token')?.split('|')[0];
-
-    this.router.navigate(['/cart', userId, reservationId]);
+    this.router.navigate([
+      '/cart',
+      localStorage.getItem('user_id'),
+      reservationId,
+    ]);
   }
 
   handleViewOrders(reservationId: number) {

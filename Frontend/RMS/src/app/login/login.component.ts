@@ -34,6 +34,8 @@ export class LoginComponent {
         console.log(response);
 
         localStorage.setItem('auth_token', response.access_token);
+        localStorage.setItem('user_id', response.user_id);
+        localStorage.setItem('role_id', response.role_id);
 
         const userId = response.user_id;
         const roleId = response.role_id;
