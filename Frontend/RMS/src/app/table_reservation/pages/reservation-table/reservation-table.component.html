@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-4">
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="filterDate"
+        (change)="loadReservations()"
+        placeholder="Filter by Date"
+      />
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Table ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>User ID</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservations">
+        <td>{{ reservation.id }}</td>
+        <td>{{ reservation.table_id }}</td>
+        <td>{{ reservation.date }}</td>
+        <td>{{ reservation.start_time }}</td>
+        <td>{{ reservation.user_id }}</td>
+        <td>{{ reservation.status | statusToString }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

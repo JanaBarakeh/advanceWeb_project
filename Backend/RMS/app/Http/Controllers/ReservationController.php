@@ -64,7 +64,8 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function reserveTable(Request $request){
+    public function reserveTable(Request $request)
+    {
         $validatedData = $this->validateTimeslotParameters($request);
         $parameters = $this->extractTimeslotParameters($validatedData);
 
@@ -74,9 +75,10 @@ class ReservationController extends Controller
                 $parameters['date'],
                 $parameters['time'],
                 $parameters['endTime'],
-                $parameters['numberOfPeople']);
+                $parameters['numberOfPeople']
+            );
 
-            if ($table == null){
+            if ($table == null) {
                 return null;
             }
 
@@ -90,7 +92,7 @@ class ReservationController extends Controller
             ]);
         });
 
-        if ($reservation == null){
+        if ($reservation == null) {
             return response()->json(['message' => 'Timeslot is already reserved'], 409);
         }
 
@@ -165,10 +167,10 @@ class ReservationController extends Controller
             'date' => "sometimes|date_format:Y-m-d"
         ]);
 
-        $date = isset($validatedData['date']) ? Carbon::createFromFormat('Y-m-d', $validatedData['date']) : null;
+        $date = isset($validatedData['date']) ? Carbon::createFromFormat('Y-m-d', $validatedData['date'])->startOfDay() : null;
 
-        $reservations = Reservation::when($date, function($query, $date) {
-            return $query->where('date', '=', $date);
+        $reservations = Reservation::when($date, function ($query, $date) {
+            return $query->whereDate('date', '=', $date);
         })->get();
 
         return response()->json($reservations);
@@ -256,12 +258,14 @@ class ReservationController extends Controller
             $parameters['date'],
             $parameters['time'],
             $parameters['endTime'],
-            $parameters['numberOfPeople']);
+            $parameters['numberOfPeople']
+        );
 
-        return response()->json(['isAvailable' => $table != null ]);
+        return response()->json(['isAvailable' => $table != null]);
     }
 
-    private function validateTimeslotParameters(Request $request): array{
+    private function validateTimeslotParameters(Request $request): array
+    {
         return $request->validate([
             'date' => 'required|date_format:Y-m-d|after_or_equal:today',
             'time' => [
@@ -282,7 +286,7 @@ class ReservationController extends Controller
         ]);
     }
 
-    private function extractTimeslotParameters(Array $validatedData): array
+    private function extractTimeslotParameters(array $validatedData): array
     {
         $date = Carbon::createFromFormat('Y-m-d', $validatedData['date']);
         $time = Carbon::createFromFormat('H:i', $validatedData['time']);
@@ -412,7 +416,7 @@ class ReservationController extends Controller
      */
     public function cancelReservation(Reservation $reservation)
     {
-        if ($reservation->status !== ReservationStatus::PENDING->value){
+        if ($reservation->status !== ReservationStatus::PENDING->value) {
             return response()->json(['message' => 'Reservation cannot be cancelled'], 409);
         }
 

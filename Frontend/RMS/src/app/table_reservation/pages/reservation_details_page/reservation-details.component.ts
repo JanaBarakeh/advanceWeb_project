@@ -10,8 +10,6 @@ export class ReservationDetailsComponent implements OnInit {
   reservation: any;
   reservationService = inject(ReservationService);
 
-  constructor(private router: Router) {}
-
   ngOnInit() {
     this.reservation = this.reservationService.getReservationData();
   }
