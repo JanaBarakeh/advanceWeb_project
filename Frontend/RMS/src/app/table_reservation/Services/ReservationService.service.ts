@@ -7,6 +7,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ReservationService {
+  getUserReservations(): Observable<any> {
+    return this.http.get('http://localhost:8000/api/user/reservations', {
+      headers: new HttpHeaders({
+        Authorization: `Bearer 2|t95PAPV2NTUbwQX2EbbGNwhb7YG6Qsvj15jcMgon20071eb6`,
+        Accept: 'application/json',
+      }),
+    });
+  }
+
   private reservation: any;
 
   constructor(private http: HttpClient) {}

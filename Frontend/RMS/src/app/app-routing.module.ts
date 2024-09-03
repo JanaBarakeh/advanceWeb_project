@@ -14,7 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
-import { UserReservationsComponent } from './table_reservation/pages/view_reservations_page/user-reservations.component';
+import { UserReservationsComponent } from './table_reservation/pages/user_reservations/user-reservations.component';
 import { ReservationTableComponent } from './table_reservation/pages/reservation-table/reservation-table.component';
 import { TablesTableComponent } from './table_reservation/components/tables-table/tables-table.component';
 import { TablesPageComponent } from './table_reservation/pages/tables-page/tables-page.component';

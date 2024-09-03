@@ -33,7 +33,7 @@ import { ReviewComponent } from './review/review.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
-import { UserReservationsComponent } from './table_reservation/pages/view_reservations_page/user-reservations.component';
+import { UserReservationsComponent } from './table_reservation/pages/user_reservations/user-reservations.component';
 import { ReservationCardComponent } from './table_reservation/components/reservation-card/reservation-card.component';
 import { StatusToStringPipe } from './table_reservation/pipes/reservation-status.pipe';
 import { ReservationTableComponent } from './table_reservation/pages/reservation-table/reservation-table.component';

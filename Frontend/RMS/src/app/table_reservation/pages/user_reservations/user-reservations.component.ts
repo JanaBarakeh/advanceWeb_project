@@ -1,7 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ReservationCardComponent } from '../../components/reservation-card/reservation-card.component';
-import { ReservationService } from '../../Services/ReservationService';
+import { ReservationService } from '../../Services/ReservationService.service';
 import { Router } from '@angular/router';
 import { ReservationStatus } from 'src/app/table_reservation/enums/ReservationStatus';
 
@@ -13,21 +11,13 @@ export class UserReservationsComponent implements OnInit {
   reservations: any[] = [];
   reservationService = inject(ReservationService);
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    // Replace with actual API call to get user reservations
-    this.http
-      .get('http://localhost:8000/api/user/reservations', {
-        headers: new HttpHeaders({
-          Authorization: `Bearer 2|t95PAPV2NTUbwQX2EbbGNwhb7YG6Qsvj15jcMgon20071eb6`,
-          Accept: 'application/json',
-        }),
-      })
-      .subscribe((data: any) => {
-        this.reservations = data;
-        console.log(data);
-      });
+    this.reservationService.getUserReservations().subscribe((data: any) => {
+      this.reservations = data;
+      console.log(data);
+    });
   }
 
   handleCancel(reservationId: number) {
