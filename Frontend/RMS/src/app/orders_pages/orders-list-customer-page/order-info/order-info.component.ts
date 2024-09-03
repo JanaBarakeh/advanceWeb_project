@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { OrderService } from 'src/app/order-service/order.service';
 
 @Component({
   selector: 'app-order-info',
@@ -8,4 +10,10 @@ import { Component, Input } from '@angular/core';
 export class OrderInfoComponent {
   @Input() order: any;
 
+  constructor(private router: Router) {}
+  orderService = inject(OrderService);
+  goToOrderDetailsPage() {
+    const orderId = this.order.id;
+    this.router.navigate(['/order-details', orderId]);
+  }
 }

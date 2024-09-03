@@ -1,3 +1,5 @@
+// @author Farah Elhasan
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -27,4 +29,25 @@ export class OrderService {
   getCartItems(userId: number): Observable <any> {
     return this.http.get<any>('http://localhost:8000/api/cart/user/'+userId);
   }
+
+  // Update order status.
+  updateOrderStatus(orderId: number, newStatus: string): Observable <any> {
+    return this.http.put<any>('http://localhost:8000/api/orders/'+orderId+'/status',
+      {
+      status: newStatus
+      } 
+    );
+  }
+
+  // Add new order.
+  placeOrder(reservationId: number, userId:number){
+    return this.http.post<any>('http://localhost:8000/api/orders',
+      {
+        reservation_id: reservationId,
+        user_id: userId 
+      } 
+    );
+  }
+
 }
+

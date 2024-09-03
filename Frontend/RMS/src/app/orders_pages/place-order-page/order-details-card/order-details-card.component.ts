@@ -8,6 +8,7 @@ import { OrderService } from 'src/app/order-service/order.service';
 })
 export class OrderDetailsCardComponent {
   @Input() userId :any
+  @Input() reservationId: any
 
   items = [];
   // [
@@ -29,4 +30,9 @@ export class OrderDetailsCardComponent {
     })
   }
 
+  onQuantityChange() {
+    // This will trigger when the quantity of any item changes
+ 
+    
+  }
 }

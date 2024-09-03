@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { MenuPageCustomerComponent } from './menu-page-customer/menu-page-customer.component';
 import { OrderDetailsComponent } from './orders_pages/place-order-page/order-details/order-details.component';
 import { OrderDetailsCardComponent } from './orders_pages/place-order-page/order-details-card/order-details-card.component';
 import { OrderDetailsItemsComponent } from './orders_pages/place-order-page/order-details-items/order-details-items.component';
@@ -23,12 +24,14 @@ import { OrderInfoComponent } from './orders_pages/orders-list-customer-page/ord
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
 import { SearchTablesComponent } from './table_reservation/components/search-tables/search-tables.component';
 import { ReserveTablePageComponent } from './table_reservation/pages/reserve_table_page/reserve-table-page/reserve-table-page.component';
+import { UpdatePageComponent } from './update-page/update-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuPageComponent,
     LoginComponent,
+    MenuPageCustomerComponent,
     OrderDetailsComponent,
     OrderDetailsCardComponent,
     OrderDetailsItemsComponent,
@@ -46,6 +49,7 @@ import { ReserveTablePageComponent } from './table_reservation/pages/reserve_tab
     OrderListCustomerComponent,
     SearchTablesComponent,
     ReserveTablePageComponent,
+    UpdatePageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

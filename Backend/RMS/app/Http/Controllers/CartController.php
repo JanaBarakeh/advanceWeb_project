@@ -1,51 +1,15 @@
 <?php
-
+// @author Farah Elhasan
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+
 class CartController extends Controller
 {
-      /**
-     * @OA\Get(   
-     *     path="/api/orders/{id}/items",  
-     *     summary="Retrieve order items",  
-     *     description="Returns all items for a specific order",  
-     *     tags={"Orders"},   
-     *     @OA\Parameter(   
-     *         name="id",   
-     *         in="path",   
-     *         required=true,   
-     *         @OA\Schema(   
-     *             type="integer"
-     *         ),
-     *         description="The ID of the order to retrieve items for"
-     *     ),
-     *     @OA\Response(   
-     *         response=200,   
-     *         description="Successful operation",   
-     *         @OA\JsonContent(   
-     *             type="array",   
-     *              @OA\Items(
-     *                 type="object",
-     *                 @OA\Property(property="menu_item_id", type="integer", example=1),
-     *                 @OA\Property(property="price", type="number", format="float", example=19.99),
-     *                 @OA\Property(property="quantity", type="integer", example=2)
-     *               )          
-     *         )
-     *     ),
-     *      @OA\Response(
-     *         response=404,
-     *         description="Reservation not found",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(property="message", type="string", example="Order with id=1 not found")
-     *         )
-     *     )
-     * )
-     */
     public function getCartItems($id){
         $user = User::find($id);
         if(!$user){
@@ -56,6 +20,48 @@ class CartController extends Controller
         }
         
         $cartItems = $user->cartItems()->get();
+
+        $cartItems = $cartItems->map(function($item) {
+            $menuItem = MenuItem::find($item->menu_item_id);
+            // Add item name to response.
+            $item->name = $menuItem->name;
+            return $item;
+        });
+
         return response($cartItems,200);
      }
+
+     public function getallcart(){
+        $cart = CartItem::all();
+        return response($cart,200);
+    }
+   public function addToCartItem($id)
+{
+    // Find the menu item by ID
+    $menuItem = MenuItem::find($id);
+
+    // Check if the item exists
+    if (!$menuItem) {
+        return response()->json(['message' => 'Item not found'], 404);
+    }
+
+    // Retrieve the existing cart item from the database
+    $cartItem = CartItem::where('menu_item_id', $id)->first();
+
+    if ($cartItem) {
+        // If it exists, increment the quantity
+        $cartItem->quantity += 1;
+        $cartItem->save();
+    } else {
+        // If it doesn't exist, create a new cart item
+        $cartItem = new CartItem();
+        $cartItem->menu_item_id = $menuItem->id;
+        $cartItem->quantity = 1;
+        $cartItem->price = $menuItem->price;
+        $cartItem->save();
+    }
+
+    // Return the updated cart item in a JSON response
+    return response()->json(['message' => 'Item added to cart', 'cartItem' => $cartItem], 200);
+}
 }
