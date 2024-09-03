@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+// @author Farah Elhasan
 
 @Component({
   selector: 'app-order-items',

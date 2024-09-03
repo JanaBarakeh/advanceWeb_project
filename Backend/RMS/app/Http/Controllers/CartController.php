@@ -52,4 +52,43 @@ class CartController extends Controller
     
         return response($cartItem, 201);
     }
+
+    
+public function updateQuantity(Request $request, $id){
+    $item = CartItem::find($id);
+    if(!$item){
+        return response()->json([
+            'success'=> false,
+            'message' => "item with id= $id not found",
+        ], 404);
+    }
+
+        $item->quantity = $request->quantity;
+        $item->save();
+        return response()->json([
+            'success'=> true,
+            'message' => "item with id= $id quantity updated successfully",
+        ], 200);
+    
+}
+
+
+
+public function deleteItem($id){
+    $item = CartItem::find($id);
+    if(!$item){
+        return response()->json([
+            'success'=> false,
+            'message' => "item with id= $id not found",
+        ], 404);
+    }
+
+        $item->delete();
+        return response()->json([
+            'success'=> true,
+            'message' => "item with id= $id deleted successfully",
+        ], 200);
+    
+}
+
 }

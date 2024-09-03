@@ -14,6 +14,7 @@ export class OrderInfoComponent {
   orderService = inject(OrderService);
   goToOrderDetailsPage() {
     const orderId = this.order.id;
-    this.router.navigate(['/order-details', orderId]);
+    const orderStatus = this.order.status;
+    this.router.navigate(['/order-details', orderId, orderStatus]);
   }
 }

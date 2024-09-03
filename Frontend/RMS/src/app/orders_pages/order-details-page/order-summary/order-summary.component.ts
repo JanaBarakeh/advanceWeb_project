@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+// @author Farah Elhasan
 
 @Component({
   selector: 'app-order-summary',
@@ -7,6 +8,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 })
 export class OrderSummaryComponent implements OnChanges{
   @Input() items: any; 
+  @Input() orderStatus:any
   itemsTotal = 0;
   total=0;
   discount = 0;
