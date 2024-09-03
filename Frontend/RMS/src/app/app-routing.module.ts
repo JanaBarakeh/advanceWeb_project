@@ -15,10 +15,12 @@ import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.co
 
 const routes: Routes = [
   { path: 'menu-page', component: MenuPageComponent },
+  // staff page in navbar
   { path: 'order-list-stff', component: OrdersListComponent },
+  //customer page in navbar
   { path: 'order-list-customer', component: OrderListCustomerComponent },
+  // navbar cart
   { path: 'cart', component: OrderDetailsComponent},
-  { path: 'order-details/:orderId', component: OrderDetailsPageComponent }, 
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

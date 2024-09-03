@@ -42,6 +42,7 @@ export class MenuPageCustomerComponent implements OnInit {
     }
     );
     }
+    
     addToCart(menuItemId: number) {
       this.menuCustomerService.addToCart(menuItemId, 1).subscribe(response => {
         console.log('Item added to cart', response);

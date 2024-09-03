@@ -36,6 +36,8 @@ export class SignupComponent {
     this.http.post(this.apiUrl, this.formData).subscribe({
       next: (response) => {
         alert('Registration successful!');
+        //check role id to get the right page 
+         // this.router.navigate(['/customer-page']);
         // this.router.navigate(['/menu-page']);
       },
       error: (error) => {
