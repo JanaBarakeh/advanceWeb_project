@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {CustomerPageComponent} from'./customer-page/customer-page.component';
+import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
 
 const routes: Routes = [
   { path: 'menu-page', component: MenuPageComponent },
@@ -24,9 +25,11 @@ const routes: Routes = [
   { path : 'costemerpage',component:CustomerPageComponent},
   { path:'home-page',component:HomePageComponent},
   { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
+  { path: 'order-details/:orderId/:orderStatus', component: OrderDetailsPageComponent },
   { path : 'menu-page-customer',component:MenuPageCustomerComponent },
   { path: 'update-item/:id', component: UpdatePageComponent },
-  
+  {path:'addmenuitem-page', component:AddmenuitemPageComponent},
+
 ];
 
 

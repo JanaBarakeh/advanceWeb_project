@@ -1,0 +1,46 @@
+<!--@author Jana Barakeh-->
+<div class="container">
+  <h2>Add New Menu Item</h2>
+  <form [formGroup]="menuItemForm" (ngSubmit)="createNewItem()">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name" required />
+      <div *ngIf="menuItemForm.get('name')?.invalid && menuItemForm.get('name')?.touched">
+        Name is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+
+    <div>
+      <label for="price">Price:</label>
+      <input type="number" id="price" formControlName="price" min="0" required />
+      <div *ngIf="menuItemForm.get('price')?.invalid && menuItemForm.get('price')?.touched">
+        Price is required and must be a valid number.
+      </div>
+    </div>
+
+    <div>
+      <label for="category">Category:</label>
+      <input type="text" id="category" formControlName="category" required />
+      <div *ngIf="menuItemForm.get('category')?.invalid && menuItemForm.get('category')?.touched">
+        Category is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="is_available">Available:</label>
+      <input type="checkbox" id="is_available" formControlName="is_available" />
+    </div>
+
+    <div>
+      <label for="image">Image:</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit" [disabled]="menuItemForm.invalid">Add Item</button>
+  </form>
+</div>

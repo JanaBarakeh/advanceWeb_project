@@ -35,33 +35,60 @@ class CartController extends Controller
         $cart = CartItem::all();
         return response($cart,200);
     }
-   public function addToCartItem($id)
-{
-    // Find the menu item by ID
-    $menuItem = MenuItem::find($id);
-
-    // Check if the item exists
-    if (!$menuItem) {
-        return response()->json(['message' => 'Item not found'], 404);
+    public function addToCart(Request $request)
+    {
+        $request->validate([
+            'menu_item_id' => 'required|exists:menu_items,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+    
+        $cartItem =CartItem::updateOrCreate(
+            [
+                'user_id' => $request->user_id,
+                'menu_item_id' => $request->menu_item_id,
+            ],
+            ['quantity' => $request->quantity]
+        );
+    
+        return response($cartItem, 201);
     }
 
-    // Retrieve the existing cart item from the database
-    $cartItem = CartItem::where('menu_item_id', $id)->first();
-
-    if ($cartItem) {
-        // If it exists, increment the quantity
-        $cartItem->quantity += 1;
-        $cartItem->save();
-    } else {
-        // If it doesn't exist, create a new cart item
-        $cartItem = new CartItem();
-        $cartItem->menu_item_id = $menuItem->id;
-        $cartItem->quantity = 1;
-        $cartItem->price = $menuItem->price;
-        $cartItem->save();
+    
+public function updateQuantity(Request $request, $id){
+    $item = CartItem::find($id);
+    if(!$item){
+        return response()->json([
+            'success'=> false,
+            'message' => "item with id= $id not found",
+        ], 404);
     }
 
-    // Return the updated cart item in a JSON response
-    return response()->json(['message' => 'Item added to cart', 'cartItem' => $cartItem], 200);
+        $item->quantity = $request->quantity;
+        $item->save();
+        return response()->json([
+            'success'=> true,
+            'message' => "item with id= $id quantity updated successfully",
+        ], 200);
+    
 }
+
+
+
+public function deleteItem($id){
+    $item = CartItem::find($id);
+    if(!$item){
+        return response()->json([
+            'success'=> false,
+            'message' => "item with id= $id not found",
+        ], 404);
+    }
+
+        $item->delete();
+        return response()->json([
+            'success'=> true,
+            'message' => "item with id= $id deleted successfully",
+        ], 200);
+    
+}
+
 }

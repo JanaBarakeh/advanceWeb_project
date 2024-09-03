@@ -10,6 +10,7 @@ import { OrderService } from 'src/app/order-service/order.service';
 })
 export class OrderCardComponent implements OnInit{
   @Input() orderId :any
+  @Input() orderStatus:any
   orderItems = [];
   // [
   //   { id: 1, name: 'Product 1', price: 29.99, quantity: 1, imageUrl: 'item2.jpg' },

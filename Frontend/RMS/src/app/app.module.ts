@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms'; 
 import { AppComponent } from './app.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { FormsModule } from '@angular/forms';
@@ -28,6 +29,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ReviewComponent } from './review/review.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
+import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
 
 @NgModule({
   declarations: [
@@ -56,13 +58,15 @@ import { CustomerPageComponent } from './customer-page/customer-page.component';
     ReviewComponent,
     AdminPageComponent,
     CustomerPageComponent,
+    AddmenuitemPageComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

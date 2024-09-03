@@ -49,5 +49,18 @@ export class OrderService {
     );
   }
 
+  // Update quantity.
+  updateQuantity(itemId: number, quantity: number){
+    return this.http.put<any>('http://localhost:8000/api/cart/item/'+itemId,
+      {
+        quantity: quantity
+      } 
+    );
+  }
+
+  // Delete item from cart.
+  deleteCartItem(itemId: number){
+    return this.http.delete<any>('http://localhost:8000/api/cart/item/'+itemId);
+  }
 }
 

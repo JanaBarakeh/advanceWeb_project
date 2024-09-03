@@ -12,11 +12,13 @@ export class OrderDetailsPageComponent implements OnInit {
   // @Input() orderId :any
 
   orderId: number | undefined;
-
+  orderStatus: string | undefined;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.orderId = Number(this.route.snapshot.paramMap.get('orderId'));
+    this.orderStatus = String(this.route.snapshot.paramMap.get('orderStatus'));
+
     console.log(this.orderId);
   }
 }
