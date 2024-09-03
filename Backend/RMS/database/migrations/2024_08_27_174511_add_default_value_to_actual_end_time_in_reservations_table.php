@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->time('actual_end_time')->default('00:00:00')->change();
+            $table->time('actual_end_time')->nullable()->change();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->time('actual_end_time')->nullable(false)->change();
+            $table->time('actual_end_time')->nullable()->change();
         });
     }
 };

@@ -25,8 +25,7 @@ class MenuItemFactory extends Factory
             'price' => $this->faker->randomFloat(2, 5, 20), // random price between 5 and 20
             'is_available' => $this->faker->boolean(80), // 80% chance of being true
             'category' => 'Pizza', // fixed category for this example
-            'image_path' => $this->faker->imageUrl(640, 480, 'food', true, 'pizza', true), // generate a random image URL
-            
+            'image_path' => 'images/menu_items/pizza.jpg', // generate a random image URL
         ];
     }
 }

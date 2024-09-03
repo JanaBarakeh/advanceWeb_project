@@ -19,6 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(MenuItemSeeder::class);
+        $this->call(CartSeeder::class);
+        $this->call(TablesSeeder::class);
+        $this->call(ReservationsSeeder::class);
+        $this->call(OrdersSeeder::class);
+        $this->call(OrderItemsSeeder::class);
     }
     
 }
