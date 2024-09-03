@@ -1,5 +1,5 @@
 <?php
-// @author Farah Elhasan
+// @author Farah Elhasan & jana 
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
@@ -64,4 +64,43 @@ class CartController extends Controller
     // Return the updated cart item in a JSON response
     return response()->json(['message' => 'Item added to cart', 'cartItem' => $cartItem], 200);
 }
+
+
+public function updateQuantity(Request $request, $id){
+    $item = CartItem::find($id);
+    if(!$item){
+        return response()->json([
+            'success'=> false,
+            'message' => "item with id= $id not found",
+        ], 404);
+    }
+
+        $item->quantity = $request->quantity;
+        $item->save();
+        return response()->json([
+            'success'=> true,
+            'message' => "item with id= $id quantity updated successfully",
+        ], 200);
+    
+}
+
+
+
+public function deleteItem($id){
+    $item = CartItem::find($id);
+    if(!$item){
+        return response()->json([
+            'success'=> false,
+            'message' => "item with id= $id not found",
+        ], 404);
+    }
+
+        $item->delete();
+        return response()->json([
+            'success'=> true,
+            'message' => "item with id= $id deleted successfully",
+        ], 200);
+    
+}
+
 }

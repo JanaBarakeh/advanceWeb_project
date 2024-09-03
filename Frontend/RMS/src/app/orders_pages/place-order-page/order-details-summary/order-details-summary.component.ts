@@ -1,5 +1,6 @@
 import { Component, DoCheck, inject, Input, OnChanges, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/order-service/order.service';
+// @author Farah Elhasan
 
 @Component({
   selector: 'app-order-details-summary',
@@ -37,7 +38,11 @@ export class OrderDetailsSummaryComponent implements DoCheck{
     this.orderService.placeOrder(this.reservationId, this.userId).subscribe(response =>
       console.log(response)
     )
-    //to do:  delete item from cart.
-    // dialoge
+    
+    for (let i = 0; i < this.items.length; i++) {
+      this.orderService.deleteCartItem(this.items[i].id).subscribe(response =>
+        console.log(response)
+      )
+    }
   }
 }

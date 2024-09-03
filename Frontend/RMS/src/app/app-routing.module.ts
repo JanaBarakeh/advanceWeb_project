@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'order-list-stff', component: OrdersListComponent },
   { path: 'order-list-customer', component: OrderListCustomerComponent },
   { path: 'cart', component: OrderDetailsComponent},
-  { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
+  { path: 'order-details/:orderId/:orderStatus', component: OrderDetailsPageComponent },
   { path : 'menu-page-customer',component:MenuPageCustomerComponent },
   { path: 'update-item/:id', component: UpdatePageComponent },
   
