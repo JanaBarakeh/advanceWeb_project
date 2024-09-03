@@ -7,6 +7,7 @@ import { OrderDetailsComponent } from './orders_pages/place-order-page/order-det
 import { OrderDetailsPageComponent } from './orders_pages/order-details-page/order-details-page/order-details-page.component';
 import { OrdersListComponent } from './orders_pages/orders-list-staff-page/orders-list/orders-list.component';
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
+import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
 
 const routes: Routes = [
   { path: 'menu-page', component: MenuPageComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'order-details/:orderId/:orderStatus', component: OrderDetailsPageComponent },
   { path : 'menu-page-customer',component:MenuPageCustomerComponent },
   { path: 'update-item/:id', component: UpdatePageComponent },
-  
+  {path:'addmenuitem-page', component:AddmenuitemPageComponent},
+
 ];
 
 
