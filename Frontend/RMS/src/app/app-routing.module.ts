@@ -18,8 +18,11 @@ import { UserReservationsComponent } from './table_reservation/pages/user_reserv
 import { ReservationTableComponent } from './table_reservation/pages/reservation-table/reservation-table.component';
 import { TablesTableComponent } from './table_reservation/components/tables-table/tables-table.component';
 import { TablesPageComponent } from './table_reservation/pages/tables-page/tables-page.component';
+import { StaffPageComponent } from './staff-page/staff-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const routes: Routes = [
+  { path: 'admin-page', component: AdminPageComponent },
   { path: 'menu-page', component: MenuPageComponent },
   { path: 'order-list-stff', component: OrdersListComponent },
   {
@@ -27,40 +30,25 @@ const routes: Routes = [
     component: OrderListCustomerComponent,
   },
   { path: 'cart/:userId/:reservationId', component: OrderDetailsComponent },
-  { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'costemerpage', component: CustomerPageComponent },
-  { path: 'home-page', component: HomePageComponent },
+  { path: 'customer-page/:userId', component: CustomerPageComponent },
   {
     path: 'order-details/:orderId/:orderStatus',
     component: OrderDetailsPageComponent,
   },
-  { path: 'menu-page-customer', component: MenuPageCustomerComponent },
-  { path: 'cart', component: OrderDetailsComponent },
-  { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
-  { path: 'menu-page-customer', component: MenuPageCustomerComponent },
-  { path: 'update-item/:id', component: UpdatePageComponent },
+  { path: 'menu-page-customer/:userId', component: MenuPageCustomerComponent },
   { path: 'table-reservation', component: ReserveTablePageComponent },
   { path: 'reservation-details/:id', component: ReservationDetailsComponent },
   { path: 'cart', component: OrderDetailsComponent },
   { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
-  { path: 'home', component: HomePageComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'costemerpage', component: CustomerPageComponent },
   { path: 'home-page', component: HomePageComponent },
-  { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
-  {
-    path: 'order-details/:orderId/:orderStatus',
-    component: OrderDetailsPageComponent,
-  },
-  { path: 'menu-page-customer', component: MenuPageCustomerComponent },
   { path: 'update-item/:id', component: UpdatePageComponent },
   { path: 'addmenuitem-page', component: AddmenuitemPageComponent },
   { path: 'my-reservations', component: UserReservationsComponent },
   { path: 'reservations', component: ReservationTableComponent },
   { path: 'tables', component: TablesPageComponent },
+  { path: 'staff-page', component: StaffPageComponent },
 ];
 
 @NgModule({

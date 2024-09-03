@@ -12,12 +12,26 @@ import { inject} from '@angular/core';
 export class CustomerPageComponent {
 
   userId: number | undefined;
-  
+  userName: string | undefined;
+
   ngOnInit() {
     this.userId = Number(this.route.snapshot.paramMap.get('userId'));
+    if (this.userId) {
+      this.getUserName(this.userId);
+    }
   }
+  
   logout_inject = inject(AuthService);
-  constructor(private http: HttpClient, private router: Router,private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private router: Router,private route: ActivatedRoute,private authService: AuthService) {}
+
+  getUserName(userId: number): void {
+    this.authService.getUserById(userId).subscribe(response => {
+      this.userName = response.name;
+      console.log(this.userName); // Assuming the API returns a user object with a 'name' property
+    }, error => {
+      console.error('Failed to fetch user name', error);
+    });
+  }
 
   onSubmit() {
     this.logout_inject.logout().subscribe(response => {
@@ -32,7 +46,14 @@ export class CustomerPageComponent {
 
   gotocartpage(){
       const userId = this.userId;
-      this.router.navigate(['/cart', userId]);
+      this.router.navigate(['/cart',userId]);
     
+  } 
+  navigateToMenuPage(): void {
+    const userId = this.userId;
+    this.router.navigate(['/menu-page-customer', userId]);
   }
+
+
+
 }

@@ -40,6 +40,7 @@ import { ReservationTableComponent } from './table_reservation/pages/reservation
 import { TablesTableComponent } from './table_reservation/components/tables-table/tables-table.component';
 import { TablesPageComponent } from './table_reservation/pages/tables-page/tables-page.component';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { StaffPageComponent } from './staff-page/staff-page.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
     ReservationTableComponent,
     TablesTableComponent,
     TablesPageComponent,
+    StaffPageComponent,
   ],
   imports: [
     BrowserModule,

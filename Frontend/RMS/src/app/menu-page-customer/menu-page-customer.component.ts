@@ -1,5 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
 import { MenuPageCustomerService } from './../menu-page-customer.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 // @author Jana Barakeh
 @Component({
@@ -10,12 +11,16 @@ import { Component, OnInit } from '@angular/core';
 export class MenuPageCustomerComponent implements OnInit {
   menuItems: any[] = [];
   searchCategory: string = ''; 
-  
-  constructor(private menuCustomerService: MenuPageCustomerService) { }
+  constructor(private menuCustomerService: MenuPageCustomerService, private route: ActivatedRoute) { }
+
+  userId!: number;
+
 
 
   ngOnInit(): void {
    this.getAllMenuItems();
+   this.userId = Number(this.route.snapshot.paramMap.get('userId'));
+
   }
 
   
@@ -42,8 +47,8 @@ export class MenuPageCustomerComponent implements OnInit {
     }
     );
     }
-    addToCart(menuItemId: number) {
-      this.menuCustomerService.addToCart(menuItemId, 1).subscribe(response => {
+    addToCart(menuItemId: number, price:number) {
+      this.menuCustomerService.addToCart(menuItemId,1,this.userId, price).subscribe(response => {
         console.log('Item added to cart', response);
       });
     }
