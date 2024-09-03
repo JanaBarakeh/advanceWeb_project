@@ -13,10 +13,23 @@ export class ReservationService {
   private reservation: any;
 
   constructor(private http: HttpClient) {}
+
   setReservationData(data: any) {
     this.reservation = data;
   }
 
+  reserveTable(data: any) {
+    return this.http.post('http://127.0.0.1:8000/api/reservations', data);
+  }
+
+  checkAvailability(params: any) {
+    return this.http.get(
+      'http://127.0.0.1:8000/api/reservations/availability',
+      {
+        params,
+      }
+    );
+  }
   getReservationData() {
     return this.reservation;
   }
