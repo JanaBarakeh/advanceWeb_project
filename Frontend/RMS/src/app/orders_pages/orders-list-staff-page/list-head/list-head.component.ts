@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// @author Farah Elhasan
 
 @Component({
   selector: 'app-list-head',

@@ -1,5 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { OrderService } from 'src/app/order-service/order.service';
+// @author Farah Elhasan
 
 @Component({
   selector: 'app-order-details-card',
@@ -35,4 +36,8 @@ export class OrderDetailsCardComponent {
  
     
   }
+  onDeleteItem(){
+  
+  }
+
 }

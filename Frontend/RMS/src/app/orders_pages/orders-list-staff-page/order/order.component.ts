@@ -1,6 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/order-service/order.service';
+// @author Farah Elhasan
 
 @Component({
   selector: 'app-order',
@@ -14,7 +15,8 @@ export class OrderComponent {
  orderService = inject(OrderService);
  goToOrderDetailsPage() {
    const orderId = this.order.id;
-   this.router.navigate(['/order-details', orderId]);
+   const orderStatus = this.order.status;
+   this.router.navigate(['/order-details', orderId, orderStatus]);
  }
 
  updateStatus(newStatus: string) {

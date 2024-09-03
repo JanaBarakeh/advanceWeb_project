@@ -23,6 +23,9 @@ export class MenuPageService {
   creatMenuItem(data:any):Observable<any>{
     return this.http.post<any>(this.apiUrl ,data);
   }
+  createMenuItem(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.apiUrl, formData);
+  }
 
   // update an existing menu items
   updateMenuItem(id : number , data : any):Observable<any>{
@@ -42,6 +45,8 @@ export class MenuPageService {
   getMenuItemById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
-  
+  getMenuItemImageById(id: number) {
+    return this.http.get(`http://localhost:8000/api/menu-items/image/${id}`);
+  }
   
 }

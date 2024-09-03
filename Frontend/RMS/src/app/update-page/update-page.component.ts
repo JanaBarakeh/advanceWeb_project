@@ -8,7 +8,7 @@ import { ActivatedRoute  , Router} from '@angular/router';
   styleUrls: ['./update-page.component.css']
 })
 export class UpdatePageComponent implements OnInit {
-
+  uploadedFile: File | null = null;
   itemId !: number;
   item: any;
 
@@ -28,6 +28,12 @@ export class UpdatePageComponent implements OnInit {
         console.error('Error fetching item details', error);
       }
     );
+  }
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.uploadedFile = file;
+    }
   }
   updateItem(): void {
     this.menuService.updateMenuItem(this.itemId, this.item).subscribe(

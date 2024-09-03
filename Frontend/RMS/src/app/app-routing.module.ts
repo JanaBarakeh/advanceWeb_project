@@ -9,6 +9,11 @@ import { OrdersListComponent } from './orders_pages/orders-list-staff-page/order
 import { OrderListCustomerComponent } from './orders_pages/orders-list-customer-page/order-list-customer/order-list-customer.component';
 import { ReserveTablePageComponent } from './table_reservation/pages/reserve_table_page/reserve-table-page/reserve-table-page.component';
 import { ReservationDetailsComponent } from './table_reservation/pages/reservation_details_page/reservation-details.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { CustomerPageComponent } from './customer-page/customer-page.component';
+import { AddmenuitemPageComponent } from './addmenuitem-page/addmenuitem-page.component';
 
 const routes: Routes = [
   { path: 'menu-page', component: MenuPageComponent },
@@ -20,6 +25,21 @@ const routes: Routes = [
   { path: 'update-item/:id', component: UpdatePageComponent },
   { path: 'table-reservation', component: ReserveTablePageComponent },
   { path: 'reservation-details/:id', component: ReservationDetailsComponent },
+  { path: 'cart', component: OrderDetailsComponent },
+  { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
+  { path: 'home', component: HomePageComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'costemerpage', component: CustomerPageComponent },
+  { path: 'home-page', component: HomePageComponent },
+  { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
+  {
+    path: 'order-details/:orderId/:orderStatus',
+    component: OrderDetailsPageComponent,
+  },
+  { path: 'menu-page-customer', component: MenuPageCustomerComponent },
+  { path: 'update-item/:id', component: UpdatePageComponent },
+  { path: 'addmenuitem-page', component: AddmenuitemPageComponent },
 ];
 
 @NgModule({

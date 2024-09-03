@@ -1,7 +1,7 @@
 <div class="card">
     <div class="row" >
       <div class="col-md-8">
-        <app-order-details-items [items]='items' (quantityChange)="onQuantityChange()"></app-order-details-items>
+        <app-order-details-items [items]='items' (quantityChange)="onQuantityChange()" (deleteItem)="onDeleteItem()" ></app-order-details-items>
       </div>
       <div class="col-md-4">
         <app-order-details-summary [items]='items' [reservationId]="reservationId" [userId]="userId"></app-order-details-summary>
