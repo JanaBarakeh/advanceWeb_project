@@ -12,13 +12,14 @@ export class OrderDetailsComponent {
   // @Input() reservationId: any
   
   // i should replace reservation id to be dynamic (pass or input) 
-  reservationId=1;
+  // userId =1;
+  //reservationId=1;
   userId: number | undefined;
-  // reservationId: number | undefined;
+  reservationId: number | undefined;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.userId = Number(this.route.snapshot.paramMap.get('userId'));
-    // this.reservationId = String(this.route.snapshot.paramMap.get('reservationId'));
+    this.reservationId = Number(this.route.snapshot.paramMap.get('reservationId'));
   }
 }
