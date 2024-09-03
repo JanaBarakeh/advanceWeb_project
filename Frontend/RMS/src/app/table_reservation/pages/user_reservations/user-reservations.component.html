@@ -1,0 +1,13 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <app-reservation-card
+        *ngFor="let reservation of reservations"
+        [reservation]="reservation"
+        (onCancel)="handleCancel($event)"
+        (onOrder)="handleOrder($event)"
+        (onViewOrders)="handleViewOrders($event)"
+      ></app-reservation-card>
+    </div>
+  </div>
+</div>

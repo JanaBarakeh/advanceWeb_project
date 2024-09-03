@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ReservationService } from '../../Services/ReservationService';
+import { ReservationService } from '../../Services/ReservationService.service';
 
 @Component({
   selector: 'app-reservation-details',
@@ -9,8 +9,6 @@ import { ReservationService } from '../../Services/ReservationService';
 export class ReservationDetailsComponent implements OnInit {
   reservation: any;
   reservationService = inject(ReservationService);
-
-  constructor(private router: Router) {}
 
   ngOnInit() {
     this.reservation = this.reservationService.getReservationData();

@@ -1,0 +1,23 @@
+<div class="row my-3">
+  <div class="col-12">
+    <h3>{{ title }}</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Table ID</th>
+          <th>Details</th>
+          <th>Private</th>
+          <th>Capacity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let table of tables">
+          <td>{{ table.id }}</td>
+          <td>{{ table.details }}</td>
+          <td>{{ table.isPrivate ? "Yes" : "No" }}</td>
+          <td>{{ table.capacity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

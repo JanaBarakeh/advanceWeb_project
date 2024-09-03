@@ -31,13 +31,46 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="order-list-stff" routerLinkActive="active">order list [staff]</a>
+        <a
+          class="nav-link"
+          [routerLink]="'order-list-stff'"
+          routerLinkActive="active"
+          >order list [staff]</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="order-list-customer" routerLinkActive="active">order list [customer]</a>
+        <a
+          class="nav-link"
+          [routerLink]="'my-reservations'"
+          routerLinkActive="active"
+          >Reservations [customer]</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="cart" routerLinkActive="active">cart</a>
+        <a
+          class="nav-link"
+          [routerLink]="'reservations'"
+          routerLinkActive="active"
+          >Reservations [staff]</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="'reservations'"
+          routerLinkActive="active"
+          >Reservations [staff]</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'tables'" routerLinkActive="active"
+          >tables [staff]</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'cart/2/1'" routerLinkActive="active"
+          >cart</a
+        >
       </li>
     </ul>
   </div>
