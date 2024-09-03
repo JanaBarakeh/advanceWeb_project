@@ -35,6 +35,11 @@ class ItemsController extends Controller
         $items = MenuItem::all();
         return response($items,200);
     }
+
+    public function getItembyid($id){
+        $menuItem = MenuItem::findOrFail($id);
+        return response( $menuItem,200);
+    }
  /**
  * @OA\Post(
  *     path="/api/menu-items",

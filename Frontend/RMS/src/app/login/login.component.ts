@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject, Input } from '@angular/core';
+import { AuthService } from 'src/app/user-service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,19 +8,40 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  showLoginForm = false;
+  showSignupForm = false;
 
-  constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
+  showLogin() {
+    this.showLoginForm = true;
+    this.showSignupForm = false;
   }
 
+  showSignup() {
+    this.showLoginForm = false;
+    this.showSignupForm = true;
+  }
+
+  @Input() email: any;
+  @Input() password: any;
+
+  constructor(private router: Router) {}
+
+  login_inject = inject(AuthService);
+  
   onSubmit() {
-    if (this.loginForm.valid) {
-      // Handle the login logic here
-      console.log('Form Submitted', this.loginForm.value);
-    }
+    this.login_inject.Login(this.email, this.password).subscribe(response => {
+      console.log(response);
+      
+      localStorage.setItem('auth_token', response.access_token);
+      
+      const userId = response.user_id;
+      const roleId = response.role_id;
+
+      this.router.navigate(['/costemerpage'], { 
+        queryParams: { userId: userId, roleId: roleId } 
+      });
+    }, error => {
+      console.error('Login failed', error);
+    });
   }
 }

@@ -1,0 +1,45 @@
+<div class="form-box signup">
+    <div class="form-details">
+        <h2>Create Account</h2>
+        <p>To become a part of our community, please sign up using your personal information.</p>
+    </div>
+    <div class="form-content">
+        <h2>SIGNUP</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div class="input-group">
+                <div class="input-field">
+                    <input type="text" name="first_name" [(ngModel)]="formData.first_name" required>
+                    <label>First Name</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="last_name" [(ngModel)]="formData.last_name" required>
+                    <label>Last Name</label>
+                </div>
+            </div>
+            <div class="input-field">
+                <input type="email" name="email" [(ngModel)]="formData.email" required>
+                <label>Enter your email</label>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" [(ngModel)]="formData.password" required>
+                <label>Password</label>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password_confirmation" [(ngModel)]="formData.password_confirmation" required>
+                <label>Confirm Password</label>
+            </div>
+            <div class="policy-text">
+                <input type="checkbox" id="policy" name="policy" [(ngModel)]="formData.policy" required>
+                <label for="policy">
+                    I agree to the
+                    <a href="#" class="option">Terms & Conditions</a>
+                </label>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="bottom-link">
+            Already have an account? 
+            <a href="#" id="login-link">Login</a>
+        </div>
+    </div>
+</div>

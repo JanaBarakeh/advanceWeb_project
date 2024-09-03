@@ -43,4 +43,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // One to Many relation with cart_items table.
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }

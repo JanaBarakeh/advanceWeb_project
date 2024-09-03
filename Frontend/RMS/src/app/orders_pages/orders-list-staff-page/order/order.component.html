@@ -1,0 +1,26 @@
+
+<div class="order-block col col-xs-11 ">
+    <div class="col col-sm-3">
+        <p>{{order.id}}</p>
+    </div>
+    <div  class="col col-sm-3">
+        <p> {{order.table_id}}</p>
+    </div>
+    <div  class="col col-sm-3">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{order.status}}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" (click)="updateStatus('PREPARING')">PREPARING</a></li>
+                <li><a class="dropdown-item" href="#" (click)="updateStatus('READY')">READY</a></li>
+                <li><a class="dropdown-item" href="#" (click)="updateStatus('DELIVERED')">DELIVERED</a></li>
+            </ul>
+          </div>
+    </div>
+    <div  class="col col-sm-3">
+        <button class="btn btn-outline-secondary" (click)="goToOrderDetailsPage()">Order's Items</button>
+    </div>
+  </div>
+
+  

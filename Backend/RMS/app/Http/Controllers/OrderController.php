@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\User;
+use App\Models\MenuItem;
+
+
 use App\Models\Reservation;
 
 
@@ -75,17 +79,20 @@ class OrderController extends Controller
     public function createOrder(Request $request) { 
         $totalPrice = 0;
         // Check data coming from request.
-       
         $validatedData = $this->validate($request,[
             'reservation_id' => 'required|integer',
-            'order_items' => 'required|array',
-            'order_items.*.menu_item_id' => 'required|integer',
-            'order_items.*.price' => 'required|numeric',
-            'order_items.*.quantity' => 'required|integer',
         ]);
-       
+        $user = User::find($request->user_id);
+        if(!$user){
+             return response()->json([
+                 'success'=> false,
+                 'message' => "user with id= $id not found",
+             ], 404);
+        }
+        
+        $orderItems = $user->cartItems()->get()->toArray();
         // Calculate total price.
-        foreach($validatedData['order_items'] as $item){
+        foreach( $orderItems as $item){
            $totalPrice += ($item['price'] * $item['quantity']); 
         }
 
@@ -96,7 +103,7 @@ class OrderController extends Controller
             'status' => 'NEW',
         ]); 
 
-        foreach ($validatedData['order_items'] as $item){
+        foreach ($orderItems as $item){
             $order->orderItems()->create($item);
         }
 
@@ -293,8 +300,16 @@ class OrderController extends Controller
      */
     public function getAllOrders(){
         // The new orders appear in top.
-        $orders = Order::all()->sortDesc();
-        return response($orders,200);
+        $orders = Order::all()->sortDesc()->values();
+        // To add table id in respone, because i need it in the page.
+        $orders = $orders->map(function($order) {
+
+            $reservation = Reservation ::find($order->reservation_id);
+            // Get the table_id from the related reservation
+            $order->table_id = $reservation->table_id;
+            return $order;
+        });
+        return response($orders, 200);
     }
 
     /**
@@ -366,49 +381,22 @@ class OrderController extends Controller
        }
 
        $orders = $reservation->orders()->get();
+
+        $orders = $orders->map(function($order) {
+        $reservation = Reservation ::find($order->reservation_id);
+        // Add table_id to response.
+        $order->table_id = $reservation->table_id;
+        return $order;
+    });
+    return response($orders, 200);
+
+
+
        return response($orders,200);
     }
 
 
-    /**
-     * @OA\Get(   
-     *     path="/api/orders/{id}/items",  
-     *     summary="Retrieve order items",  
-     *     description="Returns all items for a specific order",  
-     *     tags={"Orders"},   
-     *     @OA\Parameter(   
-     *         name="id",   
-     *         in="path",   
-     *         required=true,   
-     *         @OA\Schema(   
-     *             type="integer"
-     *         ),
-     *         description="The ID of the order to retrieve items for"
-     *     ),
-     *     @OA\Response(   
-     *         response=200,   
-     *         description="Successful operation",   
-     *         @OA\JsonContent(   
-     *             type="array",   
-     *              @OA\Items(
-     *                 type="object",
-     *                 @OA\Property(property="menu_item_id", type="integer", example=1),
-     *                 @OA\Property(property="price", type="number", format="float", example=19.99),
-     *                 @OA\Property(property="quantity", type="integer", example=2)
-     *               )          
-     *         )
-     *     ),
-     *      @OA\Response(
-     *         response=404,
-     *         description="Reservation not found",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(property="message", type="string", example="Order with id=1 not found")
-     *         )
-     *     )
-     * )
-     */
+
     public function getOrderItems($id){
         $order = Order::find($id);
         if(!$order){
@@ -419,6 +407,14 @@ class OrderController extends Controller
         }
         
         $orderItems = $order->orderItems()->get();
+        
+        $orderItems = $orderItems->map(function($item) {
+            $menuItem = MenuItem::find($item->menu_item_id);
+            // Add item name to response.
+            $item->name = $menuItem->name;
+            return $item;
+        });
+
         return response($orderItems,200);
      }
 }

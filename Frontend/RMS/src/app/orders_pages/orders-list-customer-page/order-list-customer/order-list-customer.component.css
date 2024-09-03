@@ -1,0 +1,16 @@
+section {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /* align-items: center; */ 
+    background-color:#eee;
+    width: 100%;
+    padding-bottom: 30px;
+    height: 100%;
+  }
+  .card-title {
+    padding: 20px 
+  }
+.order-block{
+    display: flex;
+}

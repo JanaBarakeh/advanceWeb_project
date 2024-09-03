@@ -1,33 +1,25 @@
-<!-- login.component.html -->
-
-<div class="main">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Features</a>
-              <a class="nav-link" href="#">Pricing</a>
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+<div class="form-box login">
+    <div class="form-details">
+        <h2>Welcome Back</h2>
+        <p>Please log in using your personal information to stay connected with us.</p>
+    </div>
+    <div class="form-content">
+        <h2>LOGIN</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div class="input-field">
+                <input type="email" name="email" [(ngModel)]="email" required>
+                <label>Email</label>
             </div>
-          </div>
+            <div class="input-field">
+                <input type="password" name="password" [(ngModel)]="password" required>
+                <label>Password</label>
+            </div>
+            <a href="#" class="forgot-pass-link">Forgot password?</a>
+            <button type="submit">Log In</button>
+        </form>
+        <div class="bottom-link">
+            Don't have an account?
+            <a href="#" id="signup-link" (click)="showSignup()">Signup</a>
         </div>
-    </nav>
+    </div>
 </div>
-<div class="second">
-
-</div>
-<div class="third">
-
-</div>
-<div class="fourth">
-
-</div>
-<div class="footer">
-
-</div>
-  
