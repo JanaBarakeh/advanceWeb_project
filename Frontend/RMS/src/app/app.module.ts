@@ -41,6 +41,10 @@ import { TablesTableComponent } from './table_reservation/components/tables-tabl
 import { TablesPageComponent } from './table_reservation/pages/tables-page/tables-page.component';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { StaffPageComponent } from './staff-page/staff-page.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
+import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
+import { AdminReviewCardComponent } from './admin-review-card/admin-review-card.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +84,10 @@ import { StaffPageComponent } from './staff-page/staff-page.component';
     TablesTableComponent,
     TablesPageComponent,
     StaffPageComponent,
+    DashboardComponent,
+    DashboardCardComponent,
+    AdminReviewsComponent,
+    AdminReviewCardComponent,
   ],
   imports: [
     BrowserModule,
