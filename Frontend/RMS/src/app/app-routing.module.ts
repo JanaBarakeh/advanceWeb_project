@@ -23,7 +23,6 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: 'home-page', component: DashboardComponent },
   { path: 'admin-page', component: AdminPageComponent },
   { path: 'menu-page', component: MenuPageComponent },
   { path: 'order-list-stff', component: OrdersListComponent },
@@ -44,7 +43,7 @@ const routes: Routes = [
   { path: 'reservation-details/:id', component: ReservationDetailsComponent },
   { path: 'cart', component: OrderDetailsComponent },
   { path: 'order-details/:orderId', component: OrderDetailsPageComponent },
-  // { path: 'home-page', component: HomePageComponent },
+  { path: 'home-page', component: HomePageComponent },
   { path: 'update-item/:id', component: UpdatePageComponent },
   { path: 'addmenuitem-page', component: AddmenuitemPageComponent },
   { path: 'my-reservations', component: UserReservationsComponent },
