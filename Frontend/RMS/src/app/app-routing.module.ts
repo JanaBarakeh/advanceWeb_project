@@ -20,6 +20,7 @@ import { TablesTableComponent } from './table_reservation/components/tables-tabl
 import { TablesPageComponent } from './table_reservation/pages/tables-page/tables-page.component';
 import { StaffPageComponent } from './staff-page/staff-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'admin-page', component: AdminPageComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'reservations', component: ReservationTableComponent },
   { path: 'tables', component: TablesPageComponent },
   { path: 'staff-page', component: StaffPageComponent },
+  { path: 'dashboard', component: DashboardComponent },
 ];
 
 @NgModule({

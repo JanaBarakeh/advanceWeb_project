@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReservationService } from '../../Services/ReservationService.service';
@@ -14,11 +13,13 @@ export class SearchTablesComponent implements OnInit {
   numberOfPersons: number = 2;
   isAvailable: boolean = false;
   isChecked: boolean = false;
+  notAvailable: boolean = false;
+  pastCheck: boolean = false;
 
   hours: string[] = [];
   personsArray: number[] = Array.from({ length: 10 }, (_, i) => i + 1); // 1 to 10 persons
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.populateHours();
@@ -38,14 +39,19 @@ export class SearchTablesComponent implements OnInit {
       time: this.reservationTime,
       numberOfPeople: this.numberOfPersons,
     };
-    console.log('Buttono pressed!!!');
-    this.http
-      .get('http://127.0.0.1:8000/api/reservations/availability', { params })
-      .subscribe((response: any) => {
+
+    this.reservationService.checkAvailability(params).subscribe(
+      (response: any) => {
         this.isAvailable = response.isAvailable;
+        this.notAvailable = !this.isAvailable;
+
         console.log("I'm returned");
         console.log(this.isAvailable);
-      });
+      },
+      (error) => {
+        this.pastCheck = true;
+      }
+    );
   }
 
   proceedToReservation() {
@@ -55,20 +61,13 @@ export class SearchTablesComponent implements OnInit {
       numberOfPeople: this.numberOfPersons,
     };
 
-    const headers = {
-      Authorization:
-        'Bearer 2|t95PAPV2NTUbwQX2EbbGNwhb7YG6Qsvj15jcMgon20071eb6',
-      Accept: 'application/json',
-    };
-
     console.log('Inside proceed');
-    this.http
-      .post('http://127.0.0.1:8000/api/reservations', data, { headers })
-      .subscribe((response: any) => {
-        console.log('Send a request');
-        console.log(response);
-        this.reservationService.setReservationData(response);
-        this.router.navigate(['/reservation-details', response.id]);
-      });
+
+    this.reservationService.reserveTable(data).subscribe((response: any) => {
+      console.log('Send a request');
+      console.log(response);
+      this.reservationService.setReservationData(response);
+      this.router.navigate(['/reservation-details', response.id]);
+    });
   }
 }

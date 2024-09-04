@@ -80,6 +80,8 @@
   <ng-template #noTableIcon>
     <i class="no-table-icon"></i>
   </ng-template>
+  <p *ngIf="notAvailable">All tables are reserved for this timeslot</p>
+  <p *ngIf="pastCheck">cannot reserve in the past</p>
   <button
     *ngIf="isAvailable"
     class="btn btn-success mt-3"

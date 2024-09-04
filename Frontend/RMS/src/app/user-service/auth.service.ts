@@ -8,6 +8,10 @@ import { Observable } from 'rxjs';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
+  getCurrentUser() {
+    return this.http.get<any>('http://localhost:8000/api/user');
+  }
+
   Login(email: string, password: string) {
     return this.http.post<any>('http://localhost:8000/api/login', {
       email: email,
