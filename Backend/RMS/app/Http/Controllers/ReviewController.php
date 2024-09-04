@@ -3,9 +3,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 class ReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except(['index', 'show']);
+    }
     /**
      * @OA\Get(
      *     path="/api/Review",
@@ -34,7 +39,7 @@ class ReviewController extends Controller
         return Review::all();
     }
 
-    /**
+        /**
      * @OA\Post(
      *     path="/api/Review",
      *     summary="Create a new review",
@@ -45,7 +50,6 @@ class ReviewController extends Controller
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(property="reservation_id", type="integer", example=1, description="ID of the reservation"),
-     *             @OA\Property(property="user_id", type="integer", example=1, description="ID of the user"),
      *             @OA\Property(property="rating", type="integer", example=5, description="Rating given by the user"),
      *             @OA\Property(property="content", type="string", example="Great service!", description="Optional content of the review")
      *         )
@@ -77,11 +81,21 @@ class ReviewController extends Controller
     {
         $validatedData = $request->validate([
             'reservation_id' => 'required|exists:reservations,id',
-            'user_id' => 'required|exists:users,id',
             'rating' => 'required|integer|min:1|max:5',
             'content' => 'nullable|string',
         ]);
-        $review = Review::create($validatedData);
+
+        $currentUser = User::find(Auth::user()->id);
+        if ($currentUser->role_id != 3) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        $review = Review::create([
+            'reservation_id' => $request->reservation_id,
+            'user_id' => Auth::id(), 
+            'rating' => $request->rating,
+            'content' => $request->content,
+        ]);
         return response()->json($review, 201);
     }
 
@@ -182,6 +196,11 @@ class ReviewController extends Controller
     {
         $review = Review::findOrFail($id);
 
+        $currentUser = User::find(Auth::user()->id);
+        if ($currentUser->id != $review->user_id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $validatedData = $request->validate([
             'rating' => 'sometimes|required|integer|min:1|max:5',
             'content' => 'nullable|string',
@@ -226,6 +245,12 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         $review = Review::findOrFail($id);
+
+        $currentUser = User::find(Auth::user()->id);
+        if ($currentUser->id !== $review->user_id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $review->delete();
 
         return response()->json(null, 204);
